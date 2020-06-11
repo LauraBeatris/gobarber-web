@@ -10,7 +10,7 @@ import logo from '../../assets/logo.svg';
 import signUpBackground from '../../assets/sign-up-background.png';
 
 const SignUp: React.FC = () => {
-  const handleSubmit = useCallback((): void => {
+  const handleSubmit = useCallback((data): void => {
     console.log(data);
   }, []);
 
