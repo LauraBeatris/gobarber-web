@@ -18,6 +18,8 @@ const SignIn: React.FC = () => {
 
   const handleSubmit = useCallback(async (data): Promise<void> => {
     try {
+      formRef.current?.setErrors({});
+
       await schema.validate(data, {
         abortEarly: false,
       });

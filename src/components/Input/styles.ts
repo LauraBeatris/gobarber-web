@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components';
+import Tooltip from '../Tooltip';
 
 interface ContainerProps {
   isFilled: boolean;
   isFocused: boolean;
+  hasError: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -41,6 +43,16 @@ export const Container = styled.div<ContainerProps>`
       }
     `}
 
+  ${({ hasError, theme }) =>
+    hasError &&
+    css`
+      border: 2px solid ${theme.colors.danger};
+
+      svg {
+        color: ${theme.colors.danger};
+      }
+    `}
+
   input {
     flex: 1;
     background: transparent;
@@ -68,6 +80,24 @@ export const Container = styled.div<ContainerProps>`
         -webkit-text-fill-color: ${theme.colors.whiteSecondary} !important;
         transition: background-color 5000s ease-in-out 0s;
       `}
+    }
+  }
+`;
+
+export const Error = styled(Tooltip)`
+  height: 100%;
+
+  > svg {
+    color: ${({ theme }) => theme.colors.danger};
+    margin: 0;
+  }
+
+  span {
+    background: ${({ theme }) => theme.colors.danger};
+    font-size: 14px;
+
+    &:before {
+      border-color: ${({ theme }) => theme.colors.danger} transparent;
     }
   }
 `;

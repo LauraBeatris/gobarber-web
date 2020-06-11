@@ -7,8 +7,9 @@ import React, {
 import useDidMount from '@rooks/use-did-mount';
 import { useField } from '@unform/core';
 import { IconBaseProps } from 'react-icons';
+import { FiAlertCircle } from 'react-icons/fi';
 
-import { Container } from './styles';
+import { Container, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -19,7 +20,7 @@ const Input: React.FC<InputProps> = ({ icon: Icon, name, ...rest }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
-  const { registerField, defaultValue, fieldName } = useField(name);
+  const { registerField, defaultValue, fieldName, error } = useField(name);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useDidMount(() => {
@@ -45,7 +46,7 @@ const Input: React.FC<InputProps> = ({ icon: Icon, name, ...rest }) => {
   }, []);
 
   return (
-    <Container isFilled={isFilled} isFocused={isFocused}>
+    <Container isFilled={isFilled} isFocused={isFocused} hasError={!!error}>
       {Icon && <Icon />}
       <input
         ref={inputRef}
@@ -56,6 +57,8 @@ const Input: React.FC<InputProps> = ({ icon: Icon, name, ...rest }) => {
         onChange={handleInputChange}
         {...rest}
       />
+
+      {error && <Error title={error} icon={FiAlertCircle} />}
     </Container>
   );
 };
