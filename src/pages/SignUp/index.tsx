@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { Form } from '@unform/web';
+import { Helmet } from 'react-helmet';
 import { FiLogIn, FiLock, FiMail, FiUser } from 'react-icons/fi';
 
 import AuthLayout from '../../layouts/Auth';
@@ -8,11 +10,19 @@ import logo from '../../assets/logo.svg';
 import signUpBackground from '../../assets/sign-up-background.png';
 
 const SignUp: React.FC = () => {
+  const handleSubmit = useCallback((): void => {
+    console.log(data);
+  }, []);
+
   return (
     <AuthLayout backgroundPosition="right" backgroundImage={signUpBackground}>
+      <Helmet>
+        <title>GoBarber | Create an account</title>
+      </Helmet>
+
       <img src={logo} aria-label="GoBarber" alt="GoBarber" />
 
-      <form>
+      <Form onSubmit={handleSubmit}>
         <h1>Create an account</h1>
 
         <Input
@@ -36,8 +46,8 @@ const SignUp: React.FC = () => {
           icon={FiLock}
         />
 
-        <Button type="button">Confirm</Button>
-      </form>
+        <Button type="submit">Confirm</Button>
+      </Form>
 
       <a href="#">
         <FiLogIn />
