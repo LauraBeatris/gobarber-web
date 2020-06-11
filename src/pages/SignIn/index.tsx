@@ -1,17 +1,30 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
 import { Helmet } from 'react-helmet';
 import { FiLogIn, FiLock, FiMail } from 'react-icons/fi';
 
 import AuthLayout from '../../layouts/Auth';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import getValidationErrors from '../../utils/getValidationErrors';
 import logo from '../../assets/logo.svg';
 import signInBackground from '../../assets/sign-in-background.png';
 
+import schema from './schema';
+
 const SignIn: React.FC = () => {
-  const handleSubmit = useCallback(data => {
-    console.log(data);
+  const formRef = useRef<FormHandles>(null);
+
+  const handleSubmit = useCallback(async (data): Promise<void> => {
+    try {
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+    } catch (error) {
+      const errors = getValidationErrors(error);
+      formRef.current?.setErrors(errors);
+    }
   }, []);
 
   return (
@@ -22,7 +35,7 @@ const SignIn: React.FC = () => {
 
       <img src={logo} aria-label="GoBarber" alt="GoBarber" />
 
-      <Form onSubmit={handleSubmit}>
+      <Form ref={formRef} onSubmit={handleSubmit}>
         <h1>Welcome to the platform</h1>
 
         <Input

@@ -11,7 +11,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <SignIn />
     </ThemeProvider>
-  )
+  );
 };
 
 export default App;

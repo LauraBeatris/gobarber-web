@@ -17,7 +17,8 @@
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1",
     "styled-media-query": "^2.1.2",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "yup": "^0.29.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,6 +49,7 @@
     "@types/react-helmet": "^6.0.0",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.0",
+    "@types/yup": "^0.29.2",
     "@typescript-eslint/eslint-plugin": "^3.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",

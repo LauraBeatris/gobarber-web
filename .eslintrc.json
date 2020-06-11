@@ -50,7 +50,9 @@
         }
       ],
       "@typescript-eslint/no-empty-interface": "off",
-      "react/jsx-props-no-spreading": "off"
+      "react/jsx-props-no-spreading": "off",
+      "no-unused-expressions": "off",
+      "@typescript-eslint/no-unused-expressions": "error"
     },
     "settings": {
       "import/resolver": {
