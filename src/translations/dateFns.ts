@@ -3,17 +3,18 @@ import { Locale } from 'date-fns';
 
 import i18n from './i18n';
 
-console.log(i18n.language);
+interface Locales {
+  [key: string]: Locale;
+}
 
-/**
- * Provides the Locale object to translate date-fns functions.
- * Defaults to enUS if not valid.
- */
-const getDateFnsLocale = (): Locale =>
-  ({
+const getDateFnsLocale = (): Locale => {
+  const locales: Locales = {
     pt: dateFnsLocales.ptBR,
     en: dateFnsLocales.enUS,
     de: dateFnsLocales.de,
-  }.pt || dateFnsLocales.enUS);
+  };
+
+  return locales[i18n.language];
+};
 
 export default getDateFnsLocale;
