@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 import { shade } from 'polished';
 
-export const Container = styled.button`
+import RippleButton from '../../styles/components/RippleButton';
+
+export const Container = styled(RippleButton)`
   background: ${({ theme }) => theme.colors.orange};
   border: 0;
   border-radius: 10px;
