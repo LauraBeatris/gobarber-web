@@ -46,28 +46,6 @@ const RippleButton = styled.button<RippleButtonProps>`
     animation-timing-function: infinite;
     animation: ${rippleAnimation} ${rippleAnimationDuration};
   }
-
-  .ripple-center {
-    width: 75%;
-    height: 75%;
-    border-radius: 50%;
-
-    ${({ theme }) =>
-      css`
-        background: ${rgba(theme.colors.orange, 0.25)};
-        box-shadow: inset -5px -5px 10px ${lighten(0.8, theme.colors.orange)},
-          inset 5px 5px 10px rgba(255, 255, 255, 0.025);
-      `}
-  }
-
-  .ripple-image {
-    width: 100px;
-    height: 100px;
-    pointer-events: none;
-    transform-origin: 0% 0%;
-    animation-timing-function: infinite;
-    animation: ${rippleAnimation} ${rippleAnimationDuration};
-  }
 `;
 
 const removeRippleEffect = (
