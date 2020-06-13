@@ -1,5 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
-import { rgba, lighten } from 'polished';
+import styled, { keyframes } from 'styled-components';
 
 interface RippleButtonProps {
   className?: string;
