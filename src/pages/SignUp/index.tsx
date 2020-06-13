@@ -1,4 +1,5 @@
 import React, { useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { Helmet } from 'react-helmet';
@@ -15,6 +16,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const [t] = useTranslation();
 
   const handleSubmit = useCallback(async (data): Promise<void> => {
     try {
@@ -36,35 +38,35 @@ const SignUp: React.FC = () => {
       <img src={logo} aria-label="GoBarber" alt="GoBarber" />
 
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <h1>Create an account</h1>
+        <h1>{t('signup.create_an_account')}</h1>
 
         <Input
           name="name"
           type="text"
           autoCapitalize="none"
-          placeholder="Full name"
+          placeholder={t('account_form.full_name')}
           icon={FiUser}
         />
         <Input
           name="email"
           type="email"
           autoCapitalize="none"
-          placeholder="E-mail"
+          placeholder={t('account_form.email')}
           icon={FiMail}
         />
         <Input
           name="password"
           type="password"
-          placeholder="Password"
+          placeholder={t('account_form.password')}
           icon={FiLock}
         />
 
-        <Button type="submit">Confirm</Button>
+        <Button type="submit">{t('buttons.confirm')}</Button>
       </Form>
 
       <a href="#">
         <FiLogIn />
-        Already have an account? Log in
+        {t('signup.already_have_an_account')}
       </a>
     </AuthLayout>
   );

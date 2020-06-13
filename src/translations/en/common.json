@@ -1,0 +1,19 @@
+{
+  "account_form": {
+    "email": "E-mail",
+    "password": "Password",
+    "full_name": "Full name"
+  },
+  "signin": {
+    "welcome_to_the_platform": "Welcome to the platform",
+    "create_an_account": "Create an account",
+    "forgot_my_password": "Forgot my password"
+  },
+  "signup": {
+    "create_an_account": "Create an account",
+    "already_have_an_account": "Already have an account? Log in"
+  },
+  "buttons": {
+    "confirm": "Confirm"
+  }
+}

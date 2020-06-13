@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { Helmet } from 'react-helmet';
@@ -15,6 +16,7 @@ import schema from './schema';
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const [t] = useTranslation();
 
   const handleSubmit = useCallback(async (data): Promise<void> => {
     try {
@@ -38,30 +40,30 @@ const SignIn: React.FC = () => {
       <img src={logo} aria-label="GoBarber" alt="GoBarber" />
 
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <h1>Welcome to the platform</h1>
+        <h1>{t('signin.welcome_to_the_platform')}</h1>
 
         <Input
           name="email"
           type="email"
           autoCapitalize="none"
-          placeholder="E-mail"
+          placeholder={t('account_form.email')}
           icon={FiMail}
         />
         <Input
           name="password"
           type="password"
-          placeholder="Password"
+          placeholder={t('account_form.password')}
           icon={FiLock}
         />
 
-        <Button type="submit">Confirm</Button>
+        <Button type="submit">{t('buttons.confirm')}</Button>
 
-        <a href="#">Forgot my password</a>
+        <a href="#">{t('signin.forgot_my_password')}</a>
       </Form>
 
       <a href="#">
         <FiLogIn />
-        Create an account
+        {t('signin.create_an_account')}
       </a>
     </AuthLayout>
   );

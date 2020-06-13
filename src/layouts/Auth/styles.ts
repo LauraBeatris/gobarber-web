@@ -15,10 +15,6 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: stretch;
 
-  ${media.lessThan('medium')`
-    padding: 50px 0;
-  `}
-
   ${({ backgroundPosition }) => {
     if (backgroundPosition === 'right') {
       return css`
@@ -39,10 +35,12 @@ export const Content = styled.section`
   justify-content: center;
   width: 100%;
   max-width: 700px;
+  padding: 20px 0 0;
 
   ${media.lessThan('medium')`
-      max-width: unset;
-   `}
+    max-width: unset;
+    padding: 50px 0;
+  `}
 
   h1 {
     margin-bottom: 24px;
