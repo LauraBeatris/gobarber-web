@@ -4,6 +4,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { Helmet } from 'react-helmet';
 import { FiLogIn, FiLock, FiMail } from 'react-icons/fi';
+import { ValidationError } from 'yup';
 
 import AuthLayout from '../../layouts/Auth';
 import Input from '../../components/Input';
@@ -13,23 +14,34 @@ import logo from '../../assets/logo.svg';
 import signInBackground from '../../assets/sign-in-background.png';
 
 import schema from './schema';
+import { useAuthDispatch } from '../../contexts/auth/AuthContext';
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const [t] = useTranslation();
+  const { signIn } = useAuthDispatch();
 
-  const handleSubmit = useCallback(async (data): Promise<void> => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSubmit = useCallback(
+    async (data): Promise<void> => {
+      try {
+        formRef.current?.setErrors({});
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (error) {
-      const errors = getValidationErrors(error);
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        signIn(data);
+      } catch (error) {
+        if (error instanceof ValidationError) {
+          const errors = getValidationErrors(error);
+          formRef.current?.setErrors(errors);
+        }
+
+        console.log(error);
+      }
+    },
+    [signIn],
+  );
 
   return (
     <AuthLayout backgroundImage={signInBackground}>
