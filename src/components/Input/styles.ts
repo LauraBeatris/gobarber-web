@@ -1,5 +1,6 @@
-import styled, { css } from 'styled-components';
-import Tooltip from '../Tooltip';
+import styled, { css } from "styled-components";
+
+import Tooltip from "../Tooltip";
 
 interface ContainerProps {
   isFilled: boolean;
@@ -29,23 +30,20 @@ export const Container = styled.div<ContainerProps>`
     margin-top: 8px;
   }
 
-  ${({ isFocused, theme }) =>
-    isFocused &&
-    css`
+  ${({ isFocused, theme }) => isFocused
+    && css`
       border: 2px solid ${theme.colors.orange};
     `}
 
-  ${({ isFilled, theme }) =>
-    isFilled &&
-    css`
+  ${({ isFilled, theme }) => isFilled
+    && css`
       svg {
         color: ${theme.colors.orange};
       }
     `}
 
-  ${({ hasError, theme }) =>
-    hasError &&
-    css`
+  ${({ hasError, theme }) => hasError
+    && css`
       border: 2px solid ${theme.colors.danger};
 
       svg {

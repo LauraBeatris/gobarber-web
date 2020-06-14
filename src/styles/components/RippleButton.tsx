@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 interface RippleButtonProps {
   className?: string;
@@ -23,7 +23,7 @@ const rippleAnimation = keyframes`
   }
 `;
 
-const rippleAnimationDuration = '1.15s';
+const rippleAnimationDuration = "1.15s";
 
 const RippleButton = styled.button<RippleButtonProps>`
   position: relative;
@@ -62,16 +62,16 @@ const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
   const clientXInButton = clientX - rect.x;
   const clientYInButton = clientY - rect.y;
 
-  const rippleButton = document.getElementById('ripple-button');
-  const rippleDomElement = document.createElement('span');
-  rippleDomElement.className = 'ripple';
+  const rippleButton = document.getElementById("ripple-button");
+  const rippleDomElement = document.createElement("span");
+  rippleDomElement.className = "ripple";
 
-  rippleDomElement.style.position = 'absolute';
-  rippleDomElement.style.transform = 'scale(1) translate(-50%, -50%)';
+  rippleDomElement.style.position = "absolute";
+  rippleDomElement.style.transform = "scale(1) translate(-50%, -50%)";
   rippleDomElement.style.top = `${clientYInButton}px`;
   rippleDomElement.style.left = `${clientXInButton}px`;
-  rippleDomElement.style.position = 'absolute';
-  rippleDomElement.style.transform = 'scale(1) translate(-50%, -50%)';
+  rippleDomElement.style.position = "absolute";
+  rippleDomElement.style.transform = "scale(1) translate(-50%, -50%)";
   rippleDomElement.style.top = `${clientYInButton}px`;
   rippleDomElement.style.left = `${clientXInButton}px`;
 
@@ -79,11 +79,11 @@ const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     rippleButton.appendChild(rippleDomElement);
 
     rippleDomElement.addEventListener(
-      'webkitAnimationEnd',
+      "webkitAnimationEnd",
       removeRippleEffect(rippleButton, rippleDomElement),
     );
     rippleDomElement.addEventListener(
-      'animationend',
+      "animationend",
       removeRippleEffect(rippleButton, rippleDomElement),
     );
   }

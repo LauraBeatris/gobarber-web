@@ -1,16 +1,15 @@
-import React, { useMemo, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useLocalStorage } from '@rehooks/local-storage';
+import React, { useMemo, useCallback } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocalStorage } from "@rehooks/local-storage";
 
 import {
   USER_STORAGE_KEY,
   TOKEN_STORAGE_KEY,
-} from '../../constants/localStorage';
-import { useToastsDispatch } from '../toasts/ToastsContext';
-import api from '../../settings/api';
-
-import { AuthStateProvider, AuthDispatchProvider } from './AuthContext';
-import { SignInCredencials } from './types';
+} from "../../constants/localStorage";
+import { useToastsDispatch } from "../toasts/ToastsContext";
+import api from "../../settings/api";
+import { AuthStateProvider, AuthDispatchProvider } from "./AuthContext";
+import { SignInCredencials } from "./types";
 
 const AuthContainer: React.FC = ({ children }) => {
   const [t] = useTranslation();
@@ -24,15 +23,15 @@ const AuthContainer: React.FC = ({ children }) => {
   const signIn = useCallback(
     async ({ email, password }: SignInCredencials): Promise<void> => {
       try {
-        const response = await api.post('/sessions', { email, password });
+        const response = await api.post("/sessions", { email, password });
 
         setUser(response?.data?.user);
         setToken(response?.data?.token);
       } catch (err) {
         addToast({
-          title: t('toasts.authentication.error.title'),
-          description: t('toasts.authentication.error.description'),
-          type: 'error',
+          title: t("toasts.authentication.error.title"),
+          description: t("toasts.authentication.error.description"),
+          type: "error",
         });
       }
     },

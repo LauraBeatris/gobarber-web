@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import media from 'styled-media-query';
+import styled from "styled-components";
+import media from "styled-media-query";
 
 const ToastsContainer = styled.div`
   position: absolute;
@@ -8,7 +8,7 @@ const ToastsContainer = styled.div`
   right: 20px;
   z-index: ${({ theme }) => theme.zIndexes.toasts};
 
-  ${media.lessThan('medium')`
+  ${media.lessThan("medium")`
     left: 20px;
   `}
 `;

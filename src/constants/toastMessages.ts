@@ -1,6 +1,6 @@
-import { FiInfo, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
+import { FiInfo, FiAlertCircle, FiCheckCircle } from "react-icons/fi";
 
-import { ToastMessageType } from '../shared/types/toasts';
+import { ToastMessageType } from "../shared/types/toasts";
 
 type ToastMessagesIcons = {
   [key in ToastMessageType]: {
@@ -20,4 +20,4 @@ export const icons: ToastMessagesIcons = {
   },
 };
 
-export const REMOVE_TOAST_TIMEOUT = 2150;
+export const REMOVE_TOAST_TIMEOUT = 3000;

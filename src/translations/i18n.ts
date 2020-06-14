@@ -1,9 +1,9 @@
-import i18n from 'i18next';
-import detector from 'i18next-browser-languagedetector';
-import { initReactI18next } from 'react-i18next';
+import i18n from "i18next";
+import detector from "i18next-browser-languagedetector";
+import { initReactI18next } from "react-i18next";
 
-import translationEN from './en/common.json';
-import translationPT from './pt/common.json';
+import translationEN from "./en/common.json";
+import translationPT from "./pt/common.json";
 
 const resources = {
   en: {
@@ -19,8 +19,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: "en",
+    fallbackLng: "en",
     interpolation: {
       escapeValue: false,
     },

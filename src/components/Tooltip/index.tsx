@@ -1,5 +1,6 @@
-import React from 'react';
-import { Container, Content } from './styles';
+import React from "react";
+
+import { Container, Content } from "./styles";
 
 interface TooltipProps {
   title: string;

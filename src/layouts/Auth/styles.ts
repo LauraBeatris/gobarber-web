@@ -1,13 +1,13 @@
-import styled, { css } from 'styled-components';
-import { shade } from 'polished';
-import media from 'styled-media-query';
+import styled, { css } from "styled-components";
+import { shade } from "polished";
+import media from "styled-media-query";
 
 interface BackgroundProps {
   backgroundImage: string;
 }
 
 interface ContainerProps {
-  backgroundPosition: 'left' | 'right';
+  backgroundPosition: "left" | "right";
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -16,7 +16,7 @@ export const Container = styled.div<ContainerProps>`
   align-items: stretch;
 
   ${({ backgroundPosition }) => {
-    if (backgroundPosition === 'right') {
+    if (backgroundPosition === "right") {
       return css`
         flex-direction: 'row-inverse';
       `;
@@ -35,23 +35,18 @@ export const Content = styled.section`
   justify-content: center;
   width: 100%;
   max-width: 700px;
-  padding: 20px 0 0;
-
-  ${media.lessThan('medium')`
-    max-width: unset;
-    padding: 50px 0;
-  `}
+  padding: 50px 0;
 
   h1 {
     margin-bottom: 24px;
   }
 
   form {
-    margin: 80px 0;
+    margin: 40px 0;
     width: 50%;
     text-align: center;
 
-    ${media.lessThan('medium')`
+    ${media.lessThan("medium")`
       width: 90%;
     `}
 
@@ -93,13 +88,12 @@ export const Background = styled.div<BackgroundProps>`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  ${({ backgroundImage }) =>
-    backgroundImage &&
-    css`
+  ${({ backgroundImage }) => backgroundImage
+    && css`
       background-image: url(${backgroundImage});
     `}
 
-  ${media.lessThan('medium')`
+  ${media.lessThan("medium")`
     display: none;
   `}
 `;

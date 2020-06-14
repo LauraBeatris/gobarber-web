@@ -1,7 +1,7 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes } from "react";
 
-import { Container } from './styles';
-import { handleClick } from '../../styles/components/RippleButton';
+import { Container } from "./styles";
+import { handleClick } from "../../styles/components/RippleButton";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 

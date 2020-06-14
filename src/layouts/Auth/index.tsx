@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import { Container, Background, Content } from './styles';
+import { Container, Background, Content } from "./styles";
 
 interface AuthLayoutProps {
-  backgroundPosition?: 'left' | 'right';
+  backgroundPosition?: "left" | "right";
   backgroundImage: string;
 }
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({
   children,
-  backgroundPosition = 'left',
+  backgroundPosition = "left",
   backgroundImage,
 }) => (
   <Container backgroundPosition={backgroundPosition}>

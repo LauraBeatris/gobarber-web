@@ -1,12 +1,11 @@
-import React, { useMemo, useCallback, useState } from 'react';
-import { useTransition } from 'react-spring';
-import { uuid } from 'uuidv4';
+import React, { useMemo, useCallback, useState } from "react";
+import { useTransition } from "react-spring";
+import { uuid } from "uuidv4";
 
-import ToastsContainer from '../../styles/components/ToastsContainer';
-import { ToastMessageData } from '../../shared/types/toasts';
-import ToastMessage from '../../components/ToastMessage';
-
-import { ToastsStateProvider, ToastsDispatchProvider } from './ToastsContext';
+import ToastsContainer from "../../styles/components/ToastsContainer";
+import { ToastMessageData } from "../../shared/types/toasts";
+import ToastMessage from "../../components/ToastMessage";
+import { ToastsStateProvider, ToastsDispatchProvider } from "./ToastsContext";
 
 const ToastsProvider: React.FC = ({ children }) => {
   const [messages, setMessages] = useState<ToastMessageData[]>([]);
@@ -15,15 +14,15 @@ const ToastsProvider: React.FC = ({ children }) => {
     message => message.id,
     {
       from: {
-        right: '-120%',
+        right: "-120%",
         opacity: 0,
       },
       enter: {
-        right: '0%',
+        right: "0%",
         opacity: 1,
       },
       leave: {
-        right: '-120%',
+        right: "-120%",
         opacity: 0,
       },
     },
@@ -34,9 +33,7 @@ const ToastsProvider: React.FC = ({ children }) => {
   }, []);
 
   const removeToast = useCallback((id): void => {
-    setMessages(prevMessages =>
-      prevMessages.filter(message => message.id !== id),
-    );
+    setMessages(prevMessages => prevMessages.filter(message => message.id !== id));
   }, []);
 
   const toastsState = useMemo(

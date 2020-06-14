@@ -1,6 +1,6 @@
-import { useContext, createContext } from 'react';
+import { useContext, createContext } from "react";
 
-import { ToastsStateContextData, ToastsDispatchContextData } from './types';
+import { ToastsStateContextData, ToastsDispatchContextData } from "./types";
 
 const ToastsStateContext = createContext<ToastsStateContextData | undefined>(
   undefined,
@@ -16,7 +16,7 @@ export const useToastsState = (): ToastsStateContextData => {
   const context = useContext(ToastsStateContext);
 
   if (!context) {
-    throw new Error('useToastsState must be within ToastProvider');
+    throw new Error("useToastsState must be within ToastProvider");
   }
 
   return context;
@@ -26,7 +26,7 @@ export const useToastsDispatch = (): ToastsDispatchContextData => {
   const context = useContext(ToastsDispatchContext);
 
   if (!context) {
-    throw new Error('useToatsDispatch must be within ToastProvider');
+    throw new Error("useToatsDispatch must be within ToastProvider");
   }
 
   return context;

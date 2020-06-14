@@ -1,8 +1,8 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import media from 'styled-media-query';
-import { animated } from 'react-spring';
+import styled, { css, FlattenSimpleInterpolation } from "styled-components";
+import media from "styled-media-query";
+import { animated } from "react-spring";
 
-import { ToastMessageType } from '../../shared/types/toasts';
+import { ToastMessageType } from "../../shared/types/toasts";
 
 interface ContainerProps {
   hasDescription: boolean;
@@ -48,7 +48,7 @@ export const Container = styled(animated.div)<ContainerProps>`
   padding: 16px 30px 16px 16px;
   max-width: 360px;
 
-  ${media.lessThan('medium')`
+  ${media.lessThan("medium")`
     max-width: unset;
   `}
 
@@ -64,7 +64,7 @@ export const Container = styled(animated.div)<ContainerProps>`
     margin: 4px 12px 0 0;
   }
 
-  ${({ type }) => containerThemes[type || 'info']}
+  ${({ type }) => containerThemes[type || "info"]}
 
   div {
     flex: 1;
@@ -86,9 +86,8 @@ export const Container = styled(animated.div)<ContainerProps>`
     background: none;
   }
 
-  ${({ hasDescription }) =>
-    !hasDescription &&
-    css`
+  ${({ hasDescription }) => !hasDescription
+    && css`
       align-items: center;
 
       > svg {

@@ -1,11 +1,13 @@
-import React from 'react';
-import { Route, Redirect, RouteProps, useLocation } from 'react-router-dom';
+import React from "react";
+import {
+  Route, Redirect, RouteProps, useLocation,
+} from "react-router-dom";
 
-import { useAuthState } from '../contexts/auth/AuthContext';
+import { useAuthState } from "../contexts/auth/AuthContext";
 import {
   SIGNIN_PAGE_PATH,
   DASHBOARD_PAGE_PATH,
-} from '../constants/routesPaths';
+} from "../constants/routesPaths";
 
 interface CustomRouteProps extends RouteProps {
   isPrivate?: boolean;
@@ -23,17 +25,16 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
   return (
     <Route
       {...rest}
-      render={() =>
-        !!isSigned === isPrivate ? (
-          <Component />
-        ) : (
-          <Redirect
-            to={{
-              pathname: isPrivate ? SIGNIN_PAGE_PATH : DASHBOARD_PAGE_PATH,
-              state: { from: location },
-            }}
-          />
-        )}
+      render={() => (!!isSigned === isPrivate ? (
+        <Component />
+      ) : (
+        <Redirect
+          to={{
+            pathname: isPrivate ? SIGNIN_PAGE_PATH : DASHBOARD_PAGE_PATH,
+            state: { from: location },
+          }}
+        />
+      ))}
     />
   );
 };

@@ -1,4 +1,4 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 const signInSchema = Yup.object().shape({
   email: Yup.string().email().required(),
