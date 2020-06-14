@@ -15,6 +15,7 @@ import logo from "../../assets/images/logo.svg";
 import signInBackground from "../../assets/images/sign-in-background.png";
 import schema from "./schema";
 import { useAuthDispatch } from "../../contexts/auth/AuthContext";
+import { AnimationContainer } from "./styles";
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -43,38 +44,52 @@ const SignIn: React.FC = () => {
 
   return (
     <AuthLayout backgroundImage={signInBackground}>
-      <Helmet>
-        <title>GoBarber | SignIn</title>
-      </Helmet>
+      <AnimationContainer>
+        <Helmet>
+          <title>GoBarber | SignIn</title>
+        </Helmet>
 
-      <img src={logo} aria-label="GoBarber" alt="GoBarber" />
-
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        <h1>{t("signin.welcome_to_the_platform")}</h1>
-
-        <Input
-          name="email"
-          type="email"
-          autoCapitalize="none"
-          placeholder={t("account_form.email")}
-          icon={FiMail}
-        />
-        <Input
-          name="password"
-          type="password"
-          placeholder={t("account_form.password")}
-          icon={FiLock}
+        <img
+          src={logo}
+          aria-label="GoBarber"
+          alt="GoBarber"
         />
 
-        <Button type="submit">{t("buttons.confirm")}</Button>
+        <Form
+          ref={formRef}
+          onSubmit={handleSubmit}
+        >
 
-        <Link to="/forgot-password">{t("signin.forgot_my_password")}</Link>
-      </Form>
+          <h1>{t("signin.welcome_to_the_platform")}</h1>
 
-      <Link to="/signup">
-        <FiLogIn />
-        {t("signin.create_an_account")}
-      </Link>
+          <Input
+            name="email"
+            type="email"
+            autoCapitalize="none"
+            placeholder={t("account_form.email")}
+            icon={FiMail}
+          />
+          <Input
+            name="password"
+            type="password"
+            placeholder={t("account_form.password")}
+            icon={FiLock}
+          />
+
+          <Button type="submit">{t("buttons.confirm")}</Button>
+
+          <Link
+            to="/forgot-password"
+          >
+            {t("signin.forgot_my_password")}
+          </Link>
+        </Form>
+
+        <Link to="/signup">
+          <FiLogIn />
+          {t("signin.create_an_account")}
+        </Link>
+      </AnimationContainer>
     </AuthLayout>
   );
 };

@@ -10,22 +10,24 @@ interface ContainerProps {
   backgroundPosition: "left" | "right";
 }
 
+const backgroundPositionStyles = {
+  left: css`
+        flex-direction: row;
+  `,
+  right: css`
+      flex-direction: row-reverse;
+
+  `,
+};
+
 export const Container = styled.div<ContainerProps>`
   min-height: 100vh;
   display: flex;
   align-items: stretch;
 
-  ${({ backgroundPosition }) => {
-    if (backgroundPosition === "right") {
-      return css`
-        flex-direction: 'row-inverse';
-      `;
-    }
-
-    return css`
-      flex-direction: 'row';
-    `;
-  }}
+  ${({ backgroundPosition }) => (
+    backgroundPositionStyles[backgroundPosition]
+  )}
 `;
 
 export const Content = styled.section`
@@ -64,7 +66,7 @@ export const Content = styled.section`
     }
   }
 
-  > a {
+  div > a {
     display: flex;
     align-items: center;
     color: ${({ theme }) => theme.colors.orange};

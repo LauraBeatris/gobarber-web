@@ -19,6 +19,7 @@ import schema from "./schema";
 import getValidationErrors from "../../utils/getValidationErrors";
 import api from "../../settings/api";
 import { SIGNIN_PAGE_PATH } from "../../constants/routesPaths";
+import { AnimationContainer } from "./styles";
 
 const SignUp: React.FC = () => {
   const history = useHistory();
@@ -61,44 +62,49 @@ const SignUp: React.FC = () => {
   );
 
   return (
-    <AuthLayout backgroundPosition="right" backgroundImage={signUpBackground}>
-      <Helmet>
-        <title>GoBarber | Create an account</title>
-      </Helmet>
+    <AuthLayout
+      backgroundPosition="right"
+      backgroundImage={signUpBackground}
+    >
+      <AnimationContainer>
+        <Helmet>
+          <title>GoBarber | Create an account</title>
+        </Helmet>
 
-      <img src={logo} aria-label="GoBarber" alt="GoBarber" />
+        <img src={logo} aria-label="GoBarber" alt="GoBarber" />
 
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        <h1>{t("signup.create_an_account")}</h1>
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <h1>{t("signup.create_an_account")}</h1>
 
-        <Input
-          name="name"
-          type="text"
-          autoCapitalize="none"
-          placeholder={t("account_form.full_name")}
-          icon={FiUser}
-        />
-        <Input
-          name="email"
-          type="email"
-          autoCapitalize="none"
-          placeholder={t("account_form.email")}
-          icon={FiMail}
-        />
-        <Input
-          name="password"
-          type="password"
-          placeholder={t("account_form.password")}
-          icon={FiLock}
-        />
+          <Input
+            name="name"
+            type="text"
+            autoCapitalize="none"
+            placeholder={t("account_form.full_name")}
+            icon={FiUser}
+          />
+          <Input
+            name="email"
+            type="email"
+            autoCapitalize="none"
+            placeholder={t("account_form.email")}
+            icon={FiMail}
+          />
+          <Input
+            name="password"
+            type="password"
+            placeholder={t("account_form.password")}
+            icon={FiLock}
+          />
 
-        <Button type="submit">{t("buttons.confirm")}</Button>
-      </Form>
+          <Button type="submit">{t("buttons.confirm")}</Button>
+        </Form>
 
-      <Link to="/signin">
-        <FiLogIn />
-        {t("signup.already_have_an_account")}
-      </Link>
+        <Link to="/signin">
+          <FiLogIn />
+          {t("signup.already_have_an_account")}
+        </Link>
+      </AnimationContainer>
     </AuthLayout>
   );
 };
