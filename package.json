@@ -21,9 +21,11 @@
     "react-i18next": "^11.5.1",
     "react-icons": "^3.10.0",
     "react-scripts": "3.4.1",
+    "react-spring": "^8.0.27",
     "styled-components": "^5.1.1",
     "styled-media-query": "^2.1.2",
     "typescript": "~3.7.2",
+    "uuidv4": "^6.1.0",
     "yup": "^0.29.1"
   },
   "scripts": {
@@ -55,6 +57,7 @@
     "@types/react-helmet": "^6.0.0",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.0",
+    "@types/uuid": "^8.0.0",
     "@types/yup": "^0.29.2",
     "@typescript-eslint/eslint-plugin": "^3.2.0",
     "eslint": "^6.8.0",

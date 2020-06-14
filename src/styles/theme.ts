@@ -9,6 +9,9 @@ const theme = {
     gray: '#666360',
     danger: '#c53030',
   },
+  zIndexes: {
+    toasts: 1000,
+  },
 };
 
 export type ThemeTypes = typeof theme;

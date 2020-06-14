@@ -30,14 +30,12 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        signIn(data);
+        await signIn(data);
       } catch (error) {
         if (error instanceof ValidationError) {
           const errors = getValidationErrors(error);
           formRef.current?.setErrors(errors);
         }
-
-        console.log(error);
       }
     },
     [signIn],

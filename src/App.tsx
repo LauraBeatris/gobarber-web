@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import AuthProvider from './contexts/auth/AuthProvider';
+import AppProvider from './contexts';
 
 import SignIn from './pages/SignIn';
 import GlobalStyle from './styles/global';
@@ -11,9 +11,9 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <AuthProvider>
+      <AppProvider>
         <SignIn />
-      </AuthProvider>
+      </AppProvider>
     </ThemeProvider>
   );
 };
