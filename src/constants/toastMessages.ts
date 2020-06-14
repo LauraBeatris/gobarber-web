@@ -1,6 +1,14 @@
 import { FiInfo, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 
-export const icons = {
+import { ToastMessageType } from '../shared/types/toasts';
+
+type ToastMessagesIcons = {
+  [key in ToastMessageType]: {
+    icon: React.ComponentType;
+  };
+};
+
+export const icons: ToastMessagesIcons = {
   info: {
     icon: FiInfo,
   },
