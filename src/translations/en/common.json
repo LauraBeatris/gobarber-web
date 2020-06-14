@@ -15,5 +15,17 @@
   },
   "buttons": {
     "confirm": "Confirm"
+  },
+  "toasts": {
+    "authentication": {
+      "error": {
+        "title": "Authentication Error",
+        "description": "An error occurred while authenticating, please, check your credentials"
+      },
+      "success": {
+        "title": "Successfully Authentication",
+        "description": "{{ username }}, welcome to the platform!"
+      }
+    }
   }
 }
