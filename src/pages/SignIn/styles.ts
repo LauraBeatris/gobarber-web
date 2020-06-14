@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import media from "styled-media-query";
 
 import { appearFromRight } from "../../styles/animations";
 
@@ -10,6 +11,8 @@ export const AnimationContainer = styled.div`
   align-items: center;
   flex-direction: column;
 
-  animation-name: ${appearFromRight};
-  animation-duration: 500ms;
+  ${media.greaterThan("medium")`
+    animation-name: ${appearFromRight};
+    animation-duration: 500ms;
+  `}
 `;
