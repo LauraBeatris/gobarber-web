@@ -9,7 +9,7 @@ import { Container } from "./styles";
 
 interface ToastMessageProps {
   message: ToastMessageData;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
 const ToastMessage: React.FC<ToastMessageProps> = ({ message, style }) => {
@@ -27,7 +27,9 @@ const ToastMessage: React.FC<ToastMessageProps> = ({ message, style }) => {
     removeToast(message.id);
   }, [message.id, removeToast]);
 
-  const Icon: React.ComponentType<IconBaseProps> = useMemo(() => icons[message.type || "info"]?.icon, [message.type]);
+  const Icon: React.ComponentType<IconBaseProps> = useMemo(() => (
+    icons[message.type || "info"]?.icon
+  ), [message.type]);
 
   return (
     <Container

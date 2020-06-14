@@ -14,6 +14,13 @@ export const Container = styled(RippleButton)`
   margin-top: 16px;
   transition: background-color 200ms;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    margin-right: 8px;
+  }
 
   &:hover {
     ${({ theme }) => css`

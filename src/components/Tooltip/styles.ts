@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   height: 100%;
   position: relative;
+  align-items: center;
 
   svg {
     cursor: pointer;
