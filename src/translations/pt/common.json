@@ -26,6 +26,16 @@
         "title": "Sucesso na autenticacão",
         "description": "{{ username }}, bem vindo(a) a plataforma!"
       }
+    },
+    "signup": {
+      "error": {
+        "title": "Erro na criacão de conta",
+        "description": "Ocorreu um erro na criacão de conta, por favor, cheque seus dados"
+      },
+      "success": {
+        "title": "Conta criada com sucesso",
+        "description": "Agora você pode acessar a nossa plataforma!"
+      }
     }
   }
 }
