@@ -25,6 +25,9 @@
 * [Contributing](#tada-contributing)
 * [License](#closed_book-license)
 
+<br />
+<p align="center"><img src="docs/signin.gif?raw=true"/></p>
+
 # :rocket: Features
 
 * Create an account as a service provider or as a costumer.
@@ -34,6 +37,8 @@
 This project has a UI Documentation of reusable components, allowing to test them individually.
 
 [Click there to see the storybook](http://storybook-gobarber.lauradeveloper.com.br/?path=/story/*)
+
+<p align="left"><img src="docs/storybook.gif?raw=true"/></p>
 
 # :construction_worker: Installation
 
