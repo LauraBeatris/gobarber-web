@@ -27,7 +27,7 @@
 
 # :rocket: Features
 
-* Create a account as a service provider or as a costumer.
+* Create an account as a service provider or as a costumer.
 * Schedule and manage appointments
 
 # :framed_picture: UI Documentation
@@ -57,7 +57,7 @@ After copying the examples, make sure to fill the variables with new values.
 
 **Setup the API**
 
-The interface needs to interact with the server to receive and register data. 
+The interface needs to interact with the server to receive and register data.
 
 Make sure to go to the [Hotseat API](https://github.com/LauraBeatris/hotseat) repository and follow the instructions in order to get it running in your machine.
 
