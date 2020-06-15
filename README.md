@@ -78,7 +78,7 @@ I'm also using [SWR](https://swr.now.sh/) in order to easily cache and mutate th
 
 # :bug: Issues
 
-Feel free to **file a new issue** with a respective title and description on the [Go Barber Web](https://github.com/LauraBeatris/gobarber-web/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/LauraBeatris/gobarber-web/blob/master/CONTRIBUTING.md) to find out about the coding standards.
+Feel free to **file a new issue** with a respective title and description on the [Go Barber](https://github.com/LauraBeatris/gobarber-web/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/LauraBeatris/gobarber-web/blob/master/CONTRIBUTING.md) to find out about the coding standards.
 
 # :tada: Contributing
 
