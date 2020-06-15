@@ -25,16 +25,23 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
   return (
     <Route
       {...rest}
-      render={() => (!!isSigned === isPrivate ? (
-        <Component />
-      ) : (
-        <Redirect
-          to={{
-            pathname: isPrivate ? SIGNIN_PAGE_PATH : DASHBOARD_PAGE_PATH,
-            state: { from: location },
-          }}
-        />
-      ))}
+      render={() => (
+        (!!isSigned === isPrivate
+          ? (
+            <Component />
+          )
+          : (
+            <Redirect
+              to={{
+                pathname: isPrivate
+                  ? SIGNIN_PAGE_PATH
+                  : DASHBOARD_PAGE_PATH,
+                state: { from: location },
+              }}
+            />
+          )
+        )
+      )}
     />
   );
 };

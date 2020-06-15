@@ -29,11 +29,18 @@ const ToastsProvider: React.FC = ({ children }) => {
   );
 
   const addToast = useCallback((message): void => {
-    setMessages(prevMessages => [...prevMessages, { ...message, id: uuid() }]);
+    setMessages(prevMessages => (
+      [...prevMessages, {
+        ...message,
+        id: uuid(),
+      }]
+    ));
   }, []);
 
   const removeToast = useCallback((id): void => {
-    setMessages(prevMessages => prevMessages.filter(message => message.id !== id));
+    setMessages(prevMessages => (
+      prevMessages.filter(message => message.id !== id)
+    ));
   }, []);
 
   const toastsState = useMemo(
@@ -48,7 +55,10 @@ const ToastsProvider: React.FC = ({ children }) => {
       addToast,
       removeToast,
     }),
-    [addToast, removeToast],
+    [
+      addToast,
+      removeToast,
+    ],
   );
 
   return (
@@ -56,7 +66,11 @@ const ToastsProvider: React.FC = ({ children }) => {
       <ToastsDispatchProvider value={toastsDispatch}>
         <ToastsContainer>
           {messagesWithTransition.map(({ key, item, props }) => (
-            <ToastMessage key={key} style={props} message={item} />
+            <ToastMessage
+              key={key}
+              style={props}
+              message={item}
+            />
           ))}
         </ToastsContainer>
         {children}

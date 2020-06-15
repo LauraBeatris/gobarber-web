@@ -20,10 +20,13 @@ const Input: React.FC<InputProps> = ({ icon: Icon, name, ...rest }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
-  const {
-    registerField, defaultValue, fieldName, error,
-  } = useField(name);
   const inputRef = useRef<HTMLInputElement>(null);
+  const {
+    registerField,
+    defaultValue,
+    fieldName,
+    error,
+  } = useField(name);
 
   useDidMount(() => {
     registerField({
@@ -48,7 +51,11 @@ const Input: React.FC<InputProps> = ({ icon: Icon, name, ...rest }) => {
   }, []);
 
   return (
-    <Container isFilled={isFilled} isFocused={isFocused} hasError={!!error}>
+    <Container
+      isFilled={isFilled}
+      isFocused={isFocused}
+      hasError={!!error}
+    >
       {Icon && <Icon />}
       <input
         ref={inputRef}
@@ -60,7 +67,9 @@ const Input: React.FC<InputProps> = ({ icon: Icon, name, ...rest }) => {
         {...rest}
       />
 
-      {error && <Error title={error} icon={FiAlertCircle} />}
+      {error && (
+        <Error title={error} icon={FiAlertCircle} />
+      )}
     </Container>
   );
 };

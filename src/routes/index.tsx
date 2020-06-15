@@ -13,9 +13,20 @@ import {
 
 const Router: React.FC = () => (
   <Switch>
-    <Route path={DASHBOARD_PAGE_PATH} exact component={Dashboard} isPrivate />
-    <Route path={SIGNIN_PAGE_PATH} component={SignIn} />
-    <Route path={SIGNUP_PAGE_PATH} component={SignUp} />
+    <Route
+      path={DASHBOARD_PAGE_PATH}
+      exact
+      component={Dashboard}
+      isPrivate
+    />
+    <Route
+      path={SIGNIN_PAGE_PATH}
+      component={SignIn}
+    />
+    <Route
+      path={SIGNUP_PAGE_PATH}
+      component={SignUp}
+    />
   </Switch>
 );
 

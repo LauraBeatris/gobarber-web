@@ -7,6 +7,8 @@ import { Helmet } from "react-helmet";
 import { FiLogIn, FiLock, FiMail } from "react-icons/fi";
 import { ValidationError } from "yup";
 
+import { useAuthDispatch } from "../../contexts/auth/AuthContext";
+import { AnimationContainer } from "./styles";
 import AuthLayout from "../../layouts/Auth";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -14,8 +16,6 @@ import getValidationErrors from "../../utils/getValidationErrors";
 import logo from "../../assets/images/logo.svg";
 import signInBackground from "../../assets/images/sign-in-background.png";
 import schema from "./schema";
-import { useAuthDispatch } from "../../contexts/auth/AuthContext";
-import { AnimationContainer } from "./styles";
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);

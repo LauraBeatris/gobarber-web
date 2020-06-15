@@ -23,7 +23,10 @@ const AuthContainer: React.FC = ({ children }) => {
   const signIn = useCallback(
     async ({ email, password }: SignInCredencials): Promise<void> => {
       try {
-        const response = await api.post("/sessions", { email, password });
+        const response = await api.post("/sessions", {
+          email,
+          password,
+        });
 
         setUser(response?.data?.user);
         setToken(response?.data?.token);
@@ -35,20 +38,31 @@ const AuthContainer: React.FC = ({ children }) => {
         });
       }
     },
-    [setUser, setToken, addToast, t],
+    [
+      setUser,
+      setToken,
+      addToast,
+      t,
+    ],
   );
 
   const signOut = useCallback((): void => {
     deleteUser();
     deleteToken();
-  }, [deleteUser, deleteToken]);
+  }, [
+    deleteUser,
+    deleteToken,
+  ]);
 
   const authState = useMemo(
     () => ({
       user,
       token,
     }),
-    [token, user],
+    [
+      token,
+      user,
+    ],
   );
 
   const authDispatch = useMemo(
@@ -56,7 +70,10 @@ const AuthContainer: React.FC = ({ children }) => {
       signIn,
       signOut,
     }),
-    [signIn, signOut],
+    [
+      signIn,
+      signOut,
+    ],
   );
 
   return (

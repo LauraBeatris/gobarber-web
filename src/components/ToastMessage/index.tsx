@@ -44,7 +44,10 @@ const ToastMessage: React.FC<ToastMessageProps> = ({ message, style }) => {
         <p>{message.description}</p>
       </div>
 
-      <button type="button" onClick={handleRemoveToastMessage}>
+      <button
+        type="button"
+        onClick={handleRemoveToastMessage}
+      >
         <FiXCircle />
       </button>
     </Container>

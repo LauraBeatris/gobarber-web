@@ -10,16 +10,16 @@ import {
 import { ValidationError } from "yup";
 
 import { useToastsDispatch } from "../../contexts/toasts/ToastsContext";
+import { SIGNIN_PAGE_PATH } from "../../constants/routesPaths";
+import { AnimationContainer } from "./styles";
 import AuthLayout from "../../layouts/Auth";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import logo from "../../assets/images/logo.svg";
 import signUpBackground from "../../assets/images/sign-up-background.png";
-import schema from "./schema";
 import getValidationErrors from "../../utils/getValidationErrors";
 import api from "../../settings/api";
-import { SIGNIN_PAGE_PATH } from "../../constants/routesPaths";
-import { AnimationContainer } from "./styles";
+import schema from "./schema";
 
 const SignUp: React.FC = () => {
   const history = useHistory();
@@ -58,7 +58,11 @@ const SignUp: React.FC = () => {
         });
       }
     },
-    [addToast, history, t],
+    [
+      addToast,
+      history,
+      t,
+    ],
   );
 
   return (
