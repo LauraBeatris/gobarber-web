@@ -1,4 +1,4 @@
-export interface SignInCredencials {
+export interface SignInCredentials {
   email: string;
   password: string;
 }
@@ -9,6 +9,6 @@ export interface AuthStateContextData {
 }
 
 export interface AuthDispatchContextData {
-  signIn: (credentials: SignInCredencials) => Promise<void>;
+  signIn: (credentials: SignInCredentials) => Promise<void>;
   signOut: () => void;
 }

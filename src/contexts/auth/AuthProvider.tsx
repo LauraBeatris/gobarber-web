@@ -2,17 +2,15 @@ import React, { useMemo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocalStorage } from "@rehooks/local-storage";
 
-import {
-  USER_STORAGE_KEY,
-  TOKEN_STORAGE_KEY,
-} from "../../constants/localStorage";
+import { USER_STORAGE_KEY, TOKEN_STORAGE_KEY } from "../../constants/localStorage";
 import { useToastsDispatch } from "../toasts/ToastsContext";
 import api from "../../settings/api";
 import { AuthStateProvider, AuthDispatchProvider } from "./AuthContext";
-import { SignInCredencials } from "./types";
+import { SignInCredentials } from "./types";
 
 const AuthContainer: React.FC = ({ children }) => {
   const [t] = useTranslation();
+
   const [user, setUser, deleteUser] = useLocalStorage(USER_STORAGE_KEY, null);
   const [token, setToken, deleteToken] = useLocalStorage(
     TOKEN_STORAGE_KEY,
@@ -21,7 +19,7 @@ const AuthContainer: React.FC = ({ children }) => {
   const { addToast } = useToastsDispatch();
 
   const signIn = useCallback(
-    async ({ email, password }: SignInCredencials): Promise<void> => {
+    async ({ email, password }: SignInCredentials): Promise<void> => {
       try {
         const response = await api.post("/sessions", {
           email,

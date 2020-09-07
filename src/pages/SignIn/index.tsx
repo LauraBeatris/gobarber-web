@@ -16,6 +16,7 @@ import getValidationErrors from "../../utils/getValidationErrors";
 import logo from "../../assets/images/logo.svg";
 import signInBackground from "../../assets/images/sign-in-background.png";
 import schema from "./schema";
+import { FORGOT_PASSWORD_PATH, SIGN_UP_PAGE_PATH } from "../../constants/routesPaths";
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -78,14 +79,12 @@ const SignIn: React.FC = () => {
 
           <Button type="submit">{t("buttons.confirm")}</Button>
 
-          <Link
-            to="/forgot-password"
-          >
+          <Link to={FORGOT_PASSWORD_PATH}>
             {t("signin.forgot_my_password")}
           </Link>
         </Form>
 
-        <Link to="/signup">
+        <Link to={SIGN_UP_PAGE_PATH}>
           <FiLogIn />
           {t("signin.create_an_account")}
         </Link>

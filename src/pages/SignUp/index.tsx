@@ -10,7 +10,7 @@ import {
 import { ValidationError } from "yup";
 
 import { useToastsDispatch } from "../../contexts/toasts/ToastsContext";
-import { SIGNIN_PAGE_PATH } from "../../constants/routesPaths";
+import { SIGN_IN_PAGE_PATH } from "../../constants/routesPaths";
 import { AnimationContainer } from "./styles";
 import AuthLayout from "../../layouts/Auth";
 import Input from "../../components/Input";
@@ -42,7 +42,7 @@ const SignUp: React.FC = () => {
           type: "success",
         });
 
-        history.push(SIGNIN_PAGE_PATH);
+        history.push(SIGN_IN_PAGE_PATH);
       } catch (error) {
         if (error instanceof ValidationError) {
           const errors = getValidationErrors(error);
@@ -87,6 +87,7 @@ const SignUp: React.FC = () => {
             placeholder={t("account_form.full_name")}
             icon={FiUser}
           />
+
           <Input
             name="email"
             type="email"
@@ -94,6 +95,7 @@ const SignUp: React.FC = () => {
             placeholder={t("account_form.email")}
             icon={FiMail}
           />
+
           <Input
             name="password"
             type="password"
@@ -104,7 +106,7 @@ const SignUp: React.FC = () => {
           <Button type="submit">{t("buttons.confirm")}</Button>
         </Form>
 
-        <Link to="/signin">
+        <Link to={SIGN_IN_PAGE_PATH}>
           <FiLogIn />
           {t("signup.already_have_an_account")}
         </Link>
