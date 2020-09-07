@@ -4,11 +4,13 @@ import { Switch } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import ForgotPassword from "../pages/ForgotPassword";
 import Route from "./CustomRoute";
 import {
+  SIGN_IN_PAGE_PATH,
+  SIGN_UP_PAGE_PATH,
   DASHBOARD_PAGE_PATH,
-  SIGNIN_PAGE_PATH,
-  SIGNUP_PAGE_PATH,
+  FORGOT_PASSWORD_PATH,
 } from "../constants/routesPaths";
 
 const Router: React.FC = () => (
@@ -19,13 +21,20 @@ const Router: React.FC = () => (
       component={Dashboard}
       isPrivate
     />
+
     <Route
-      path={SIGNIN_PAGE_PATH}
+      path={SIGN_IN_PAGE_PATH}
       component={SignIn}
     />
+
     <Route
-      path={SIGNUP_PAGE_PATH}
+      path={SIGN_UP_PAGE_PATH}
       component={SignUp}
+    />
+
+    <Route
+      path={FORGOT_PASSWORD_PATH}
+      component={ForgotPassword}
     />
   </Switch>
 );

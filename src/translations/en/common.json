@@ -37,5 +37,10 @@
         "description": "Now you're able to access our platform!"
       }
     }
+  },
+  "forgot_password": {
+    "title": "Forgot Password?",
+    "enter_your_email_below": "Enter your email address below and we'll send you a reset password link.",
+    "go_back_to_sign_in": "Go back to sign in"
   }
 }

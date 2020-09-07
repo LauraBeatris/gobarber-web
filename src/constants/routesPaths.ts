@@ -1,5 +1,5 @@
-const SIGNIN_PAGE_PATH = "/signin";
-const SIGNUP_PAGE_PATH = "/signup";
-const DASHBOARD_PAGE_PATH = "/";
+export const SIGN_IN_PAGE_PATH = "/signin";
+export const SIGN_UP_PAGE_PATH = "/signup";
+export const FORGOT_PASSWORD_PATH = "/forgot-password";
 
-export { SIGNIN_PAGE_PATH, SIGNUP_PAGE_PATH, DASHBOARD_PAGE_PATH };
+export const DASHBOARD_PAGE_PATH = "/";

@@ -4,10 +4,7 @@ import {
 } from "react-router-dom";
 
 import { useAuthState } from "../contexts/auth/AuthContext";
-import {
-  SIGNIN_PAGE_PATH,
-  DASHBOARD_PAGE_PATH,
-} from "../constants/routesPaths";
+import { SIGN_IN_PAGE_PATH, DASHBOARD_PAGE_PATH } from "../constants/routesPaths";
 
 interface CustomRouteProps extends RouteProps {
   isPrivate?: boolean;
@@ -34,7 +31,7 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
             <Redirect
               to={{
                 pathname: isPrivate
-                  ? SIGNIN_PAGE_PATH
+                  ? SIGN_IN_PAGE_PATH
                   : DASHBOARD_PAGE_PATH,
                 state: { from: location },
               }}

@@ -37,5 +37,10 @@
         "description": "Agora você pode acessar a nossa plataforma!"
       }
     }
+  },
+  "forgot_password": {
+    "title": "Esqueceu a senha?",
+    "enter_your_email_below": "Digite o seu endereço de email abaixo e nós enviaremos um link para resetar sua senha",
+    "go_back_to_sign_in": "Volte para se autenticar na plataforma"
   }
 }

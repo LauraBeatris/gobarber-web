@@ -39,8 +39,12 @@ export const Content = styled.section`
   max-width: 700px;
   padding: 50px 0;
 
-  h1 {
+  h1, p {
     margin-bottom: 24px;
+  }
+
+  p {
+    color: ${({ theme }) => theme.colors.grayLight};
   }
 
   form {
