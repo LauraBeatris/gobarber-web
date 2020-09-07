@@ -7,6 +7,7 @@ const theme = {
     white: "#fff",
     whiteSecondary: "#f4ede8",
     gray: "#666360",
+    grayLight: "#948F8C",
     danger: "#c53030",
   },
   zIndexes: {
