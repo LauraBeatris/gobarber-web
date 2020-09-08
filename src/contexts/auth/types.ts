@@ -6,6 +6,7 @@ export interface SignInCredentials {
 export interface AuthStateContextData {
   user: Record<string, unknown> | null;
   token: string | null;
+  loading: boolean;
 }
 
 export interface AuthDispatchContextData {

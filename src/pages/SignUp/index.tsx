@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form } from "@unform/web";
@@ -23,12 +23,19 @@ import schema from "./schema";
 
 const SignUp: React.FC = () => {
   const history = useHistory();
+
   const formRef = useRef<FormHandles>(null);
-  const [t] = useTranslation();
+
   const { addToast } = useToastsDispatch();
+
+  const [t] = useTranslation();
+
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = useCallback(
     async (data): Promise<void> => {
+      setLoading(true);
+
       try {
         await schema.validate(data, {
           abortEarly: false,
@@ -56,6 +63,8 @@ const SignUp: React.FC = () => {
           description: t("toasts.signup.error.description"),
           type: "error",
         });
+      } finally {
+        setLoading(false);
       }
     },
     [
@@ -72,7 +81,11 @@ const SignUp: React.FC = () => {
     >
       <AnimationContainer>
         <Helmet>
-          <title>GoBarber | Create an account</title>
+          <title>
+            GoBarber |
+            {" "}
+            {t("signup.create_an_account")}
+          </title>
         </Helmet>
 
         <img src={logo} aria-label="GoBarber" alt="GoBarber" />
@@ -103,7 +116,13 @@ const SignUp: React.FC = () => {
             icon={FiLock}
           />
 
-          <Button type="submit">{t("buttons.confirm")}</Button>
+          <Button
+            type="submit"
+            loading={loading}
+            disabled={loading}
+          >
+            {t("buttons.confirm")}
+          </Button>
         </Form>
 
         <Link to={SIGN_IN_PAGE_PATH}>

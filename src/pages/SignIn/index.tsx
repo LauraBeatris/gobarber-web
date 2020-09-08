@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import { FiLogIn, FiLock, FiMail } from "react-icons/fi";
 import { ValidationError } from "yup";
 
-import { useAuthDispatch } from "../../contexts/auth/AuthContext";
+import { useAuthDispatch, useAuthState } from "../../contexts/auth/AuthContext";
 import { AnimationContainer } from "./styles";
 import AuthLayout from "../../layouts/Auth";
 import Input from "../../components/Input";
@@ -21,7 +21,10 @@ import { FORGOT_PASSWORD_PATH, SIGN_UP_PAGE_PATH } from "../../constants/routesP
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const [t] = useTranslation();
+
   const { signIn } = useAuthDispatch();
+
+  const { loading } = useAuthState();
 
   const handleSubmit = useCallback(
     async (data): Promise<void> => {
@@ -47,7 +50,11 @@ const SignIn: React.FC = () => {
     <AuthLayout backgroundImage={signInBackground}>
       <AnimationContainer>
         <Helmet>
-          <title>GoBarber | SignIn</title>
+          <title>
+            GoBarber |
+            {" "}
+            {t("signin.welcome_to_the_platform")}
+          </title>
         </Helmet>
 
         <img
@@ -77,7 +84,13 @@ const SignIn: React.FC = () => {
             icon={FiLock}
           />
 
-          <Button type="submit">{t("buttons.confirm")}</Button>
+          <Button
+            type="submit"
+            loading={loading}
+            disabled={loading}
+          >
+            {t("buttons.confirm")}
+          </Button>
 
           <Link to={FORGOT_PASSWORD_PATH}>
             {t("signin.forgot_my_password")}

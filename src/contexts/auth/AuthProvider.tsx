@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocalStorage } from "@rehooks/local-storage";
 
@@ -18,8 +18,12 @@ const AuthContainer: React.FC = ({ children }) => {
   );
   const { addToast } = useToastsDispatch();
 
+  const [loading, setLoading] = useState(false);
+
   const signIn = useCallback(
     async ({ email, password }: SignInCredentials): Promise<void> => {
+      setLoading(true);
+
       try {
         const response = await api.post("/sessions", {
           email,
@@ -34,6 +38,8 @@ const AuthContainer: React.FC = ({ children }) => {
           description: t("toasts.authentication.error.description"),
           type: "error",
         });
+      } finally {
+        setLoading(false);
       }
     },
     [
@@ -56,10 +62,12 @@ const AuthContainer: React.FC = ({ children }) => {
     () => ({
       user,
       token,
+      loading,
     }),
     [
       token,
       user,
+      loading,
     ],
   );
 
