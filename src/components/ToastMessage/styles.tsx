@@ -5,7 +5,7 @@ import { animated } from "react-spring";
 import { ToastMessageType } from "../../shared/types/toasts";
 
 interface ContainerProps {
-  hasDescription: boolean;
+  description?: string;
   type?: ToastMessageType;
 }
 
@@ -94,7 +94,7 @@ export const Container = styled(animated.div)<ContainerProps>`
     }
   }
 
-  ${({ hasDescription }) => !hasDescription
+  ${({ description }) => !description
     && css`
       align-items: center;
 
