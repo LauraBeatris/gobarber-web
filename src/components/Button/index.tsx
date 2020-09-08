@@ -1,17 +1,31 @@
 import React, { ButtonHTMLAttributes } from "react";
+import { PulseLoader } from "react-spinners";
 
 import { handleClick } from "../../styles/components/RippleButton";
+import theme from "../../styles/theme";
 import { Container } from "./styles";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  loading?: boolean;
+}
 
-const Button: React.FC<ButtonProps> = ({ children, ...rest }) => (
+const Button: React.FC<ButtonProps> = ({
+  loading,
+  children,
+  ...rest
+}) => (
   <Container
     id="ripple-button"
     onClick={handleClick}
     {...rest}
   >
-    {children}
+    {
+      loading ? (
+        <PulseLoader color={theme.colors.darkPrimary} size={10} />
+      ) : (
+        children
+      )
+    }
   </Container>
 );
 

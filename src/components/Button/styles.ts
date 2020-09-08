@@ -7,7 +7,7 @@ export const Container = styled(RippleButton)`
   background: ${({ theme }) => theme.colors.orange};
   border: 0;
   border-radius: 10px;
-  color: ${({ theme }) => theme.colors.darkTerciary};
+  color: ${({ theme }) => theme.colors.darkTertiary};
   height: 56px;
   padding: 0 16px;
   font-weight: 400;
@@ -17,6 +17,11 @@ export const Container = styled(RippleButton)`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${({ disabled }) => disabled && css`
+    opacity: 0.5;
+    cursor: not-allowed;
+  `}
 
   svg {
     margin-right: 8px;
