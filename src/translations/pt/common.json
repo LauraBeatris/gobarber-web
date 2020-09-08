@@ -14,9 +14,11 @@
     "already_have_an_account": "Já possui uma conta? Faça seu login"
   },
   "buttons": {
-    "confirm": "Confirm"
+    "confirm": "Confirmar",
+    "resend_link": "Reenviar link"
   },
   "toasts": {
+    "something_went_wrong": "Algo deu errado...",
     "authentication": {
       "error": {
         "title": "Erro na autenticação",
@@ -36,11 +38,20 @@
         "title": "Conta criada com sucesso",
         "description": "Agora você pode acessar a nossa plataforma!"
       }
+    },
+    "request_reset_password_success": {
+      "error_while_sending_email": "Erro ao tentar enviar o email. Por favor, tente novamente."
     }
   },
   "forgot_password": {
     "title": "Esqueceu a senha?",
     "enter_your_email_below": "Digite o seu endereço de email abaixo e nós enviaremos um link para resetar sua senha",
     "go_back_to_sign_in": "Volte para se autenticar na plataforma"
+  },
+  "request_reset_password_success": {
+    "title": "O link para resetar sua senha foi enviado!",
+    "look_for_an_email": "Procure por um email de <0>GoBarber</0> e clique no link para resetar a senha.",
+    "if_you_do_not_see_an_email": "Se você não achar nenhum email, cheque sua lixeira, caixa de spam ou clique para reenviar logo abaixo.",
+    "wait_n_seconds_to_resend_the_email": "Por favor, espere {{ seconds }} para reenviar o email"
   }
 }

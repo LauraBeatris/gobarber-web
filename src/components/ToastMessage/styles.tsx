@@ -52,6 +52,10 @@ export const Container = styled(animated.div)<ContainerProps>`
     max-width: unset;
   `}
 
+  strong {
+    padding: 0 10px;
+  }
+
   & + div {
     margin-top: 16px;
   }
@@ -61,7 +65,7 @@ export const Container = styled(animated.div)<ContainerProps>`
   }
 
   > svg {
-    margin: 4px 12px 0 0;
+    margin: 4px 0 0 0;
   }
 
   ${({ type }) => containerThemes[type || "info"]}
@@ -84,6 +88,10 @@ export const Container = styled(animated.div)<ContainerProps>`
     opacity: 0.6;
     border: none;
     background: none;
+
+    svg {
+      margin-left: 15px;
+    }
   }
 
   ${({ hasDescription }) => !hasDescription
