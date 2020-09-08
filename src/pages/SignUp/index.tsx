@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
@@ -20,13 +20,14 @@ import signUpBackground from "../../assets/images/sign-up-background.png";
 import getValidationErrors from "../../utils/getValidationErrors";
 import api from "../../settings/api";
 import schema from "./schema";
+import { useAuthDispatch } from "../../contexts/auth/AuthContext";
 
 const SignUp: React.FC = () => {
-  const history = useHistory();
-
   const formRef = useRef<FormHandles>(null);
 
   const { addToast } = useToastsDispatch();
+
+  const { signIn } = useAuthDispatch();
 
   const [t] = useTranslation();
 
@@ -49,7 +50,7 @@ const SignUp: React.FC = () => {
           type: "success",
         });
 
-        history.push(SIGN_IN_PAGE_PATH);
+        signIn(data);
       } catch (error) {
         if (error instanceof ValidationError) {
           const errors = getValidationErrors(error);
@@ -67,11 +68,7 @@ const SignUp: React.FC = () => {
         setLoading(false);
       }
     },
-    [
-      addToast,
-      history,
-      t,
-    ],
+    [addToast, signIn, t],
   );
 
   return (
