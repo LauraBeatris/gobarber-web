@@ -3,8 +3,8 @@ import {
   Route, Redirect, RouteProps, useLocation,
 } from "react-router-dom";
 
-import { useAuthState } from "../contexts/auth/AuthContext";
-import { SIGN_IN_PAGE_PATH, DASHBOARD_PAGE_PATH } from "../constants/routesPaths";
+import { useAuthState } from "contexts/auth/AuthContext";
+import { SIGN_IN_PAGE_PATH, DASHBOARD_PAGE_PATH } from "constants/routesPaths";
 
 interface CustomRouteProps extends RouteProps {
   isPrivate?: boolean;

@@ -1,7 +1,8 @@
 import React from "react";
 import { FiLogIn, FiSend } from "react-icons/fi";
 
-import Button from "../components/Button";
+import Button from "components/Button";
+
 import { Container } from "./styles";
 
 export default {

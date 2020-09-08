@@ -1,7 +1,8 @@
 import React from "react";
 import { FiLogIn } from "react-icons/fi";
 
-import Tooltip from "../components/Tooltip";
+import Tooltip from "components/Tooltip";
+
 import { Container } from "./styles";
 
 export default {

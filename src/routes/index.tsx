@@ -1,11 +1,12 @@
 import React from "react";
 import { Switch } from "react-router-dom";
 
-import Dashboard from "../pages/Dashboard";
-import SignIn from "../pages/SignIn";
-import SignUp from "../pages/SignUp";
-import ForgotPassword from "../pages/ForgotPassword";
-import RequestPasswordResetSuccess from "../pages/RequestPasswordResetSuccess";
+import Dashboard from "pages/Dashboard";
+import SignIn from "pages/SignIn";
+import SignUp from "pages/SignUp";
+import ForgotPassword from "pages/ForgotPassword";
+import RequestPasswordResetSuccess from "pages/RequestPasswordResetSuccess";
+
 import Route from "./CustomRoute";
 import {
   SIGN_IN_PAGE_PATH,

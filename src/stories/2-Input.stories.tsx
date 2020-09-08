@@ -4,11 +4,12 @@ import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
 import * as Yup from "yup";
 
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "components/Input";
+import Button from "components/Button";
+import i18n from "translations/i18n";
+import getValidationErrors from "utils/getValidationErrors";
+
 import { Container } from "./styles";
-import i18n from "../translations/i18n";
-import getValidationErrors from "../utils/getValidationErrors";
 
 export default {
   title: "Input",

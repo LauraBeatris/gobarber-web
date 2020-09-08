@@ -2,9 +2,10 @@ import React, { useMemo, useCallback, useState } from "react";
 import { useTransition } from "react-spring";
 import { uuid } from "uuidv4";
 
-import ToastsContainer from "../../styles/components/ToastsContainer";
-import { ToastMessageData } from "../../shared/types/toasts";
-import ToastMessage from "../../components/ToastMessage";
+import ToastsContainer from "styles/components/ToastsContainer";
+import { ToastMessageData } from "shared/types/toasts";
+import ToastMessage from "components/ToastMessage";
+
 import { ToastsStateProvider, ToastsDispatchProvider } from "./ToastsContext";
 
 const ToastsProvider: React.FC = ({ children }) => {

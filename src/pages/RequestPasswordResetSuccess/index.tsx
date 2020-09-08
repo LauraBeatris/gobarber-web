@@ -5,14 +5,15 @@ import { FormHandles } from "@unform/core";
 import { Helmet } from "react-helmet";
 import { useTimer } from "react-timer-hook";
 
+import AuthLayout from "layouts/Auth";
+import logo from "assets/images/logo.svg";
+import signInBackground from "assets/images/sign-in-background.png";
+import api from "settings/api";
+import getExpiryConfirmationTimestamp from "utils/getExpiryConfirmationTimestamp";
+import { useToastsDispatch } from "contexts/toasts/ToastsContext";
+import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
+
 import { AnimationContainer } from "./styles";
-import AuthLayout from "../../layouts/Auth";
-import logo from "../../assets/images/logo.svg";
-import signInBackground from "../../assets/images/sign-in-background.png";
-import api from "../../settings/api";
-import getExpiryConfirmationTimestamp from "../../utils/getExpiryConfirmationTimestamp";
-import { useToastsDispatch } from "../../contexts/toasts/ToastsContext";
-import { SIGN_IN_PAGE_PATH } from "../../constants/routesPaths";
 
 const messageComponents = [
   <span className="bold" />,

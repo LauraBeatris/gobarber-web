@@ -2,7 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 import media from "styled-media-query";
 import { animated } from "react-spring";
 
-import { ToastMessageType } from "../../shared/types/toasts";
+import { ToastMessageType } from "shared/types/toasts";
 
 interface ContainerProps {
   description?: string;

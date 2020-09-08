@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import media from "styled-media-query";
 
-import { appearFromLeft } from "../../styles/animations";
+import { appearFromLeft } from "styles/animations";
 
 export const AnimationContainer = styled.div`
   height: 100%;

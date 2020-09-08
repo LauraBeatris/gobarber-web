@@ -7,16 +7,17 @@ import { Helmet } from "react-helmet";
 import { FiLogIn, FiMail } from "react-icons/fi";
 import { ValidationError } from "yup";
 
-import { AnimationContainer } from "./styles";
-import AuthLayout from "../../layouts/Auth";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import getValidationErrors from "../../utils/getValidationErrors";
-import logo from "../../assets/images/logo.svg";
-import signInBackground from "../../assets/images/sign-in-background.png";
+import Button from "components/Button";
+import Input from "components/Input";
+import getValidationErrors from "utils/getValidationErrors";
+import logo from "assets/images/logo.svg";
+import signInBackground from "assets/images/sign-in-background.png";
+import { REQUEST_PASSWORD_REQUEST_SUCCESS, SIGN_IN_PAGE_PATH } from "constants/routesPaths";
+import api from "settings/api";
+import AuthLayout from "layouts/Auth";
+
 import schema from "./schema";
-import { REQUEST_PASSWORD_REQUEST_SUCCESS, SIGN_IN_PAGE_PATH } from "../../constants/routesPaths";
-import api from "../../settings/api";
+import { AnimationContainer } from "./styles";
 
 const ForgotPassword: React.FC = () => {
   const formRef = useRef<FormHandles>(null);

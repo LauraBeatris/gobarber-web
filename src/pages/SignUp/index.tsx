@@ -9,18 +9,19 @@ import {
 } from "react-icons/fi";
 import { ValidationError } from "yup";
 
-import { useToastsDispatch } from "../../contexts/toasts/ToastsContext";
-import { SIGN_IN_PAGE_PATH } from "../../constants/routesPaths";
-import { AnimationContainer } from "./styles";
-import AuthLayout from "../../layouts/Auth";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import logo from "../../assets/images/logo.svg";
-import signUpBackground from "../../assets/images/sign-up-background.png";
-import getValidationErrors from "../../utils/getValidationErrors";
-import api from "../../settings/api";
+import { useToastsDispatch } from "contexts/toasts/ToastsContext";
+import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
+import AuthLayout from "layouts/Auth";
+import Input from "components/Input";
+import Button from "components/Button";
+import logo from "assets/images/logo.svg";
+import signUpBackground from "assets/images/sign-up-background.png";
+import getValidationErrors from "utils/getValidationErrors";
+import api from "settings/api";
+import { useAuthDispatch } from "contexts/auth/AuthContext";
+
 import schema from "./schema";
-import { useAuthDispatch } from "../../contexts/auth/AuthContext";
+import { AnimationContainer } from "./styles";
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);

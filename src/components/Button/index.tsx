@@ -1,8 +1,9 @@
 import React, { ButtonHTMLAttributes } from "react";
 import { PulseLoader } from "react-spinners";
 
-import { handleClick } from "../../styles/components/RippleButton";
-import theme from "../../styles/theme";
+import { handleClick } from "styles/components/RippleButton";
+import theme from "styles/theme";
+
 import { Container } from "./styles";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

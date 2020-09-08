@@ -1,10 +1,11 @@
 import React from "react";
 import { uuid } from "uuidv4";
 
-import ToastMessage from "../components/ToastMessage";
+import ToastMessage from "components/ToastMessage";
+import ToastsProvider from "contexts/toasts/ToastsProvider";
+import { ToastMessageData } from "shared/types/toasts";
+
 import { Container } from "./styles";
-import ToastsProvider from "../contexts/toasts/ToastsProvider";
-import { ToastMessageData } from "../shared/types/toasts";
 
 export default {
   title: "Toasts",

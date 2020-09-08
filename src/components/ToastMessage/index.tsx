@@ -2,9 +2,10 @@ import React, { useCallback, useMemo, useEffect } from "react";
 import { IconBaseProps } from "react-icons";
 import { FiXCircle } from "react-icons/fi";
 
-import { ToastMessageData } from "../../shared/types/toasts";
-import { useToastsDispatch } from "../../contexts/toasts/ToastsContext";
-import { icons, REMOVE_TOAST_TIMEOUT } from "../../constants/toastMessages";
+import { ToastMessageData } from "shared/types/toasts";
+import { useToastsDispatch } from "contexts/toasts/ToastsContext";
+import { icons, REMOVE_TOAST_TIMEOUT } from "constants/toastMessages";
+
 import { Container } from "./styles";
 
 interface ToastMessageProps {
