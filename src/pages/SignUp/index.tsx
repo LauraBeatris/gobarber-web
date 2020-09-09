@@ -3,24 +3,21 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
-import { Helmet } from "react-helmet";
 import {
   FiLogIn, FiLock, FiMail, FiUser,
 } from "react-icons/fi";
 import { ValidationError } from "yup";
 
-import { appearFromLeft } from "styles/animations";
+import { appearFromRight } from "styles/animations";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
 import AuthLayout from "layouts/Auth";
 import Input from "components/Input";
 import Button from "components/Button";
-import logo from "assets/images/logo.svg";
-import signUpBackground from "assets/images/sign-up-background.png";
+import roomBackground from "assets/images/room-background.png";
 import getValidationErrors from "utils/getValidationErrors";
 import api from "settings/api";
 import { useAuthDispatch } from "contexts/auth/AuthContext";
-import AuthAnimationContainer from "styles/components/AuthAnimationContainer";
 
 import schema from "./schema";
 
@@ -75,60 +72,48 @@ const SignUp: React.FC = () => {
 
   return (
     <AuthLayout
-      backgroundPosition="right"
-      backgroundImage={signUpBackground}
+      title={t("signup.create_an_account")}
+      animation={appearFromRight}
+      backgroundPosition="left"
+      backgroundImage={roomBackground}
     >
-      <AuthAnimationContainer animation={appearFromLeft}>
-        <Helmet>
-          <title>
-            GoBarber |
-            {" "}
-            {t("signup.create_an_account")}
-          </title>
-        </Helmet>
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <Input
+          name="name"
+          type="text"
+          autoCapitalize="none"
+          placeholder={t("auth_form.full_name")}
+          icon={FiUser}
+        />
 
-        <img src={logo} aria-label="GoBarber" alt="GoBarber" />
+        <Input
+          name="email"
+          type="email"
+          autoCapitalize="none"
+          placeholder={t("auth_form.email")}
+          icon={FiMail}
+        />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>{t("signup.create_an_account")}</h1>
+        <Input
+          name="password"
+          type="password"
+          placeholder={t("auth_form.password")}
+          icon={FiLock}
+        />
 
-          <Input
-            name="name"
-            type="text"
-            autoCapitalize="none"
-            placeholder={t("auth_form.full_name")}
-            icon={FiUser}
-          />
+        <Button
+          type="submit"
+          loading={loading}
+          disabled={loading}
+        >
+          {t("buttons.confirm")}
+        </Button>
+      </Form>
 
-          <Input
-            name="email"
-            type="email"
-            autoCapitalize="none"
-            placeholder={t("auth_form.email")}
-            icon={FiMail}
-          />
-
-          <Input
-            name="password"
-            type="password"
-            placeholder={t("auth_form.password")}
-            icon={FiLock}
-          />
-
-          <Button
-            type="submit"
-            loading={loading}
-            disabled={loading}
-          >
-            {t("buttons.confirm")}
-          </Button>
-        </Form>
-
-        <Link to={SIGN_IN_PAGE_PATH}>
-          <FiLogIn />
-          {t("signup.already_have_an_account")}
-        </Link>
-      </AuthAnimationContainer>
+      <Link to={SIGN_IN_PAGE_PATH}>
+        <FiLogIn />
+        {t("signup.already_have_an_account")}
+      </Link>
     </AuthLayout>
   );
 };

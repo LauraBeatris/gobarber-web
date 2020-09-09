@@ -39,6 +39,10 @@ export const Content = styled.section`
   max-width: 700px;
   padding: 50px 0;
 
+  > div:first-of-type {
+    flex: 0;
+  }
+
   h1, p {
     margin-bottom: 24px;
   }
@@ -70,7 +74,7 @@ export const Content = styled.section`
     }
   }
 
-  div > a {
+  & div > a {
     display: flex;
     align-items: center;
     color: ${({ theme }) => theme.colors.orange};

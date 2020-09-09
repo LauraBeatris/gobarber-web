@@ -3,21 +3,19 @@ import { Link, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
-import { Helmet } from "react-helmet";
 import { FiLogIn, FiMail } from "react-icons/fi";
 import { ValidationError } from "yup";
 
 import Button from "components/Button";
 import Input from "components/Input";
 import getValidationErrors from "utils/getValidationErrors";
-import logo from "assets/images/logo.svg";
-import signInBackground from "assets/images/sign-in-background.png";
+import barberBackground from "assets/images/barber-background.png";
 import { REQUEST_PASSWORD_REQUEST_SUCCESS, SIGN_IN_PAGE_PATH } from "constants/routesPaths";
 import api from "settings/api";
 import AuthLayout from "layouts/Auth";
+import { appearFromLeft } from "styles/animations";
 
 import schema from "./schema";
-import { AnimationContainer } from "./styles";
 
 const ForgotPassword: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -62,53 +60,39 @@ const ForgotPassword: React.FC = () => {
   );
 
   return (
-    <AuthLayout backgroundImage={signInBackground} backgroundPosition="right">
-      <AnimationContainer>
-        <Helmet>
-          <title>
-            GoBarber |
-            {" "}
-            {t("forgot_password.title")}
-          </title>
-        </Helmet>
-
-        <img
-          src={logo}
-          aria-label="GoBarber"
-          alt="GoBarber"
+    <AuthLayout
+      title={t("forgot_password.title")}
+      description={t("forgot_password.enter_your_email_below")}
+      animation={appearFromLeft}
+      backgroundImage={barberBackground}
+      backgroundPosition="right"
+    >
+      <Form
+        ref={formRef}
+        onSubmit={handleSubmit}
+      >
+        <Input
+          name="email"
+          type="email"
+          autoCapitalize="none"
+          placeholder={t("auth_form.email")}
+          icon={FiMail}
         />
 
-        <Form
-          ref={formRef}
-          onSubmit={handleSubmit}
+        <Button
+          type="submit"
+          disabled={loading}
+          loading={loading}
         >
-          <h1>{t("forgot_password.title")}</h1>
+          {t("buttons.confirm")}
+        </Button>
+      </Form>
 
-          <p>{t("forgot_password.enter_your_email_below")}</p>
+      <Link to={SIGN_IN_PAGE_PATH}>
+        <FiLogIn />
 
-          <Input
-            name="email"
-            type="email"
-            autoCapitalize="none"
-            placeholder={t("auth_form.email")}
-            icon={FiMail}
-          />
-
-          <Button
-            type="submit"
-            disabled={loading}
-            loading={loading}
-          >
-            {t("buttons.confirm")}
-          </Button>
-        </Form>
-
-        <Link to={SIGN_IN_PAGE_PATH}>
-          <FiLogIn />
-
-          {t("forgot_password.go_back_to_sign_in")}
-        </Link>
-      </AnimationContainer>
+        {t("forgot_password.go_back_to_sign_in")}
+      </Link>
     </AuthLayout>
   );
 };

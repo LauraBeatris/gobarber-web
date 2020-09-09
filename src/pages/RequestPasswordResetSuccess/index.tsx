@@ -1,18 +1,14 @@
 import React, { useCallback, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import { FormHandles } from "@unform/core";
-import { Helmet } from "react-helmet";
 import { useTimer } from "react-timer-hook";
 
 import AuthLayout from "layouts/Auth";
-import logo from "assets/images/logo.svg";
-import signInBackground from "assets/images/sign-in-background.png";
+import barberBackground from "assets/images/barber-background.png";
 import api from "settings/api";
 import getExpiryConfirmationTimestamp from "utils/getExpiryConfirmationTimestamp";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
-import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
-import AuthAnimationContainer from "styles/components/AuthAnimationContainer";
 import { appearFromLeft } from "styles/animations";
 
 import { Content } from "./styles";
@@ -71,58 +67,40 @@ const RequestPasswordResetSuccess: React.FC = () => {
 
   return (
     <AuthLayout
-      backgroundImage={signInBackground}
+      title={t("request_reset_password_success.title")}
+      animation={appearFromLeft}
+      backgroundImage={barberBackground}
       backgroundPosition="right"
     >
-      <AuthAnimationContainer animation={appearFromLeft}>
-        <Content>
-          <Helmet>
-            <title>
-              GoBarber |
-              {" "}
-              {t("request_reset_password_success.title")}
-            </title>
-          </Helmet>
+      <Content>
+        <h4>
+          <Trans
+            i18nKey="request_reset_password_success.look_for_an_email"
+            components={messageComponents}
+          />
+        </h4>
 
-          <Link to={SIGN_IN_PAGE_PATH}>
-            <img
-              src={logo}
-              aria-label="GoBarber"
-              alt="GoBarber"
-            />
-          </Link>
+        <h4>
+          {t("request_reset_password_success.if_you_do_not_see_an_email")}
+        </h4>
 
-          <h1>{t("request_reset_password_success.title")}</h1>
-
-          <h4>
-            <Trans
-              i18nKey="request_reset_password_success.look_for_an_email"
-              components={messageComponents}
-            />
-          </h4>
-
-          <h4>
-            {t("request_reset_password_success.if_you_do_not_see_an_email")}
-          </h4>
-
-          <button
-            type="button"
-            disabled={!canResendLink}
-            onClick={resendResetPasswordRequest}
-          >
-            {
-              canResendLink ? (
-                t("buttons.resend_link")
+        <button
+          type="button"
+          disabled={!canResendLink}
+          onClick={resendResetPasswordRequest}
+        >
+          {
+            canResendLink ? (
+              t("buttons.resend_link")
+            )
+              : (
+                t("request_reset_password_success.wait_n_seconds_to_resend_the_email", {
+                  seconds,
+                })
               )
-                : (
-                  t("request_reset_password_success.wait_n_seconds_to_resend_the_email", {
-                    seconds,
-                  })
-                )
-            }
-          </button>
-        </Content>
-      </AuthAnimationContainer>
+          }
+        </button>
+      </Content>
     </AuthLayout>
   );
 };
