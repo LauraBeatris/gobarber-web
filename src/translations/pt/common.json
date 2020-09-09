@@ -3,7 +3,7 @@
     "email": "E-mail",
     "password": "Password",
     "full_name": "Nome completo",
-    "forgot_my_password": "Esqueci minha senha"
+    "confirm_password": "Confirme sua senha"
   },
   "signin": {
     "welcome_to_the_platform": "Bem vindo a plataforma",
@@ -53,6 +53,11 @@
     "look_for_an_email": "Procure por um email de <0>GoBarber</0> e clique no link para resetar a senha.",
     "if_you_do_not_see_an_email": "Se você não achar nenhum email, cheque sua lixeira, caixa de spam ou clique para reenviar logo abaixo.",
     "wait_n_seconds_to_resend_the_email": "Por favor, espere {{ seconds }} para reenviar o email"
+  },
+  "reset_password": {
+    "title": "Resete sua senha!",
+    "please_type_your_new_password_below": "Por favor, digite sua nova senha abaixo.",
+    "enter_a_new_password": "Digite sua nova senha"
   },
   "yup": {
     "invalid_field_length": "Esse campo deve ter pelo menos {{ min }} caracteres.",

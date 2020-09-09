@@ -2,7 +2,8 @@
   "auth_form": {
     "email": "E-mail",
     "password": "Password",
-    "full_name": "Full name"
+    "full_name": "Full name",
+    "confirm_password": "Confirm password"
   },
   "signin": {
     "welcome_to_the_platform": "Welcome to the platform",
@@ -51,9 +52,14 @@
   },
   "request_reset_password_success": {
     "title": "Reset password link has been sent!",
-    "look_for_an_email": "Look for an email from <0>GoBarber</0> and click on the reset password link in the email.",
+    "look_for_an_email": "Look for an email from <0>GoBarber</0> and click on the reset password link.",
     "if_you_do_not_see_an_email": "If you don’t see an email from us, check your junk mail or click resend link below.",
     "wait_n_seconds_to_resend_the_email": "Please wait {{ seconds }} to resend the email"
+  },
+  "reset_password": {
+    "title": "Reset Password!",
+    "please_type_your_new_password_below": "Please, type your new password bellow.",
+    "enter_a_new_password": "Enter a new password"
   },
   "yup": {
     "invalid_field_length": "This field must have at least {{ min }} characters",

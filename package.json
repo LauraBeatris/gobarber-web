@@ -16,6 +16,7 @@
     "i18next": "^19.4.5",
     "i18next-browser-languagedetector": "^4.2.0",
     "polished": "^3.6.4",
+    "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
@@ -29,6 +30,7 @@
     "styled-components": "^5.1.1",
     "styled-media-query": "^2.1.2",
     "typescript": "~3.7.2",
+    "use-query-params": "^1.1.6",
     "uuidv4": "^6.1.0",
     "yup": "^0.29.1"
   },
