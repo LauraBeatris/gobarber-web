@@ -21,12 +21,12 @@ const signInSchema = Yup.object().shape({
     .string()
     .email()
     .required()
-    .label(i18n.t("account_form.email")),
+    .label(i18n.t("auth_form.email")),
   password: Yup
     .string()
     .required()
     .min(5)
-    .label(i18n.t("account_form.password")),
+    .label(i18n.t("auth_form.password")),
 });
 
 const FormWrapper: React.FC = ({ children }) => {
@@ -64,12 +64,12 @@ export const withLabel: React.FC = () => (
         name="email"
         type="email"
         autoCapitalize="none"
-        placeholder={i18n.t("account_form.email")}
+        placeholder={i18n.t("auth_form.email")}
       />
       <Input
         name="password"
         type="password"
-        placeholder={i18n.t("account_form.password")}
+        placeholder={i18n.t("auth_form.password")}
       />
     </FormWrapper>
   </Container>
@@ -82,13 +82,13 @@ export const withIcon: React.FC = () => (
         name="email"
         type="email"
         autoCapitalize="none"
-        placeholder={i18n.t("account_form.email")}
+        placeholder={i18n.t("auth_form.email")}
         icon={FiMail}
       />
       <Input
         name="password"
         type="password"
-        placeholder={i18n.t("account_form.password")}
+        placeholder={i18n.t("auth_form.password")}
         icon={FiLock}
       />
     </FormWrapper>
@@ -102,13 +102,13 @@ export const withValidationErrors: React.FC = () => (
         name="email"
         type="email"
         autoCapitalize="none"
-        placeholder={i18n.t("account_form.email")}
+        placeholder={i18n.t("auth_form.email")}
         icon={FiMail}
       />
       <Input
         name="password"
         type="password"
-        placeholder={i18n.t("account_form.password")}
+        placeholder={i18n.t("auth_form.password")}
         icon={FiLock}
       />
       <Button type="submit">Validate</Button>

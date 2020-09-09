@@ -12,8 +12,10 @@ import api from "settings/api";
 import getExpiryConfirmationTimestamp from "utils/getExpiryConfirmationTimestamp";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
+import AuthAnimationContainer from "styles/components/AuthAnimationContainer";
+import { appearFromLeft } from "styles/animations";
 
-import { AnimationContainer } from "./styles";
+import { Content } from "./styles";
 
 const messageComponents = [
   <span className="bold" />,
@@ -72,53 +74,55 @@ const RequestPasswordResetSuccess: React.FC = () => {
       backgroundImage={signInBackground}
       backgroundPosition="right"
     >
-      <AnimationContainer>
-        <Helmet>
-          <title>
-            GoBarber |
-            {" "}
-            {t("request_reset_password_success.title")}
-          </title>
-        </Helmet>
+      <AuthAnimationContainer animation={appearFromLeft}>
+        <Content>
+          <Helmet>
+            <title>
+              GoBarber |
+              {" "}
+              {t("request_reset_password_success.title")}
+            </title>
+          </Helmet>
 
-        <Link to={SIGN_IN_PAGE_PATH}>
-          <img
-            src={logo}
-            aria-label="GoBarber"
-            alt="GoBarber"
-          />
-        </Link>
+          <Link to={SIGN_IN_PAGE_PATH}>
+            <img
+              src={logo}
+              aria-label="GoBarber"
+              alt="GoBarber"
+            />
+          </Link>
 
-        <h1>{t("request_reset_password_success.title")}</h1>
+          <h1>{t("request_reset_password_success.title")}</h1>
 
-        <h4>
-          <Trans
-            i18nKey="request_reset_password_success.look_for_an_email"
-            components={messageComponents}
-          />
-        </h4>
+          <h4>
+            <Trans
+              i18nKey="request_reset_password_success.look_for_an_email"
+              components={messageComponents}
+            />
+          </h4>
 
-        <h4>
-          {t("request_reset_password_success.if_you_do_not_see_an_email")}
-        </h4>
+          <h4>
+            {t("request_reset_password_success.if_you_do_not_see_an_email")}
+          </h4>
 
-        <button
-          type="button"
-          disabled={!canResendLink}
-          onClick={resendResetPasswordRequest}
-        >
-          {
-            canResendLink ? (
-              t("buttons.resend_link")
-            )
-              : (
-                t("request_reset_password_success.wait_n_seconds_to_resend_the_email", {
-                  seconds,
-                })
+          <button
+            type="button"
+            disabled={!canResendLink}
+            onClick={resendResetPasswordRequest}
+          >
+            {
+              canResendLink ? (
+                t("buttons.resend_link")
               )
-          }
-        </button>
-      </AnimationContainer>
+                : (
+                  t("request_reset_password_success.wait_n_seconds_to_resend_the_email", {
+                    seconds,
+                  })
+                )
+            }
+          </button>
+        </Content>
+      </AuthAnimationContainer>
     </AuthLayout>
   );
 };

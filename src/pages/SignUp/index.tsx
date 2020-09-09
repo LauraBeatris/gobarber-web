@@ -9,6 +9,7 @@ import {
 } from "react-icons/fi";
 import { ValidationError } from "yup";
 
+import { appearFromLeft } from "styles/animations";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
 import AuthLayout from "layouts/Auth";
@@ -19,9 +20,9 @@ import signUpBackground from "assets/images/sign-up-background.png";
 import getValidationErrors from "utils/getValidationErrors";
 import api from "settings/api";
 import { useAuthDispatch } from "contexts/auth/AuthContext";
+import AuthAnimationContainer from "styles/components/AuthAnimationContainer";
 
 import schema from "./schema";
-import { AnimationContainer } from "./styles";
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -77,7 +78,7 @@ const SignUp: React.FC = () => {
       backgroundPosition="right"
       backgroundImage={signUpBackground}
     >
-      <AnimationContainer>
+      <AuthAnimationContainer animation={appearFromLeft}>
         <Helmet>
           <title>
             GoBarber |
@@ -95,7 +96,7 @@ const SignUp: React.FC = () => {
             name="name"
             type="text"
             autoCapitalize="none"
-            placeholder={t("account_form.full_name")}
+            placeholder={t("auth_form.full_name")}
             icon={FiUser}
           />
 
@@ -103,14 +104,14 @@ const SignUp: React.FC = () => {
             name="email"
             type="email"
             autoCapitalize="none"
-            placeholder={t("account_form.email")}
+            placeholder={t("auth_form.email")}
             icon={FiMail}
           />
 
           <Input
             name="password"
             type="password"
-            placeholder={t("account_form.password")}
+            placeholder={t("auth_form.password")}
             icon={FiLock}
           />
 
@@ -127,7 +128,7 @@ const SignUp: React.FC = () => {
           <FiLogIn />
           {t("signup.already_have_an_account")}
         </Link>
-      </AnimationContainer>
+      </AuthAnimationContainer>
     </AuthLayout>
   );
 };

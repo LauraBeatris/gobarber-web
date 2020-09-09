@@ -90,7 +90,7 @@ const ForgotPassword: React.FC = () => {
             name="email"
             type="email"
             autoCapitalize="none"
-            placeholder={t("account_form.email")}
+            placeholder={t("auth_form.email")}
             icon={FiMail}
           />
 

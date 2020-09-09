@@ -15,9 +15,10 @@ import getValidationErrors from "utils/getValidationErrors";
 import logo from "assets/images/logo.svg";
 import signInBackground from "assets/images/sign-in-background.png";
 import { FORGOT_PASSWORD_PATH, SIGN_UP_PAGE_PATH } from "constants/routesPaths";
+import AuthAnimationContainer from "styles/components/AuthAnimationContainer";
+import { appearFromRight } from "styles/animations";
 
 import schema from "./schema";
-import { AnimationContainer } from "./styles";
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -49,7 +50,7 @@ const SignIn: React.FC = () => {
 
   return (
     <AuthLayout backgroundImage={signInBackground}>
-      <AnimationContainer>
+      <AuthAnimationContainer animation={appearFromRight}>
         <Helmet>
           <title>
             GoBarber |
@@ -75,13 +76,13 @@ const SignIn: React.FC = () => {
             name="email"
             type="email"
             autoCapitalize="none"
-            placeholder={t("account_form.email")}
+            placeholder={t("auth_form.email")}
             icon={FiMail}
           />
           <Input
             name="password"
             type="password"
-            placeholder={t("account_form.password")}
+            placeholder={t("auth_form.password")}
             icon={FiLock}
           />
 
@@ -102,7 +103,7 @@ const SignIn: React.FC = () => {
           <FiLogIn />
           {t("signin.create_an_account")}
         </Link>
-      </AnimationContainer>
+      </AuthAnimationContainer>
     </AuthLayout>
   );
 };
