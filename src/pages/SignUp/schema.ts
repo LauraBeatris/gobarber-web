@@ -1,3 +1,4 @@
+import { PASSWORD_MIN_LENGTH } from "constants/authentication";
 import Yup from "settings/yup";
 
 const signUpSchema = Yup.object().shape({
@@ -11,7 +12,7 @@ const signUpSchema = Yup.object().shape({
   password: Yup
     .string()
     .required()
-    .min(5),
+    .min(PASSWORD_MIN_LENGTH),
 });
 
 export default signUpSchema;
