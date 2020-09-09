@@ -1,18 +1,14 @@
-import * as Yup from "yup";
-
-import i18n from "../../translations/i18n";
+import Yup from "settings/yup";
 
 const signInSchema = Yup.object().shape({
   email: Yup
     .string()
     .email()
-    .required()
-    .label(i18n.t("account_form.email")),
+    .required(),
   password: Yup
     .string()
     .required()
-    .min(5)
-    .label(i18n.t("account_form.password")),
+    .min(5),
 });
 
 export default signInSchema;

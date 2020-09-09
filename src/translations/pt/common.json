@@ -1,5 +1,5 @@
 {
-  "account_form": {
+  "auth_form": {
     "email": "E-mail",
     "password": "Password",
     "full_name": "Nome completo",
@@ -53,5 +53,20 @@
     "look_for_an_email": "Procure por um email de <0>GoBarber</0> e clique no link para resetar a senha.",
     "if_you_do_not_see_an_email": "Se você não achar nenhum email, cheque sua lixeira, caixa de spam ou clique para reenviar logo abaixo.",
     "wait_n_seconds_to_resend_the_email": "Por favor, espere {{ seconds }} para reenviar o email"
+  },
+  "yup": {
+    "invalid_field_length": "Esse campo deve ter pelo menos {{ min }} caracteres.",
+    "invalid_number_length": "Esse campo deve ser maior que {{ min }} caracteres.",
+    "mixed_invalid_field": "Campo inválido.",
+    "mixed_required_field": "Campo obrigatório.",
+    "mixed_not_type": "Campo inválido",
+    "mixed_one_of": "Este campo não corresponde",
+    "mixed_max": "Esse campo deve ser menor que ${max}.",
+    "mixed_min": "Esse campo deve ser maior que ${min}.",
+    "string_email": "Esse campo precisa ser um email válido.",
+    "string_max": "Esse campo deve ser menor que ${max}.",
+    "string_min": "Esse campo deve ser maior que ${min}.",
+    "number_max": "Esse campo deve ser menor que ${max}.",
+    "number_min": "Esse campo deve ser maior que ${min}."
   }
 }
