@@ -31,10 +31,6 @@
       }
     },
     "signup": {
-      "error": {
-        "title": "Account Creation Error",
-        "description": "An error ocurred while creating account, please, check your data"
-      },
       "success": {
         "title": "Account Successfully Created",
         "description": "Now you're able to access our platform!"
