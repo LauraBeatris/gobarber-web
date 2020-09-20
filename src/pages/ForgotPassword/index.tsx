@@ -14,6 +14,7 @@ import { REQUEST_PASSWORD_REQUEST_SUCCESS, SIGN_IN_PAGE_PATH } from "constants/r
 import api from "settings/api";
 import AuthLayout from "layouts/Auth";
 import { appearFromLeft } from "styles/animations";
+import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 
 import schema from "./schema";
 
@@ -25,6 +26,8 @@ const ForgotPassword: React.FC = () => {
   const history = useHistory();
 
   const [loading, setLoading] = useState(false);
+
+  const { addToast } = useToastsDispatch();
 
   const handleSubmit = useCallback(
     async (data): Promise<void> => {
@@ -51,12 +54,19 @@ const ForgotPassword: React.FC = () => {
           const errors = getValidationErrors(error);
 
           formRef.current?.setErrors(errors);
+
+          return;
         }
+
+        addToast({
+          title: error?.message,
+          type: "error",
+        });
       } finally {
         setLoading(false);
       }
     },
-    [history],
+    [addToast, history],
   );
 
   return (

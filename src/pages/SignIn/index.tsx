@@ -19,6 +19,7 @@ import schema from "./schema";
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+
   const [t] = useTranslation();
 
   const { signIn } = useAuthDispatch();
@@ -38,6 +39,7 @@ const SignIn: React.FC = () => {
       } catch (error) {
         if (error instanceof ValidationError) {
           const errors = getValidationErrors(error);
+
           formRef.current?.setErrors(errors);
         }
       }

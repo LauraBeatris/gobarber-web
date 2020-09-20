@@ -15,19 +15,22 @@ import api from "settings/api";
 import AuthLayout from "layouts/Auth";
 import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
 import { appearFromLeft } from "styles/animations";
+import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 
 import schema from "./schema";
 
 const ResetPassword: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
+  const history = useHistory();
+
   const [t] = useTranslation();
 
-  const history = useHistory();
+  const [token] = useQueryParam("token", StringParam);
 
   const [loading, setLoading] = useState(false);
 
-  const [token] = useQueryParam("token", StringParam);
+  const { addToast } = useToastsDispatch();
 
   const handleSubmit = useCallback(
     async (data): Promise<void> => {
@@ -52,12 +55,19 @@ const ResetPassword: React.FC = () => {
           const errors = getValidationErrors(error);
 
           formRef.current?.setErrors(errors);
+
+          return;
         }
+
+        addToast({
+          title: error?.message,
+          type: "error",
+        });
       } finally {
         setLoading(false);
       }
     },
-    [history, token],
+    [addToast, history, token],
   );
 
   return (

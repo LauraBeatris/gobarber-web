@@ -7,6 +7,7 @@ import { ToastMessageData } from "shared/types/toasts";
 import ToastMessage from "components/ToastMessage";
 
 import { ToastsStateProvider, ToastsDispatchProvider } from "./ToastsContext";
+import { AddToastMessage } from "./types";
 
 const ToastsProvider: React.FC = ({ children }) => {
   const [messages, setMessages] = useState<ToastMessageData[]>([]);
@@ -29,7 +30,7 @@ const ToastsProvider: React.FC = ({ children }) => {
     },
   );
 
-  const addToast = useCallback((message): void => {
+  const addToast = useCallback((message: AddToastMessage): void => {
     setMessages(prevMessages => (
       [...prevMessages, {
         ...message,

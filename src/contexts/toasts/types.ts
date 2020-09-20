@@ -8,3 +8,5 @@ export interface ToastsDispatchContextData {
   addToast: (message: Omit<ToastMessageData, "id">) => void;
   removeToast: (id: string) => void;
 }
+
+export type AddToastMessage = Omit<ToastMessageData, "id">;

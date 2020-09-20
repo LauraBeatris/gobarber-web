@@ -59,8 +59,7 @@ const SignUp: React.FC = () => {
         }
 
         addToast({
-          title: t("toasts.signup.error.title"),
-          description: t("toasts.signup.error.description"),
+          title: error?.message,
           type: "error",
         });
       } finally {
