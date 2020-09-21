@@ -57,6 +57,9 @@
     "please_type_your_new_password_below": "Please, type your new password bellow.",
     "enter_a_new_password": "Enter a new password"
   },
+  "header": {
+    "greeting": "Welcome"
+  },
   "yup": {
     "invalid_field_length": "This field must have at least {{ min }} characters",
     "invalid_number_length": "This field should be bigger than {{ min }}.",

@@ -59,6 +59,9 @@
     "please_type_your_new_password_below": "Por favor, digite sua nova senha abaixo.",
     "enter_a_new_password": "Digite sua nova senha"
   },
+  "header": {
+    "title": "Bem vindo"
+  },
   "yup": {
     "invalid_field_length": "Esse campo deve ter pelo menos {{ min }} caracteres.",
     "invalid_number_length": "Esse campo deve ser maior que {{ min }} caracteres.",
