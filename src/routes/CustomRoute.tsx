@@ -17,13 +17,13 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
   ...rest
 }) => {
   const location = useLocation();
-  const { user: isSigned } = useAuthState();
+  const { token } = useAuthState();
 
   return (
     <Route
       {...rest}
       render={() => (
-        (!!isSigned === isPrivate
+        (!!token === isPrivate
           ? (
             <Component />
           )
