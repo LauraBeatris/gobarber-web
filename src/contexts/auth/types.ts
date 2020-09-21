@@ -1,10 +1,15 @@
+export interface User {
+  name: string;
+  avatar_url: string;
+}
+
 export interface SignInCredentials {
   email: string;
   password: string;
 }
 
 export interface AuthStateContextData {
-  user: Record<string, unknown> | null;
+  user: User;
   token: string | null;
   loading: boolean;
 }

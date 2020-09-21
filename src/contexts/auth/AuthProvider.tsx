@@ -6,16 +6,21 @@ import { USER_STORAGE_KEY, TOKEN_STORAGE_KEY } from "../../constants/localStorag
 import { useToastsDispatch } from "../toasts/ToastsContext";
 import api from "../../settings/api";
 import { AuthStateProvider, AuthDispatchProvider } from "./AuthContext";
-import { SignInCredentials } from "./types";
+import { SignInCredentials, User } from "./types";
 
 const AuthContainer: React.FC = ({ children }) => {
   const [t] = useTranslation();
 
-  const [user, setUser, deleteUser] = useLocalStorage(USER_STORAGE_KEY, null);
+  const [user, setUser, deleteUser] = useLocalStorage<User>(
+    USER_STORAGE_KEY,
+    {} as User,
+  );
+
   const [token, setToken, deleteToken] = useLocalStorage(
     TOKEN_STORAGE_KEY,
     null,
   );
+
   const { addToast } = useToastsDispatch();
 
   const [loading, setLoading] = useState(false);
