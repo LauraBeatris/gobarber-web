@@ -62,6 +62,10 @@
   "header": {
     "title": "Bem vindo"
   },
+  "dashboard": {
+    "schedule": "Horários agendados",
+    "next_appointments": "Atendimentos a seguir"
+  },
   "yup": {
     "invalid_field_length": "Esse campo deve ter pelo menos {{ min }} caracteres.",
     "invalid_number_length": "Esse campo deve ser maior que {{ min }} caracteres.",
