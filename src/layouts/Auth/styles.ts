@@ -48,7 +48,7 @@ export const Content = styled.section`
   }
 
   p {
-    color: ${({ theme }) => theme.colors.grayLight};
+    color: ${({ theme }) => theme.colors.gray};
   }
 
   form {
@@ -61,14 +61,14 @@ export const Content = styled.section`
     `}
 
     a {
-      color: ${({ theme }) => theme.colors.whiteSecondary};
+      color: ${({ theme }) => theme.colors.white};
       display: block;
       margin-top: 24px;
       transition: color 200ms;
 
       &:hover {
         ${({ theme }) => css`
-          color: ${shade(0.1, theme.colors.whiteSecondary)};
+          color: ${shade(0.1, theme.colors.white)};
         `}
       }
     }
@@ -94,7 +94,7 @@ export const Content = styled.section`
 
 export const Background = styled.div<BackgroundProps>`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.darkPrimary};
+  background-color: ${({ theme }) => theme.colors.background};
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

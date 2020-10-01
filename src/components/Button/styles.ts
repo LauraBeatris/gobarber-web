@@ -7,7 +7,7 @@ export const Container = styled(RippleButton)`
   background: ${({ theme }) => theme.colors.orange};
   border: 0;
   border-radius: 10px;
-  color: ${({ theme }) => theme.colors.darkTertiary};
+  color: ${({ theme }) => theme.colors.background};
   height: 56px;
   padding: 0 16px;
   font-weight: 400;

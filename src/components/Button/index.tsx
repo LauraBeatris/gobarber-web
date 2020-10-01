@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   >
     {
       loading ? (
-        <PulseLoader color={theme.colors.darkPrimary} size={10} />
+        <PulseLoader color={theme.colors.background} size={10} />
       ) : (
         children
       )

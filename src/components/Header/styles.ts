@@ -2,7 +2,7 @@ import styled from "styled-components";
 import media from "styled-media-query";
 
 export const HeaderContainer = styled.header`
-  width: "100%";
+  width: 100%;
   padding: 32px;
   background-color: ${({ theme }) => theme.colors.blackMedium};
 `;
@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
 export const HeaderContent = styled.div`
   display: flex;
   margin: 0 auto;
-  max-width: 1120px;
+  max-width: ${({ theme }) => theme.lengths.contentMaxWidth}px;
   align-items: center;
 
   > button {
@@ -19,7 +19,7 @@ export const HeaderContent = styled.div`
     background: none;
 
     svg {
-      color: ${({ theme }) => theme.colors.graySecondary};
+      color: ${({ theme }) => theme.colors.gray};
     }
   }
 
@@ -54,7 +54,7 @@ export const ProfileContainer = styled.div`
     }
 
     span {
-      color: ${({ theme }) => theme.colors.graySecondary};
+      color: ${({ theme }) => theme.colors.gray};
     }
 
     strong {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background: ${({ theme }) => theme.colors.darkPrimary};
+  background: ${({ theme }) => theme.colors.background};
 
   display: flex;
   justify-content: center;

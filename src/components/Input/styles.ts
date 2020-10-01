@@ -10,9 +10,9 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
   border-radius: 10px;
-  background: ${({ theme }) => theme.colors.darkSecondary};
-  border: 2px solid ${({ theme }) => theme.colors.darkSecondary};
-  color: ${({ theme }) => theme.colors.whiteSecondary};
+  background: ${({ theme }) => theme.colors.inputs};
+  border: 2px solid ${({ theme }) => theme.colors.inputs};
+  color: ${({ theme }) => theme.colors.white};
   display: flex;
   align-items: center;
   position: relative;
@@ -66,7 +66,7 @@ export const Container = styled.div<ContainerProps>`
     &,
     &:-internal-autofill-selected {
       background-color: transparent !important;
-      color: ${({ theme }) => theme.colors.whiteSecondary} !important;
+      color: ${({ theme }) => theme.colors.white} !important;
     }
 
     &:-webkit-autofill,
@@ -74,8 +74,8 @@ export const Container = styled.div<ContainerProps>`
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus {
       ${({ theme }) => css`
-        -webkit-box-shadow: 0 0 0px 1000px ${theme.colors.darkSecondary} inset;
-        -webkit-text-fill-color: ${theme.colors.whiteSecondary} !important;
+        -webkit-box-shadow: 0 0 0px 1000px ${theme.colors.inputs} inset;
+        -webkit-text-fill-color: ${theme.colors.white} !important;
         transition: background-color 5000s ease-in-out 0s;
       `}
     }

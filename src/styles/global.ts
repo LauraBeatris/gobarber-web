@@ -9,8 +9,7 @@ export default createGlobalStyle`
   }
 
   body {
-    --webkit-font-smoothing: antialiased !important;
-    background: ${({ theme }) => theme.colors.darkPrimary};
+    background: ${({ theme }) => theme.colors.background};
   }
 
   body, input, button {
