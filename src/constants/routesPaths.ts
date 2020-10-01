@@ -5,3 +5,4 @@ export const RESET_PASSWORD_PATH = "/reset-password";
 export const REQUEST_PASSWORD_REQUEST_SUCCESS = "/request-password-reset/success";
 
 export const DASHBOARD_PAGE_PATH = "/";
+export const PROFILE_PAGE_PATH = "/profile";

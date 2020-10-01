@@ -1,6 +1,6 @@
 import { FiInfo, FiAlertCircle, FiCheckCircle } from "react-icons/fi";
 
-import { ToastMessageType } from "../shared/types/toasts";
+import { ToastMessageType } from "shared/types/toasts";
 
 type ToastMessagesIcons = {
   [key in ToastMessageType]: {

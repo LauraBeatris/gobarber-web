@@ -1,4 +1,4 @@
-import { ToastMessageData } from "../../shared/types/toasts";
+import { ToastMessageData } from "shared/types/toasts";
 
 export interface ToastsStateContextData {
   messages: ToastMessageData[];
