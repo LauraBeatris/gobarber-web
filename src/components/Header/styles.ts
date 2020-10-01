@@ -59,6 +59,10 @@ export const ProfileContainer = styled.div`
 
     strong {
       color: ${({ theme }) => theme.colors.orange};
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 `;

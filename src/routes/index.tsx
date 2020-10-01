@@ -1,25 +1,33 @@
 import React from "react";
 import { Switch } from "react-router-dom";
 
-import Dashboard from "pages/Dashboard";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
+import Profile from "pages/Profile";
+import Dashboard from "pages/Dashboard";
 import ForgotPassword from "pages/ForgotPassword";
 import ResetPassword from "pages/ResetPassword";
 import RequestPasswordResetSuccess from "pages/RequestPasswordResetSuccess";
-
-import Route from "./CustomRoute";
 import {
+  PROFILE_PAGE_PATH,
   SIGN_IN_PAGE_PATH,
   SIGN_UP_PAGE_PATH,
   DASHBOARD_PAGE_PATH,
   RESET_PASSWORD_PATH,
   FORGOT_PASSWORD_PATH,
   REQUEST_PASSWORD_REQUEST_SUCCESS,
-} from "../constants/routesPaths";
+} from "constants/routesPaths";
+
+import Route from "./CustomRoute";
 
 const Router: React.FC = () => (
   <Switch>
+    <Route
+      path={PROFILE_PAGE_PATH}
+      component={Profile}
+      isPrivate
+    />
+
     <Route
       path={DASHBOARD_PAGE_PATH}
       exact
