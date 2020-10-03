@@ -64,7 +64,7 @@
   },
   "dashboard": {
     "schedule": "Horários agendados",
-    "next_appointments": "Atendimentos a seguir"
+    "next_appointment": "Atendimento a seguir"
   },
   "yup": {
     "invalid_field_length": "Esse campo deve ter pelo menos {{ min }} caracteres.",

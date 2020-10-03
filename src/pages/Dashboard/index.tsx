@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { FiClock } from "react-icons/fi";
 
 import AppLayout from "layouts/App";
+import Appointment from "components/Appointment";
+import DashboardSection from "components/DashboardSection";
 
 import {
   Content,
@@ -28,21 +29,39 @@ const Dashboard: React.FC = () => {
             <span>Segunda-feira</span>
           </p>
 
-          {/* TODO -> Do not show if there aren't next appointments */}
+          {/* TODO -> Do not show if there is a next appointment */}
           <NextAppointment>
-            <h4>{t("dashboard.next_appointments")}</h4>
+            <h4>{t("dashboard.next_appointment")}</h4>
 
-            <div>
-              <img src="https://avatars0.githubusercontent.com/u/48022589?s=460&u=6e0093b40a2ad5e8384ca214ee835859d03ebe2e&v=4" alt="Laura" />
-              <strong>Laura Beatris</strong>
-
-              <span>
-                <FiClock />
-
-                08:00
-              </span>
-            </div>
+            <Appointment
+              name="Laura Beatris"
+              date={new Date()}
+              avatar_url="https://avatars0.githubusercontent.com/u/48022589?s=460&u=6e0093b40a2ad5e8384ca214ee835859d03ebe2e&v=4"
+              showLateralBorder
+            />
           </NextAppointment>
+
+          <DashboardSection
+            title="Manhã"
+            appointments={[
+              {
+                date: new Date(),
+                name: "Laura",
+                avatar_url: "https://avatars0.githubusercontent.com/u/48022589?s=460&u=6e0093b40a2ad5e8384ca214ee835859d03ebe2e&v=4",
+              },
+            ]}
+          />
+
+          <DashboardSection
+            title="Tarde"
+            appointments={[
+              {
+                date: new Date(),
+                name: "Laura",
+                avatar_url: "https://avatars0.githubusercontent.com/u/48022589?s=460&u=6e0093b40a2ad5e8384ca214ee835859d03ebe2e&v=4",
+              },
+            ]}
+          />
         </Schedule>
 
         <Calendar />

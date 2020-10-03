@@ -62,7 +62,7 @@
   },
   "dashboard": {
     "schedule": "Schedule",
-    "next_appointments": "Next Appointments"
+    "next_appointment": "Next Appointment"
   },
   "yup": {
     "invalid_field_length": "This field must have at least {{ min }} characters",
