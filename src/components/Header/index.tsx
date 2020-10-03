@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import logoImage from "assets/images/logo.svg";
 import { useAuthDispatch, useAuthState } from "contexts/auth/AuthContext";
 import { PROFILE_PAGE_PATH } from "constants/routesPaths";
-import useUserImage from "hooks/useUserImage";
+import getUserImagePlaceholder from "utils/getUserImagePlaceholder";
+import Image from "components/Image";
 
 import { HeaderContainer, HeaderContent, ProfileContainer } from "./styles";
 
@@ -15,20 +16,19 @@ const Header: React.FC = () => {
 
   const { user } = useAuthState();
 
-  const avatarUrl = useUserImage(user);
-
   const { signOut } = useAuthDispatch();
 
   return (
     <HeaderContainer>
       <HeaderContent>
-        <img src={logoImage} alt="GoBarber" title="GoBarber" />
+        <Image src={logoImage} alt="GoBarber" title="GoBarber" />
 
         <Link to={PROFILE_PAGE_PATH}>
           <ProfileContainer>
-            <img
-              src={avatarUrl}
+            <Image
+              src={user?.avatar_url}
               alt={user?.name}
+              fallbackSrc={getUserImagePlaceholder(user?.name)}
             />
 
             <div>
