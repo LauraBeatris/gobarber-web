@@ -2,11 +2,15 @@ import React from "react";
 
 import Header from "components/Header";
 
+import { AppLayoutContent } from "./styles";
+
 const AppLayout: React.FC = ({ children }) => (
   <>
     <Header />
 
-    {children}
+    <AppLayoutContent>
+      {children}
+    </AppLayoutContent>
   </>
 );
 

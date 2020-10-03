@@ -4,6 +4,8 @@ import media from "styled-media-query";
 export const HeaderContainer = styled.header`
   width: 100%;
   padding: 32px;
+  z-index: ${({ theme }) => theme.zIndexes.header};
+  position: fixed;
   background-color: ${({ theme }) => theme.colors.blackMedium};
 `;
 

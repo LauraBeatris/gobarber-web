@@ -6,12 +6,12 @@ export const Content = styled.div`
   margin: auto;
   width: 100%;
   height: 100%;
-  padding: 64px 0;
+  padding: 0 64px 0 0;
 
   max-width: ${({ theme }) => theme.lengths.contentMaxWidth}px;
 
   ${media.lessThan("large")`
-    padding: 64px 32px;
+    padding: 0 64px 32px 32px;
     flex-direction: column;
   `}
 `;

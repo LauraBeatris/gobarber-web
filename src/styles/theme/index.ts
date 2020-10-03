@@ -3,9 +3,11 @@ import colors from "./colors";
 const theme = {
   colors,
   zIndexes: {
+    header: 100,
     toasts: 1000,
   },
   lengths: {
+    header: 200,
     contentMaxWidth: 1120,
   },
 };
