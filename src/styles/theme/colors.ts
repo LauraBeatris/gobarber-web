@@ -7,6 +7,7 @@ const colors = {
   background: "#312E38",
   inputs: "#232129",
   danger: "#c53030",
+  disabled: "#666360",
 };
 
 export default colors;

@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { DayModifiers } from "react-day-picker";
 
 import AppLayout from "layouts/App";
 import Appointment from "components/Appointment";
 import DashboardSection from "components/DashboardSection";
+import Calendar from "components/Calendar";
 
 import {
   Content,
   Schedule,
-  Calendar,
   NextAppointment,
+  CalendarContainer,
 } from "./styles";
+
+const availability = {
+  available: { daysOfWeek: [0, 1, 2] },
+};
 
 const Dashboard: React.FC = () => {
   const [t] = useTranslation();
+
+  const [selectedDay, setSelectedDay] = useState(new Date());
+
+  const handleDayClick = useCallback((day: Date, modifiers: DayModifiers) => {
+    const isValidDay = !modifiers.disabled && modifiers.available;
+
+    if (!isValidDay) {
+      return;
+    }
+
+    setSelectedDay(day);
+  }, []);
 
   return (
     <AppLayout>
@@ -64,7 +82,17 @@ const Dashboard: React.FC = () => {
           />
         </Schedule>
 
-        <Calendar />
+        <CalendarContainer>
+          <Calendar
+            /**
+              TODO -> Create an utility function to return the availability
+              calendar modifiers according to the API data
+            */
+            modifiers={availability}
+            onDayClick={handleDayClick}
+            selectedDays={selectedDay}
+          />
+        </CalendarContainer>
       </Content>
     </AppLayout>
   );

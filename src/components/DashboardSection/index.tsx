@@ -13,8 +13,8 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({
     <strong>{title}</strong>
 
     {
-      (appointments ?? []).map(() => (
-        <DashboardSectionItem>
+      (appointments ?? []).map((_value, index: number) => (
+        <DashboardSectionItem key={String(index)}>
           <AppointmentDate date={new Date()} />
 
           <Appointment

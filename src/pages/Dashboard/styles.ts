@@ -11,8 +11,9 @@ export const Content = styled.div`
   max-width: ${({ theme }) => theme.lengths.contentMaxWidth}px;
 
   ${media.lessThan("large")`
-    padding: 0 64px 32px 32px;
-    flex-direction: column;
+    padding: 0 50px;
+    align-items: center;
+    flex-direction: column-reverse;
   `}
 `;
 
@@ -45,9 +46,17 @@ export const Schedule = styled.main`
   }
 `;
 
-export const Calendar = styled.aside`
-  margin-left: 120px;
+export const CalendarContainer = styled.aside`
   width: 20vw;
+  display: flex;
+  margin-left: 120px;
+  justify-content: center;
+
+  ${media.lessThan("large")`
+    width: 100%;
+    margin-left: unset;
+    margin-bottom: 48px;
+  `}
 `;
 
 export const NextAppointment = styled.div`
