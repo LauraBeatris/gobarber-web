@@ -1,7 +1,4 @@
-export interface User {
-  name: string;
-  avatar_url: string;
-}
+import { User } from "shared/types/apiSchema";
 
 export interface SignInCredentials {
   email: string;

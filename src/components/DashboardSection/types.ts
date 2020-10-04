@@ -1,8 +1,4 @@
-export interface Appointment {
-  name: string;
-  date: Date;
-  avatar_url: string;
-}
+import { Appointment } from "shared/types/apiSchema";
 
 export interface DashboardSectionProps {
   title: string;

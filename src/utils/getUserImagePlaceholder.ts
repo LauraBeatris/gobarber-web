@@ -1,4 +1,4 @@
-import { User } from "contexts/auth/types";
+import { User } from "shared/types/apiSchema";
 
 /**
  * Returns the placeholder image URL for users

@@ -1,13 +1,14 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocalStorage } from "@rehooks/local-storage";
 
 import { USER_STORAGE_KEY, TOKEN_STORAGE_KEY } from "constants/localStorage";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import api from "settings/api";
+import { User } from "shared/types/apiSchema";
 
 import { AuthStateProvider, AuthDispatchProvider } from "./AuthContext";
-import { SignInCredentials, User } from "./types";
+import { SignInCredentials } from "./types";
 
 const AuthContainer: React.FC = ({ children }) => {
   const [t] = useTranslation();

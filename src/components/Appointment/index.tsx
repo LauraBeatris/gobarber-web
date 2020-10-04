@@ -13,6 +13,10 @@ const Appointment: React.FC<AppointmentProps> = ({
   avatar_url,
   showLateralBorder,
 }) => (
+  /**
+   * TODO -> When clicking on a appointment, it should open an modal
+   * with details (Appointment Type, etc)
+   */
   <AppointmentContainer showLateralBorder={!!showLateralBorder}>
     <Image
       src={avatar_url}

@@ -1,6 +1,6 @@
 import { useImage } from "react-image";
 
-import { User } from "contexts/auth/types";
+import { User } from "shared/types/apiSchema";
 
 /**
  * Returns the image source of a user, dealing with fallback and placeholders.
