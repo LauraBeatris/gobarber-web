@@ -42,7 +42,12 @@ const Header: React.FC = () => {
           </ProfileContainer>
         </Link>
 
-        <button type="button" onClick={signOut}>
+        <button
+          type="button"
+          title={t("buttons.logout")}
+          onClick={signOut}
+          aria-label={t("buttons.logout")}
+        >
           <FiPower />
         </button>
       </HeaderContent>

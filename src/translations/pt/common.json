@@ -15,7 +15,8 @@
   },
   "buttons": {
     "confirm": "Confirmar",
-    "resend_link": "Reenviar link"
+    "resend_link": "Reenviar link",
+    "logout": "Logout"
   },
   "toasts": {
     "something_went_wrong": "Algo deu errado...",
@@ -63,8 +64,11 @@
     "title": "Bem vindo"
   },
   "dashboard": {
+    "today": "Hoje",
     "schedule": "Horários agendados",
-    "next_appointment": "Atendimento a seguir"
+    "next_appointment": "Atendimento a seguir",
+    "click_here_to_see_the_appointments_for_tomorrow": "Clique aqui para visualizar os agendamentos de amanhã",
+    "the_business_is_closed": "O estabelecimento está fechado"
   },
   "yup": {
     "invalid_field_length": "Esse campo deve ter pelo menos {{ min }} caracteres.",

@@ -16,7 +16,8 @@
   },
   "buttons": {
     "confirm": "Confirm",
-    "resend_link": "Resend link"
+    "resend_link": "Resend link",
+    "logout": "Logout"
   },
   "toasts": {
     "something_went_wrong": "Something went wrong...",
@@ -61,8 +62,11 @@
     "greeting": "Welcome"
   },
   "dashboard": {
+    "today": "Today",
     "schedule": "Schedule",
-    "next_appointment": "Next Appointment"
+    "next_appointment": "Next Appointment",
+    "click_here_to_see_the_appointments_for_tomorrow": "Click here to see the appointments for tomorrow",
+    "the_business_is_closed": "The business is closed"
   },
   "yup": {
     "invalid_field_length": "This field must have at least {{ min }} characters",
