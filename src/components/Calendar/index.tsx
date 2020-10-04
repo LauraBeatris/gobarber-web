@@ -13,16 +13,26 @@ import "moment/locale/pt-br";
 
 const calendarDisabledDays = { daysOfWeek: [0, 6] };
 
-const Calendar: React.FC<CalendarProps> = (props) => (
-  <DayPickerContainer>
-    <DayPicker
-      fromMonth={new Date()}
-      localeUtils={MomentLocaleUtils}
-      locale={i18n.language}
-      disabledDays={calendarDisabledDays}
-      {...props}
-    />
-  </DayPickerContainer>
-);
+const Calendar: React.FC<CalendarProps> = ({
+  disabledDays,
+  ...rest
+}) => {
+  const mergeDisabledDays = {
+    ...calendarDisabledDays,
+    ...disabledDays,
+  };
+
+  return (
+    <DayPickerContainer>
+      <DayPicker
+        locale={i18n.language}
+        fromMonth={new Date()}
+        localeUtils={MomentLocaleUtils}
+        disabledDays={mergeDisabledDays}
+        {...rest}
+      />
+    </DayPickerContainer>
+  );
+};
 
 export default Calendar;

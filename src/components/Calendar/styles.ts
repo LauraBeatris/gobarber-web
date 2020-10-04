@@ -79,4 +79,12 @@ export const DayPickerContainer = styled.div`
     background: ${({ theme }) => theme.colors.shape};
     border-radius: 10px;
   }
+
+  .DayPicker-Day--unavailable:not(.DayPicker-Day--outside) {
+    cursor: not-allowed;
+
+    &:hover {
+      background: none !important;
+    }
+  }
 `;

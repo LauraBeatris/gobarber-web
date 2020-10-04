@@ -1,11 +1,22 @@
-import React, { useCallback, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { DayModifiers } from "react-day-picker";
+import { getMonth, getYear } from "date-fns";
 
 import AppLayout from "layouts/App";
 import Appointment from "components/Appointment";
 import DashboardSection from "components/DashboardSection";
 import Calendar from "components/Calendar";
+import { ProviderMonthAvailability } from "shared/types/apiSchema";
+import api from "settings/api";
+import { useAuthState } from "contexts/auth/AuthContext";
+import { useToastsDispatch } from "contexts/toasts/ToastsContext";
+import { getProviderMonthAvailableDates, getProviderMonthUnavailableDates } from "utils/providerMonthAvailability";
 
 import {
   Content,
@@ -14,14 +25,18 @@ import {
   CalendarContainer,
 } from "./styles";
 
-const availability = {
-  available: { daysOfWeek: [0, 1, 2] },
-};
-
 const Dashboard: React.FC = () => {
   const [t] = useTranslation();
 
   const [selectedDay, setSelectedDay] = useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [
+    providerMonthAvailability,
+    setProviderMonthAvailability,
+  ] = useState<ProviderMonthAvailability[]>([]);
+
+  const { user } = useAuthState();
+  const { addToast } = useToastsDispatch();
 
   const handleDayClick = useCallback((day: Date, modifiers: DayModifiers) => {
     const isValidDay = !modifiers.disabled && modifiers.available;
@@ -32,6 +47,51 @@ const Dashboard: React.FC = () => {
 
     setSelectedDay(day);
   }, []);
+
+  const fetchMonthAvailability = useCallback(() => {
+    api.get(`/providers/${user.id}/month-availability`, {
+      params: {
+        year: getYear(currentMonth),
+        month: getMonth(currentMonth) + 1,
+      },
+    }).then((response) => setProviderMonthAvailability(response?.data))
+      .catch((error) => {
+        addToast({
+          type: "error",
+          title: error?.message,
+        });
+      });
+  }, [
+    user.id,
+    addToast,
+    currentMonth,
+  ]);
+
+  const unavailableDates = useMemo(() => (
+    getProviderMonthUnavailableDates({
+      providerMonthAvailability,
+      currentMonth,
+    })
+  ), [
+    providerMonthAvailability,
+    currentMonth,
+  ]);
+
+  const calendarModifiers = useMemo(() => ({
+    available: getProviderMonthAvailableDates({
+      providerMonthAvailability,
+      currentMonth,
+    }),
+    unavailable: unavailableDates,
+  }), [
+    providerMonthAvailability,
+    unavailableDates,
+    currentMonth,
+  ]);
+
+  useEffect(() => {
+    fetchMonthAvailability();
+  }, [fetchMonthAvailability]);
 
   return (
     <AppLayout>
@@ -84,13 +144,12 @@ const Dashboard: React.FC = () => {
 
         <CalendarContainer>
           <Calendar
-            /**
-              TODO -> Create an utility function to return the availability
-              calendar modifiers according to the API data
-            */
-            modifiers={availability}
+            month={currentMonth}
+            modifiers={calendarModifiers}
             onDayClick={handleDayClick}
+            disabledDays={unavailableDates}
             selectedDays={selectedDay}
+            onMonthChange={setCurrentMonth}
           />
         </CalendarContainer>
       </Content>

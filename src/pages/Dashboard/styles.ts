@@ -6,13 +6,11 @@ export const Content = styled.div`
   margin: auto;
   width: 100%;
   height: 100%;
-  padding: 0 64px 0 0;
 
   max-width: ${({ theme }) => theme.lengths.contentMaxWidth}px;
 
   ${media.lessThan("large")`
     padding: 0 50px;
-    align-items: center;
     flex-direction: column-reverse;
   `}
 `;
@@ -50,12 +48,13 @@ export const CalendarContainer = styled.aside`
   width: 20vw;
   display: flex;
   margin-left: 120px;
-  justify-content: center;
+  justify-content: flex-end;
 
   ${media.lessThan("large")`
     width: 100%;
     margin-left: unset;
     margin-bottom: 48px;
+    justify-content: center;
   `}
 `;
 
