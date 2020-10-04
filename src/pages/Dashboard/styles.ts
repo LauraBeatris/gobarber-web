@@ -79,6 +79,7 @@ export const BusinessClosedContainer = styled.div`
 
   h1 {
     color: ${({ theme }) => theme.colors.white};
+    text-align: center;
   }
 
   button {
@@ -96,6 +97,7 @@ export const BusinessClosedContainer = styled.div`
 
     svg {
       margin-left: 5px;
+      font-size: 20px;
     }
   }
 

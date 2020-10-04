@@ -61,7 +61,7 @@
     "enter_a_new_password": "Digite sua nova senha"
   },
   "header": {
-    "title": "Bem vindo"
+    "greeting": "Bem vindo"
   },
   "dashboard": {
     "today": "Hoje",

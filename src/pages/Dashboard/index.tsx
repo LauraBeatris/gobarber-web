@@ -127,7 +127,10 @@ const Dashboard: React.FC = () => {
       today,
       weekDay,
     };
-  }, [selectedDay, t]);
+  }, [
+    t,
+    selectedDay,
+  ]);
 
   useEffect(() => {
     fetchMonthAvailability();
@@ -202,7 +205,7 @@ const Dashboard: React.FC = () => {
             </>
           ) : (
             <BusinessClosedContainer>
-              <h1>The business is closed</h1>
+              <h1>{t("dashboard.the_business_is_closed")}</h1>
               <button
                 type="button"
                 onClick={handleTomorrowAppointments}

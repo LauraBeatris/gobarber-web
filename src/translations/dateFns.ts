@@ -7,11 +7,13 @@ interface Locales {
   [key: string]: Locale;
 }
 
+/**
+ * Returns the date-fns locale according to i18n
+ */
 const getDateFnsLocale = (): Locale => {
   const locales: Locales = {
     pt: dateFnsLocales.ptBR,
     en: dateFnsLocales.enUS,
-    de: dateFnsLocales.de,
   };
 
   return locales[i18n.language];
