@@ -20,7 +20,10 @@ import { UseProviderMonthAvailability } from "./types";
  */
 export const useProviderMonthAvailability = (currentMonth: Date): UseProviderMonthAvailability => {
   const [loading, setLoading] = useState(false);
-  const [providerMonthAvailability, setProviderMonthAvailability] = useState<ProviderMonthAvailability[]>([]);
+  const [
+    providerMonthAvailability,
+    setProviderMonthAvailability,
+  ] = useState<ProviderMonthAvailability[]>([]);
 
   const { user } = useAuthState();
 
