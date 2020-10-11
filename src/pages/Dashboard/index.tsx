@@ -29,6 +29,7 @@ import { ProviderMonthAvailability } from "shared/types/apiSchema";
 import { getProviderMonthAvailableDates, getProviderMonthUnavailableDates } from "utils/providerMonthAvailability";
 import { getLottieDefaultOptions } from "settings/lottie";
 import getIsBusinessOpen from "utils/getIsBusinessOpen";
+import { DAY_MONTH, WEEK_DAY } from "constants/dateFormats";
 
 import {
   Content,
@@ -92,7 +93,10 @@ const Dashboard: React.FC = () => {
         year: getYear(currentMonth),
         month: getMonth(currentMonth) + 1,
       },
-    }).then((response) => setProviderMonthAvailability(response?.data))
+    })
+      .then((response) => {
+        setProviderMonthAvailability(response?.data);
+      })
       .catch((error) => {
         addToast({
           type: "error",
@@ -114,11 +118,11 @@ const Dashboard: React.FC = () => {
   const calendarResult = useMemo(() => {
     const today = isToday(selectedDay) && t("dashboard.today");
 
-    const day = format(selectedDay, "do MMMM", {
+    const day = format(selectedDay, DAY_MONTH, {
       locale: getDateFnsLocale(),
     });
 
-    const weekDay = format(selectedDay, "EEEE", {
+    const weekDay = format(selectedDay, WEEK_DAY, {
       locale: getDateFnsLocale(),
     });
 
