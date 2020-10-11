@@ -13,13 +13,19 @@ import { useAuthState } from "contexts/auth/AuthContext";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { getProviderMonthAvailableDates, getProviderMonthUnavailableDates } from "utils/providerMonthAvailability";
 
-import { UseProviderMonthAvailability } from "./types";
+import { UseProviderMonthAvailabilityPayload } from "./types";
 
 /**
  * Returns the provider month availability
  */
-export const useProviderMonthAvailability = (currentMonth: Date): UseProviderMonthAvailability => {
-  const [loading, setLoading] = useState(false);
+export const useProviderMonthAvailability = (
+  currentMonth: Date,
+): UseProviderMonthAvailabilityPayload => {
+  const [
+    loadingProviderMonthAvailability,
+    setLoadingProviderMonthAvailability,
+  ] = useState(false);
+
   const [
     providerMonthAvailability,
     setProviderMonthAvailability,
@@ -30,7 +36,7 @@ export const useProviderMonthAvailability = (currentMonth: Date): UseProviderMon
   const { addToast } = useToastsDispatch();
 
   const fetchProviderMonthAvailability = useCallback(() => {
-    setLoading(true);
+    setLoadingProviderMonthAvailability(true);
 
     api.get(`/providers/${user.id}/month-availability`, {
       params: {
@@ -48,7 +54,7 @@ export const useProviderMonthAvailability = (currentMonth: Date): UseProviderMon
         });
       })
       .finally(() => {
-        setLoading(false);
+        setLoadingProviderMonthAvailability(false);
       });
   }, [
     user.id,
@@ -74,12 +80,12 @@ export const useProviderMonthAvailability = (currentMonth: Date): UseProviderMon
     fetchProviderMonthAvailability();
   }, [fetchProviderMonthAvailability]);
 
-  const payload = useMemo<UseProviderMonthAvailability>(() => ({
-    loading,
+  const payload = useMemo<UseProviderMonthAvailabilityPayload>(() => ({
     providerMonthAvailabilityDates,
+    loadingProviderMonthAvailability,
   }), [
-    loading,
     providerMonthAvailabilityDates,
+    loadingProviderMonthAvailability,
   ]);
 
   return payload;

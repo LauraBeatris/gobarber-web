@@ -3,7 +3,7 @@ export interface ProviderMonthAvailabilityDates {
   unavailable: Date[];
 }
 
-export interface UseProviderMonthAvailability {
-  loading: boolean;
+export interface UseProviderMonthAvailabilityPayload {
   providerMonthAvailabilityDates: ProviderMonthAvailabilityDates,
+  loadingProviderMonthAvailability: boolean;
 }

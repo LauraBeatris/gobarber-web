@@ -25,6 +25,10 @@ export const DashboardSectionContainer = styled.section`
       font-size: 20px;
     }
   }
+
+  > p {
+    color: ${({ theme }) => theme.colors.gray};
+  }
 `;
 
 export const DashboardSectionItem = styled.div`

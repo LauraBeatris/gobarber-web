@@ -110,3 +110,30 @@ export const BusinessClosedContainer = styled.div`
     width: 100%;
   `}
 `;
+
+export const ProviderMonthAvailabilityLoadingContainer = styled.div`
+  display: flex;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding-top: 40px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  p {
+    font-size: 20px;
+    color: ${({ theme }) => theme.colors.gray};
+  }
+
+  svg {
+    width: 200px !important;
+    height: 200px !important;
+    margin: 0 auto;
+  }
+
+  div {
+    display: flex;
+    width: 200px !important;
+    height: 200px !important;
+  }
+`;

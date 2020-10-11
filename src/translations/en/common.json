@@ -69,7 +69,8 @@
     "next_appointment": "Next Appointment",
     "click_here_to_see_the_next_appointments": "Click here to see the next appointments",
     "the_business_is_closed": "The business is closed",
-    "there_are_no_appointments_in_that_period": "There aren't appointments in that period"
+    "there_are_no_appointments_in_that_period": "There aren't appointments in that period",
+    "verifying_your_schedule_availability": "Verifying your schedule availability"
   },
   "yup": {
     "invalid_field_length": "This field must have at least ${min} characters",
