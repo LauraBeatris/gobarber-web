@@ -63,14 +63,16 @@
   },
   "dashboard": {
     "today": "Today",
+    "evening": "Evening",
+    "morning": "Morning",
     "schedule": "Schedule",
     "next_appointment": "Next Appointment",
-    "click_here_to_see_the_appointments_for_tomorrow": "Click here to see the appointments for tomorrow",
+    "click_here_to_see_the_next_appointments": "Click here to see the next appointments",
     "the_business_is_closed": "The business is closed"
   },
   "yup": {
-    "invalid_field_length": "This field must have at least {{ min }} characters",
-    "invalid_number_length": "This field should be bigger than {{ min }}.",
+    "invalid_field_length": "This field must have at least ${min} characters",
+    "invalid_number_length": "This field should be bigger than ${min}.",
     "mixed_invalid_field": "This field is invalid.",
     "mixed_required_field": "This field is required.",
     "mixed_not_type": "This field is invalid.",

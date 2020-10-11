@@ -1,4 +1,4 @@
-import { User } from "shared/types/apiSchema";
+import { Appointment, User } from "shared/types/apiSchema";
 
 export interface AppointmentContainerProps {
   showLateralBorder?: boolean;
@@ -6,6 +6,6 @@ export interface AppointmentContainerProps {
 
 export interface AppointmentProps extends AppointmentContainerProps {
   name: User["name"];
-  date?: Date;
+  date?: Appointment["date"];
   avatar_url: User["avatar_url"];
 }

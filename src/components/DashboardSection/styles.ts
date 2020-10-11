@@ -18,11 +18,11 @@ export const DashboardSectionContainer = styled.section`
 
   > div {
     & + div {
-      margin-bottom: 16px;
+      margin-top: 16px;
     }
 
     strong {
-    font-size: 20px;
+      font-size: 20px;
     }
   }
 `;

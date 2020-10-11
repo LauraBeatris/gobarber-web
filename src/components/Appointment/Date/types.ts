@@ -1,5 +1,5 @@
-import { AppointmentProps } from "components/Appointment/types";
+import { Appointment } from "shared/types/apiSchema";
 
 export interface AppointmentDateProps {
-  date: AppointmentProps["date"];
+  date: Appointment["date"];
 }

@@ -65,9 +65,11 @@
   },
   "dashboard": {
     "today": "Hoje",
+    "evening": "Tarde",
+    "morning": "Manhã",
     "schedule": "Horários agendados",
     "next_appointment": "Atendimento a seguir",
-    "click_here_to_see_the_appointments_for_tomorrow": "Clique aqui para visualizar os agendamentos de amanhã",
+    "click_here_to_see_the_next_appointments": "Clique aqui para visualizar os proximos agendamentos",
     "the_business_is_closed": "O estabelecimento está fechado"
   },
   "yup": {

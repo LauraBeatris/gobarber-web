@@ -28,6 +28,7 @@ export const Schedule = styled.main`
     font-size: 1.6ch;
     margin-top: 12px;
     align-items: center;
+    margin-bottom: 48px;
 
     span {
       display: flex;

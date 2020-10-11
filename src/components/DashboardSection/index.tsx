@@ -13,13 +13,13 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({
     <strong>{title}</strong>
 
     {
-      (appointments ?? []).map((_value, index: number) => (
-        <DashboardSectionItem key={String(index)}>
-          <AppointmentDate date={new Date()} />
+      (appointments ?? []).map((appointment) => (
+        <DashboardSectionItem key={appointment.id}>
+          <AppointmentDate date={appointment.date} />
 
           <Appointment
-            name="Laura Beatris"
-            avatar_url="https://avatars0.githubusercontent.com/u/48022589?s=460&u=6e0093b40a2ad5e8384ca214ee835859d03ebe2e&v=4"
+            name={appointment.customer.name}
+            avatar_url={appointment.customer.avatar_url}
           />
         </DashboardSectionItem>
       ))
