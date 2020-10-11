@@ -70,7 +70,8 @@
     "schedule": "Horários agendados",
     "next_appointment": "Atendimento a seguir",
     "click_here_to_see_the_next_appointments": "Clique aqui para visualizar os proximos agendamentos",
-    "the_business_is_closed": "O estabelecimento está fechado"
+    "the_business_is_closed": "O estabelecimento está fechado",
+    "there_are_no_appointments_in_that_period": "Não há agendamentos para esse periodo"
   },
   "yup": {
     "invalid_field_length": "Esse campo deve ter pelo menos {{ min }} caracteres.",

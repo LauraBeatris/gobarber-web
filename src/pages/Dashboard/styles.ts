@@ -68,6 +68,10 @@ export const NextAppointment = styled.div`
     font-size: 20px;
     margin-bottom: 24px;
   }
+
+  > svg {
+    font-size: 20px;
+  }
 `;
 
 export const BusinessClosedContainer = styled.div`

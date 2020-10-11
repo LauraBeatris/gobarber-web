@@ -33,6 +33,7 @@ export const DashboardSectionItem = styled.div`
   align-items: center;
 
   > span {
+    width: 60px;
     color: ${({ theme }) => theme.colors.white};
     font-size: 16px;
   }
@@ -45,5 +46,9 @@ export const DashboardSectionItem = styled.div`
       width: 56px;
       height: 56px;
     }
+  }
+
+  p {
+    color: ${({ theme }) => theme.colors.gray};
   }
 `;

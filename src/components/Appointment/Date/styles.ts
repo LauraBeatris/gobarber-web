@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const AppointmentDateContainer = styled.span`
-  width: 60px;
   color: ${({ theme }) => theme.colors.gray};
   display: flex;
   font-size: 20px;
