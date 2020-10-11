@@ -5,9 +5,10 @@ export interface User {
 }
 
 export interface Appointment {
+  id: string;
   name: string;
-  date: Date;
-  avatar_url: string;
+  date: string;
+  customer: User;
 }
 
 export interface ProviderMonthAvailability {
