@@ -88,7 +88,9 @@ module.exports = {
       }
     ],
     "@typescript-eslint/no-empty-interface": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "off"
   },
   settings: {
     "import/resolver": {
