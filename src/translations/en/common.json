@@ -17,7 +17,8 @@
   "buttons": {
     "confirm": "Confirm",
     "resend_link": "Resend link",
-    "logout": "Logout"
+    "logout": "Logout",
+    "copy": "copy"
   },
   "toasts": {
     "something_went_wrong": "Something went wrong...",
