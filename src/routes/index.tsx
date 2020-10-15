@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Route as ReactRouterRoute } from "react-router-dom";
 
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
@@ -23,34 +23,15 @@ import Route from "./CustomRoute";
 
 const Router: React.FC = () => (
   <Switch>
-    <AppLayout>
-      <Route
-        path={PROFILE_PAGE_PATH}
-        component={Profile}
-        isPrivate
-      />
-
-      <Route
-        path={DASHBOARD_PAGE_PATH}
-        exact
-        component={Dashboard}
-        isPrivate
-      />
-    </AppLayout>
-
     <Route
       path={SIGN_IN_PAGE_PATH}
       component={SignIn}
     />
 
     <Route
+      exact
       path={SIGN_UP_PAGE_PATH}
       component={SignUp}
-    />
-
-    <Route
-      path={FORGOT_PASSWORD_PATH}
-      component={ForgotPassword}
     />
 
     <Route
@@ -62,6 +43,30 @@ const Router: React.FC = () => (
       path={REQUEST_PASSWORD_REQUEST_SUCCESS}
       component={RequestPasswordResetSuccess}
     />
+
+    <Route
+      path={FORGOT_PASSWORD_PATH}
+      component={ForgotPassword}
+    />
+
+    <ReactRouterRoute>
+      <AppLayout>
+        <Switch>
+          <Route
+            path={PROFILE_PAGE_PATH}
+            component={Profile}
+            isPrivate
+          />
+
+          <Route
+            path={DASHBOARD_PAGE_PATH}
+            exact
+            component={Dashboard}
+            isPrivate
+          />
+        </Switch>
+      </AppLayout>
+    </ReactRouterRoute>
   </Switch>
 );
 
