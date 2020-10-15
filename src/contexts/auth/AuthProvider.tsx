@@ -2,7 +2,7 @@ import React, { useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocalStorage } from "@rehooks/local-storage";
 
-import { USER_STORAGE_KEY, TOKEN_STORAGE_KEY } from "constants/localStorage";
+import { USER_STORAGE_KEY, TOKEN_STORAGE_KEY, REFRESH_TOKEN_STORAGE_KEY } from "constants/localStorage";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import api from "settings/api";
 import { User } from "shared/types/apiSchema";
@@ -23,6 +23,11 @@ const AuthContainer: React.FC = ({ children }) => {
     null,
   );
 
+  const [, setRefreshToken, deleteRefreshToken] = useLocalStorage(
+    REFRESH_TOKEN_STORAGE_KEY,
+    null,
+  );
+
   const { addToast } = useToastsDispatch();
 
   const [loading, setLoading] = useState(false);
@@ -32,13 +37,14 @@ const AuthContainer: React.FC = ({ children }) => {
       setLoading(true);
 
       try {
-        const response = await api.post("/sessions", {
+        const { data } = await api.post("/sessions", {
           email,
           password,
         });
 
-        setUser(response?.data?.user);
-        setToken(response?.data?.token);
+        setUser(data?.user);
+        setToken(data?.token);
+        setRefreshToken(data?.refreshToken);
       } catch (err) {
         addToast({
           title: t("toasts.authentication.error.title"),
@@ -49,20 +55,17 @@ const AuthContainer: React.FC = ({ children }) => {
         setLoading(false);
       }
     },
-    [
-      setUser,
-      setToken,
-      addToast,
-      t,
-    ],
+    [setUser, setToken, setRefreshToken, addToast, t],
   );
 
   const signOut = useCallback((): void => {
     deleteUser();
     deleteToken();
+    deleteRefreshToken();
   }, [
     deleteUser,
     deleteToken,
+    deleteRefreshToken,
   ]);
 
   const authState = useMemo(
