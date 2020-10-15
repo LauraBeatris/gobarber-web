@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Lottie from "react-lottie";
 import { useTranslation } from "react-i18next";
 
@@ -8,6 +8,8 @@ import withBusinessHourRange from "hocs/withBusinessHourRange";
 import useLoadingDelay from "hooks/useLoadingDelay";
 import { getLottieDefaultOptions } from "settings/lottie";
 import { useProviderMonthAvailability } from "hooks/useProviderMonthAvailability";
+import useFilter from "hooks/useFilter";
+import { filters } from "hooks/useFilter/filters";
 
 import { ProviderMonthAvailabilityLoadingContainer } from "./styles";
 import DashboardContent from "./DashboardContent";
@@ -17,8 +19,8 @@ const lottieOptions = getLottieDefaultOptions(animationData);
 const DashboardContainer: React.FC = () => {
   const [t] = useTranslation();
 
-  const [selectedDay, setSelectedDay] = useState(new Date());
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [selectedDay, setSelectedDay] = useFilter<Date>(filters.selectedDay);
+  const [currentMonth, setCurrentMonth] = useFilter<Date>(filters.currentMonth);
 
   const {
     providerMonthAvailabilityDates,

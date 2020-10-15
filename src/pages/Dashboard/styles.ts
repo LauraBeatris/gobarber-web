@@ -43,6 +43,27 @@ export const Schedule = styled.main`
       }
     }
   }
+
+  div:first-child {
+    display: flex;
+    align-items: center;
+
+    button {
+    border: 0;
+    padding: 4px;
+    height: 2rem;
+    display: flex;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    background: ${({ theme }) => theme.colors.orange};
+    margin-left: 15px;
+
+      svg {
+        color: ${({ theme }) => theme.colors.white};
+      }
+    }
+  }
 `;
 
 export const CalendarContainer = styled.aside`
@@ -72,6 +93,12 @@ export const NextAppointment = styled.div`
   > svg {
     font-size: 20px;
   }
+
+  ${media.lessThan("medium")`
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  `}
 `;
 
 export const BusinessClosedContainer = styled.div`

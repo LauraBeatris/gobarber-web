@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { DayModifiers } from "react-day-picker";
 import { format, isToday } from "date-fns";
+import { GrCopy } from "react-icons/gr";
 
 import getDateFnsLocale from "translations/dateFns";
 import DashboardSection from "components/DashboardSection";
@@ -68,7 +69,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   return (
     <Content>
       <Schedule>
-        <h1>{t("dashboard.schedule")}</h1>
+        <div>
+          <h1>{t("dashboard.schedule")}</h1>
+
+          <button title={t("buttons.copy")} type="button">
+            <GrCopy />
+          </button>
+        </div>
 
         <p>
           {

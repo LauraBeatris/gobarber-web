@@ -11758,10 +11758,10 @@ query-string@^4.1.0:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
-query-string@^6.13.1:
-  version "6.13.1"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.13.1.tgz#d913ccfce3b4b3a713989fe6d39466d92e71ccad"
-  integrity sha512-RfoButmcK+yCta1+FuU8REvisx1oEzhMKwhLUNcepQTPGcNMp1sIqjnfCtfnvGSQZQEhaBHvccujtWoUV3TTbA==
+query-string@^6.13.5:
+  version "6.13.5"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.13.5.tgz#99e95e2fb7021db90a6f373f990c0c814b3812d8"
+  integrity sha512-svk3xg9qHR39P3JlHuD7g3nRnyay5mHbrPctEBDUxUkHRifPHXJDhBUycdCC0NBjXoDf44Gb+IsOZL1Uwn8M/Q==
   dependencies:
     decode-uri-component "^0.2.0"
     split-on-first "^1.0.0"
@@ -12978,10 +12978,10 @@ serialize-javascript@^3.1.0:
   dependencies:
     randombytes "^2.1.0"
 
-serialize-query-params@^1.2.1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/serialize-query-params/-/serialize-query-params-1.2.2.tgz#92e00b4108c8469333640df09f78551e6ffd60ad"
-  integrity sha512-dVNo1bYmLRmzZU+GI8w3VCale5t9rg4lDLwV4hIs0ZZYEVrZZs8c9jg57PSp9cm90tJuZbXcmZvDu8OQ4cwieQ==
+serialize-query-params@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/serialize-query-params/-/serialize-query-params-1.2.3.tgz#0d6728c2378fa692233af80f4a72765db06f1069"
+  integrity sha512-pTssDTpnDR2p54q1/V1LpG/czg29iX9imxfKF1cupl30BWcRg8R8y3ddB4iHuhuVBO+HjSNj4+tAT1s075iimw==
 
 serve-favicon@^2.5.0:
   version "2.5.0"
@@ -14214,10 +14214,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@~3.7.2:
-  version "3.7.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
-  integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
+typescript@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
+  integrity sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==
 
 unfetch@^4.1.0:
   version "4.1.0"
@@ -14351,12 +14351,12 @@ use-callback-ref@^1.2.1:
   resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.2.4.tgz#d86d1577bfd0b955b6e04aaf5971025f406bea3c"
   integrity sha512-rXpsyvOnqdScyied4Uglsp14qzag1JIemLeTWGKbwpotWht57hbP78aNT+Q4wdFKQfQibbUX4fb6Qb4y11aVOQ==
 
-use-query-params@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/use-query-params/-/use-query-params-1.1.6.tgz#3e36cb45f22c4eea90c6cdc604e115af2fe4a950"
-  integrity sha512-zd58jSb0Yb6Io+hg47gXH0z1Zh8gp2CDRCw4ZzwlPBnODBO1CegX2c38Tca+RtZbjJsTtzWA+098uxDtLMEpYA==
+use-query-params@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/use-query-params/-/use-query-params-1.1.8.tgz#61d5e2ad903da9ed807383e509b4b52343c886ad"
+  integrity sha512-tB9V4IEE1AbHHtbqxpIjajrDOJsnxS2+PrEfiI/zYatOgns3hkRqj+hrn7F0z5Vxf7z8k4ZV9CGanuk+tt8dEg==
   dependencies:
-    serialize-query-params "^1.2.1"
+    serialize-query-params "^1.2.3"
 
 use-sidecar@^1.0.1:
   version "1.0.2"

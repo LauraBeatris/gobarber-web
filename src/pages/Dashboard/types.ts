@@ -1,11 +1,12 @@
 import { UseAppointmentsPayload } from "hooks/useAppointments/types";
+import { SetFilter } from "hooks/useFilter/types";
 import { UseProviderMonthAvailabilityPayload } from "hooks/useProviderMonthAvailability/types";
 
 export interface DashboardContentProps {
   selectedDay: Date;
   currentMonth: Date;
-  setSelectedDay: React.Dispatch<React.SetStateAction<Date>>;
-  setCurrentMonth: React.Dispatch<React.SetStateAction<Date>>;
+  setSelectedDay: SetFilter<Date>;
+  setCurrentMonth: SetFilter<Date>;
   nextAppointment: UseAppointmentsPayload["nextAppointment"];
   eveningAppointments: UseAppointmentsPayload["eveningAppointments"];
   morningAppointments: UseAppointmentsPayload["morningAppointments"];
