@@ -11,6 +11,7 @@ import Calendar from "components/Calendar";
 import { DAY_MONTH, WEEK_DAY } from "constants/dateFormats";
 import colors from "styles/theme/colors";
 import useShare from "hooks/useShare";
+import AppLayout from "layouts/App";
 
 import {
   Content,
@@ -77,69 +78,71 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   ]);
 
   return (
-    <Content>
-      <Schedule>
-        <div>
-          <h1>{t("dashboard.schedule")}</h1>
+    <AppLayout>
+      <Content>
+        <Schedule>
+          <div>
+            <h1>{t("dashboard.schedule")}</h1>
 
-          <button
-            title={t("buttons.copy")}
-            type="button"
-            onClick={shareSchedule}
-          >
-            <GrCopy color={colors.background} />
-          </button>
-        </div>
+            <button
+              title={t("buttons.copy")}
+              type="button"
+              onClick={shareSchedule}
+            >
+              <GrCopy color={colors.background} />
+            </button>
+          </div>
 
-        <p>
+          <p>
+            {
+              calendarResult.today && (
+                <span>{calendarResult.today}</span>
+              )
+            }
+
+            <span>{calendarResult.day}</span>
+
+            <span>{calendarResult.weekDay}</span>
+          </p>
+
           {
-            calendarResult.today && (
-              <span>{calendarResult.today}</span>
+            nextAppointment && isToday(selectedDay) && (
+              <NextAppointment>
+                <h4>{t("dashboard.next_appointment")}</h4>
+
+                <Appointment
+                  name={nextAppointment?.customer?.name}
+                  date={nextAppointment?.date}
+                  avatar_url={nextAppointment?.customer?.avatar_url}
+                  showLateralBorder
+                />
+              </NextAppointment>
             )
           }
 
-          <span>{calendarResult.day}</span>
+          <DashboardSection
+            title={t("dashboard.morning")}
+            appointments={morningAppointments}
+          />
 
-          <span>{calendarResult.weekDay}</span>
-        </p>
+          <DashboardSection
+            title={t("dashboard.evening")}
+            appointments={eveningAppointments}
+          />
+        </Schedule>
 
-        {
-          nextAppointment && isToday(selectedDay) && (
-            <NextAppointment>
-              <h4>{t("dashboard.next_appointment")}</h4>
-
-              <Appointment
-                name={nextAppointment?.customer?.name}
-                date={nextAppointment?.date}
-                avatar_url={nextAppointment?.customer?.avatar_url}
-                showLateralBorder
-              />
-            </NextAppointment>
-          )
-        }
-
-        <DashboardSection
-          title={t("dashboard.morning")}
-          appointments={morningAppointments}
-        />
-
-        <DashboardSection
-          title={t("dashboard.evening")}
-          appointments={eveningAppointments}
-        />
-      </Schedule>
-
-      <CalendarContainer>
-        <Calendar
-          month={currentMonth}
-          modifiers={calendarModifiers}
-          onDayClick={handleDayClick}
-          disabledDays={providerMonthAvailabilityDates?.unavailable}
-          selectedDays={selectedDay}
-          onMonthChange={setCurrentMonth}
-        />
-      </CalendarContainer>
-    </Content>
+        <CalendarContainer>
+          <Calendar
+            month={currentMonth}
+            modifiers={calendarModifiers}
+            onDayClick={handleDayClick}
+            disabledDays={providerMonthAvailabilityDates?.unavailable}
+            selectedDays={selectedDay}
+            onMonthChange={setCurrentMonth}
+          />
+        </CalendarContainer>
+      </Content>
+    </AppLayout>
   );
 };
 

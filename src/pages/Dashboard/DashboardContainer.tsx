@@ -10,6 +10,7 @@ import { getLottieDefaultOptions } from "settings/lottie";
 import { useProviderMonthAvailability } from "hooks/useProviderMonthAvailability";
 import useFilter from "hooks/useFilter";
 import { filters } from "hooks/useFilter/filters";
+import AppLayout from "layouts/App";
 
 import { ProviderMonthAvailabilityLoadingContainer } from "./styles";
 import DashboardContent from "./DashboardContent";
@@ -25,7 +26,7 @@ const DashboardContainer: React.FC = () => {
   const {
     providerMonthAvailabilityDates,
     loadingProviderMonthAvailability,
-  } = useProviderMonthAvailability(currentMonth);
+  } = useProviderMonthAvailability();
 
   const {
     nextAppointment,
@@ -67,11 +68,13 @@ const DashboardContainer: React.FC = () => {
 
   if (loading) {
     return (
-      <ProviderMonthAvailabilityLoadingContainer>
-        <Lottie options={lottieOptions} />
+      <AppLayout>
+        <ProviderMonthAvailabilityLoadingContainer>
+          <Lottie options={lottieOptions} />
 
-        <p>{t("dashboard.verifying_your_schedule_availability")}</p>
-      </ProviderMonthAvailabilityLoadingContainer>
+          <p>{t("dashboard.verifying_your_schedule_availability")}</p>
+        </ProviderMonthAvailabilityLoadingContainer>
+      </AppLayout>
     );
   }
 

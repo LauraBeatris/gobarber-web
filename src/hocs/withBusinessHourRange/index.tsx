@@ -6,6 +6,7 @@ import Lottie from "react-lottie";
 import { getLottieDefaultOptions } from "settings/lottie";
 import getIsBusinessOpen from "utils/getIsBusinessOpen";
 import animationData from "assets/lotties/closed.json";
+import AppLayout from "layouts/App";
 
 import { BusinessClosedContainer } from "./styles";
 
@@ -22,19 +23,21 @@ const withBusinessHourRange = (BaseComponent: React.FC) => (): JSX.Element => {
 
   if (!showBusiness) {
     return (
-      <BusinessClosedContainer>
-        <h1>{t("dashboard.the_business_is_closed")}</h1>
-        <button
-          type="button"
-          onClick={handleClick}
-        >
-          {t("dashboard.click_here_to_see_the_next_appointments")}
+      <AppLayout>
+        <BusinessClosedContainer>
+          <h1>{t("dashboard.the_business_is_closed")}</h1>
+          <button
+            type="button"
+            onClick={handleClick}
+          >
+            {t("dashboard.click_here_to_see_the_next_appointments")}
 
-          <FiArrowRight />
-        </button>
+            <FiArrowRight />
+          </button>
 
-        <Lottie options={lottieOptions} />
-      </BusinessClosedContainer>
+          <Lottie options={lottieOptions} />
+        </BusinessClosedContainer>
+      </AppLayout>
     );
   }
 
