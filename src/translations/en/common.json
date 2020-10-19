@@ -73,6 +73,9 @@
     "there_are_no_appointments_in_that_period": "There aren't appointments in that period",
     "verifying_your_schedule_availability": "Verifying your schedule availability"
   },
+  "actions": {
+    "copied_to_clipboard": "Copied to clipboard"
+  },
   "yup": {
     "invalid_field_length": "This field must have at least ${min} characters",
     "invalid_number_length": "This field should be bigger than ${min}.",
