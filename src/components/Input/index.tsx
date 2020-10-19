@@ -55,6 +55,7 @@ const Input: React.FC<InputProps> = ({ icon: Icon, name, ...rest }) => {
       isFilled={isFilled}
       isFocused={isFocused}
       hasError={!!error}
+      aria-label={`${name}-container`}
     >
       {Icon && <Icon />}
       <input
