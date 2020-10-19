@@ -11,6 +11,7 @@ import {
   isBefore,
   parseISO,
 } from "date-fns";
+import { isEqual } from "date-fns/esm";
 
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { Appointment } from "shared/types/apiSchema";
@@ -19,7 +20,11 @@ import getMonth from "utils/months";
 
 import { UseAppointmentsPayload } from "./types";
 
-const noonHour = 12;
+const noonDate = new Date(
+  getYear(new Date()),
+  getMonth(new Date()) - 1,
+  getDate(new Date()), 12, 0, 0,
+);
 
 /**
  * Handles the logic to fetch and format appointments
@@ -62,13 +67,14 @@ const useAppointments = (selectedDate: Date): UseAppointmentsPayload => {
 
   const morningAppointments = useMemo(() => (
     (appointments ?? []).filter(appointment => (
-      isBefore(parseISO(appointment?.date), noonHour)
+      isBefore(parseISO(appointment?.date), noonDate)
     ))
   ), [appointments]);
 
   const eveningAppointments = useMemo(() => (
     (appointments ?? []).filter(appointment => (
-      isAfter(parseISO(appointment?.date), noonHour)
+      isAfter(parseISO(appointment?.date), noonDate)
+      || isEqual(parseISO(appointment?.date), noonDate)
     ))
   ), [appointments]);
 
