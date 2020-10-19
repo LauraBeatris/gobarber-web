@@ -18,7 +18,8 @@
     "confirm": "Confirm",
     "resend_link": "Resend link",
     "logout": "Logout",
-    "copy": "copy"
+    "copy": "copy",
+    "confirm_changes": "Confirm Changes"
   },
   "toasts": {
     "something_went_wrong": "Something went wrong...",
@@ -75,6 +76,13 @@
   },
   "actions": {
     "copied_to_clipboard": "Copied to clipboard"
+  },
+  "profile": {
+    "title": "My profile"
+  },
+  "update_profile_form": {
+    "current_password": "Current password",
+    "password_confirmation": "Password confirmation"
   },
   "yup": {
     "invalid_field_length": "This field must have at least ${min} characters",
