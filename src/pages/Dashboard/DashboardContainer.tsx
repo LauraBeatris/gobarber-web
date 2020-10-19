@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "react-lottie";
 import { useTranslation } from "react-i18next";
 
@@ -33,7 +33,37 @@ const DashboardContainer: React.FC = () => {
     morningAppointments,
   } = useAppointments(selectedDay);
 
-  const loading = useLoadingDelay(loadingProviderMonthAvailability);
+  useEffect(() => {
+    const shouldInitializeSelectedDayFilter = !selectedDay;
+
+    if (!shouldInitializeSelectedDayFilter) {
+      return;
+    }
+
+    setSelectedDay(new Date());
+  }, [
+    selectedDay,
+    setSelectedDay,
+  ]);
+
+  useEffect(() => {
+    const shouldInitializeCurrentMonthFilter = !currentMonth;
+
+    if (!shouldInitializeCurrentMonthFilter) {
+      return;
+    }
+
+    setCurrentMonth(new Date());
+  }, [
+    currentMonth,
+    setCurrentMonth,
+  ]);
+
+  const loading = (
+    useLoadingDelay(loadingProviderMonthAvailability)
+    || !currentMonth
+    || !selectedDay
+  );
 
   if (loading) {
     return (

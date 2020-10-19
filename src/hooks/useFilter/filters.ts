@@ -1,12 +1,12 @@
-import { DateParam, withDefault } from "use-query-params";
+import { DateParam } from "use-query-params";
 
 export const filters = {
   currentMonth: {
     name: "currentMonth",
-    type: withDefault(DateParam, new Date()),
+    type: DateParam,
   },
   selectedDay: {
     name: "selectedDay",
-    type: withDefault(DateParam, new Date()),
+    type: DateParam,
   },
 };
