@@ -15,7 +15,7 @@ const Image: React.FC<ImageProps> = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/alt-text
-    <img src={imageSource} {...rest} />
+    <img src={imageSource || src} {...rest} />
   );
 };
 
