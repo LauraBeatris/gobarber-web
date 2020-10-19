@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable consistent-return */
 import axios, { AxiosPromise, AxiosRequestConfig } from "axios";
 
 import { REFRESH_TOKEN_STORAGE_KEY, TOKEN_STORAGE_KEY } from "constants/localStorage";

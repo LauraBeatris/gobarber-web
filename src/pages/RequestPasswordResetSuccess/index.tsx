@@ -18,7 +18,7 @@ const messageComponents = [
 ];
 
 interface RequestPasswordResetSuccessHistoryState {
-  email: string
+  email: string;
 }
 
 const RequestPasswordResetSuccess: React.FC = () => {

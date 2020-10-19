@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { QueryParamConfig, UrlUpdateType } from "use-query-params";
 
 export interface Filter {

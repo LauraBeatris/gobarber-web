@@ -4,6 +4,6 @@ export interface ProviderMonthAvailabilityDates {
 }
 
 export interface UseProviderMonthAvailabilityPayload {
-  providerMonthAvailabilityDates: ProviderMonthAvailabilityDates,
+  providerMonthAvailabilityDates: ProviderMonthAvailabilityDates;
   loadingProviderMonthAvailability: boolean;
 }
