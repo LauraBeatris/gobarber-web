@@ -12,15 +12,17 @@ import { ProviderMonthAvailability } from "shared/types/apiSchema";
 import { useAuthState } from "contexts/auth/AuthContext";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { getProviderMonthAvailableDates, getProviderMonthUnavailableDates } from "utils/providerMonthAvailability";
+import useFilter from "hooks/useFilter";
+import { filters } from "hooks/useFilter/filters";
 
 import { UseProviderMonthAvailabilityPayload } from "./types";
 
 /**
  * Returns the provider month availability
  */
-export const useProviderMonthAvailability = (
-  currentMonth: Date,
-): UseProviderMonthAvailabilityPayload => {
+export const useProviderMonthAvailability = (): UseProviderMonthAvailabilityPayload => {
+  const [currentMonth] = useFilter<Date>(filters.currentMonth);
+
   const [
     loadingProviderMonthAvailability,
     setLoadingProviderMonthAvailability,
