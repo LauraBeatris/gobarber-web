@@ -9,6 +9,8 @@ import DashboardSection from "components/DashboardSection";
 import Appointment from "components/Appointment";
 import Calendar from "components/Calendar";
 import { DAY_MONTH, WEEK_DAY } from "constants/dateFormats";
+import colors from "styles/theme/colors";
+import useShare from "hooks/useShare";
 
 import {
   Content,
@@ -29,6 +31,14 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   providerMonthAvailabilityDates,
 }) => {
   const [t] = useTranslation();
+
+  const share = useShare();
+
+  const shareSchedule = useCallback(() => {
+    share({
+      url: window.location.href,
+    });
+  }, [share]);
 
   const handleDayClick = useCallback((day: Date, modifiers: DayModifiers) => {
     const isValidDay = !modifiers.disabled && modifiers.available;
@@ -72,8 +82,12 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         <div>
           <h1>{t("dashboard.schedule")}</h1>
 
-          <button title={t("buttons.copy")} type="button">
-            <GrCopy />
+          <button
+            title={t("buttons.copy")}
+            type="button"
+            onClick={shareSchedule}
+          >
+            <GrCopy color={colors.background} />
           </button>
         </div>
 
