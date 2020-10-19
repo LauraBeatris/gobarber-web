@@ -1,9 +1,9 @@
 import {
   isSaturday,
   isBefore,
-  isMonday,
   isAfter,
   getYear,
+  isSunday,
 } from "date-fns";
 import { getMonth } from "date-fns/esm";
 
@@ -15,13 +15,13 @@ const getIsBusinessOpen = (): boolean => {
   const year = getYear(now);
   const month = getMonth(now);
 
-  const beginBusinessHours = new Date(year, month, 8);
-  const endBusinessHours = new Date(year, month, 23);
+  const beginBusinessHours = new Date(year, month, 8, 0, 0);
+  const endBusinessHours = new Date(year, month, 23, 0, 0);
 
   return (
-    isAfter(beginBusinessHours, now)
-    && isBefore(endBusinessHours, now)
-    && !isMonday(now)
+    isAfter(now, beginBusinessHours)
+    && isBefore(now, endBusinessHours)
+    && !isSunday(now)
     && !isSaturday(now)
   );
 };
