@@ -4,7 +4,7 @@ const theme = {
   colors,
   zIndexes: {
     header: 100,
-    toasts: 1000,
+    toasts: 110,
   },
   lengths: {
     header: 200,

@@ -62,13 +62,13 @@ export const Container = styled(animated.div)<ContainerProps>`
 
   > svg {
     margin: 4px 0 0 0;
-    margin-right: 5px;
   }
 
   ${({ type }) => containerThemes[type || "info"]}
 
   div {
     flex: 1;
+    margin: 0 10px 0 8px;
 
     p {
       margin-top: 4px;

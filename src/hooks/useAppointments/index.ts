@@ -40,6 +40,10 @@ const useAppointments = (selectedDate: Date): UseAppointmentsPayload => {
   const fetchAppointments = useCallback(() => {
     setLoading(true);
 
+    if (!selectedDate) {
+      return;
+    }
+
     api.get<Appointment[]>("/appointments/me", {
       params: {
         day: getDate(selectedDate),

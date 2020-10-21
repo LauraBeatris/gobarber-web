@@ -2,7 +2,7 @@ import styled from "styled-components";
 import media from "styled-media-query";
 
 const ToastsContainer = styled.div`
-  position: absolute;
+  position: fixed;
   overflow: hidden;
   top: 20px;
   right: 20px;
