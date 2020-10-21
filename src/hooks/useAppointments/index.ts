@@ -20,10 +20,12 @@ import getMonth from "utils/months";
 
 import { UseAppointmentsPayload } from "./types";
 
-const noonDate = new Date(
-  getYear(new Date()),
-  getMonth(new Date()) - 1,
-  getDate(new Date()), 12, 0, 0,
+const getNoonDate = (appointmentDate: Date): Date => (
+  new Date(
+    getYear(appointmentDate),
+    getMonth(appointmentDate) - 1,
+    getDate(appointmentDate), 12, 0, 0,
+  )
 );
 
 /**
@@ -66,16 +68,24 @@ const useAppointments = (selectedDate: Date): UseAppointmentsPayload => {
   ), [appointments]);
 
   const morningAppointments = useMemo(() => (
-    (appointments ?? []).filter(appointment => (
-      isBefore(parseISO(appointment?.date), noonDate)
-    ))
+    (appointments ?? []).filter(appointment => {
+      const appointmentDate = parseISO(appointment.date);
+
+      return (
+        isBefore(appointmentDate, getNoonDate(appointmentDate))
+      );
+    })
   ), [appointments]);
 
   const eveningAppointments = useMemo(() => (
-    (appointments ?? []).filter(appointment => (
-      isAfter(parseISO(appointment?.date), noonDate)
-      || isEqual(parseISO(appointment?.date), noonDate)
-    ))
+    (appointments ?? []).filter(appointment => {
+      const appointmentDate = parseISO(appointment.date);
+
+      return (
+        isAfter(appointmentDate, getNoonDate(appointmentDate))
+        || isEqual(appointmentDate, getNoonDate(appointmentDate))
+      );
+    })
   ), [appointments]);
 
   useEffect(() => {
