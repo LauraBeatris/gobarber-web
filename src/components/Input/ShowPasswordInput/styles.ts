@@ -30,5 +30,6 @@ export const HidePasswordButtonContainer = styled.div`
     background: none;
     border: none;
     width: 100%;
+    height: 100%;
   }
 `;

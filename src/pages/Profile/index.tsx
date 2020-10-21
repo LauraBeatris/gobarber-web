@@ -1,4 +1,9 @@
-import React, { ChangeEvent, useCallback, useRef } from "react";
+import React, {
+  ChangeEvent,
+  useCallback,
+  useState,
+  useRef,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
@@ -11,8 +16,8 @@ import {
 } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 import useLocalStorage from "@rehooks/local-storage";
+import { ValidationError } from "yup";
 
-import { useAuthState } from "contexts/auth/AuthContext";
 import Input from "components/Input";
 import Button from "components/Button";
 import Image from "components/Image";
@@ -22,8 +27,11 @@ import { USER_STORAGE_KEY } from "constants/localStorage";
 import { User } from "shared/types/apiSchema";
 import getUserImagePlaceholder from "utils/getUserImagePlaceholder";
 import ShowPasswordInput from "components/Input/ShowPasswordInput";
+import getValidationErrors from "utils/getValidationErrors";
+import { DASHBOARD_PAGE_PATH } from "constants/routesPaths";
 
 import { AvatarInput, Container, Content } from "./styles";
+import schema from "./schema";
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -32,11 +40,12 @@ const Profile: React.FC = () => {
     {} as User,
   );
 
-  const [t] = useTranslation();
   const history = useHistory();
 
+  const [t] = useTranslation();
+  const [loading, setLoading] = useState(false);
+
   const { addToast } = useToastsDispatch();
-  const { loading } = useAuthState();
 
   const handleGoBack = useCallback(() => {
     history.goBack();
@@ -69,10 +78,59 @@ const Profile: React.FC = () => {
   ]);
 
   const handleSubmit = useCallback(
-    (): void => {
-      // TODO -> Update profile
+    async (data): Promise<void> => {
+      setLoading(true);
+
+      try {
+        formRef.current?.setErrors({});
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        const {
+          name,
+          email,
+          password,
+          old_password,
+          password_confirmation,
+        } = data;
+
+        const { data: updatedUser } = await api.put<User>("/profile", {
+          name,
+          email,
+          ...(password ? {
+            password,
+            old_password,
+            password_confirmation,
+          } : {}),
+        });
+
+        setUser(updatedUser);
+
+        addToast({
+          type: "success",
+          title: "Profile successfully updated",
+        });
+
+        history.push(DASHBOARD_PAGE_PATH);
+      } catch (error) {
+        if (error instanceof ValidationError) {
+          const errors = getValidationErrors(error);
+          formRef.current?.setErrors(errors);
+
+          return;
+        }
+
+        addToast({
+          type: "error",
+          title: error.response.data.message,
+        });
+      } finally {
+        setLoading(false);
+      }
     },
-    [],
+    [addToast, history, setUser],
   );
 
   return (
