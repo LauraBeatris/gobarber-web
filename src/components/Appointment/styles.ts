@@ -22,6 +22,10 @@ export const AppointmentContainer = styled.div<AppointmentContainerProps>`
     font-size: 24px;
   }
 
+  strong + span {
+    margin-left: 10px;
+  }
+
   ${({ showLateralBorder }) => showLateralBorder && css`&::before {
     content: "";
     left: 0;
