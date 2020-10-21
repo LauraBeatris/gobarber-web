@@ -82,7 +82,8 @@
   },
   "update_profile_form": {
     "current_password": "Current password",
-    "password_confirmation": "Password confirmation"
+    "password_confirmation": "Password confirmation",
+    "current_password_invalid_length": "The current password must have at least {{ min }} characters"
   },
   "yup": {
     "invalid_field_length": "This field must have at least ${min} characters",
