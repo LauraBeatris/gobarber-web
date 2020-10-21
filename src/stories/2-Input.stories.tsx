@@ -8,6 +8,7 @@ import Input from "components/Input";
 import Button from "components/Button";
 import i18n from "translations/i18n";
 import getValidationErrors from "utils/getValidationErrors";
+import ShowPasswordInput from "components/Input/ShowPasswordInput";
 
 import { Container } from "./styles";
 
@@ -112,6 +113,18 @@ export const withValidationErrors: React.FC = () => (
         icon={FiLock}
       />
       <Button type="submit">Validate</Button>
+    </FormWrapper>
+  </Container>
+);
+
+export const withHidePasswordButton: React.FC = () => (
+  <Container>
+    <FormWrapper>
+      <ShowPasswordInput
+        name="password"
+        icon={FiLock}
+        placeholder={i18n.t("auth_form.password")}
+      />
     </FormWrapper>
   </Container>
 );
