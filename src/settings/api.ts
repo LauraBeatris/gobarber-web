@@ -48,6 +48,8 @@ api.interceptors.response.use((response) => response, error => {
       return api(originalRequestConfig);
     });
   }
+
+  return Promise.reject(error);
 });
 
 export default api;
