@@ -21,6 +21,12 @@ api.interceptors.request.use((config): AxiosRequestConfig => {
 api.interceptors.response.use((response) => response, error => {
   const originalRequestConfig = error?.config;
 
+  if (!error.response) {
+    // TODO -> Send report to Sentry (API Down)
+
+    throw new Error("The system is not working as expected. Please, try again after some minutes");
+  }
+
   if (error.response.status === 403 && !originalRequestConfig._retry) {
     originalRequestConfig._retry = true;
 
