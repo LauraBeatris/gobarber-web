@@ -9,13 +9,13 @@ import { StringParam, useQueryParam } from "use-query-params";
 
 import roomBackground from "assets/images/room-background.png";
 import Button from "components/Button";
-import Input from "components/Input";
 import getValidationErrors from "utils/getValidationErrors";
 import api from "settings/api";
 import AuthLayout from "layouts/Auth";
 import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
 import { appearFromLeft } from "styles/animations";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
+import ShowPasswordInput from "components/Input/ShowPasswordInput";
 
 import schema from "./schema";
 
@@ -60,7 +60,7 @@ const ResetPassword: React.FC = () => {
         }
 
         addToast({
-          title: error?.message,
+          title: error.response.data.message,
           type: "error",
         });
       } finally {
@@ -82,14 +82,14 @@ const ResetPassword: React.FC = () => {
         ref={formRef}
         onSubmit={handleSubmit}
       >
-        <Input
+        <ShowPasswordInput
           name="password"
           type="password"
           icon={FiLock}
           placeholder={t("auth_form.password")}
         />
 
-        <Input
+        <ShowPasswordInput
           name="confirm_password"
           type="password"
           icon={FiLock}

@@ -49,11 +49,11 @@ export const Content = styled.main`
     margin-bottom: 24px;
   }
 
-  div[aria-label="old_password-container"]{
+  form div:nth-of-type(4) {
     margin-top: 24px;
   }
 
-  button {
+  > button {
     margin-top: 24px;
   }
 `;

@@ -18,6 +18,7 @@ import roomBackground from "assets/images/room-background.png";
 import getValidationErrors from "utils/getValidationErrors";
 import api from "settings/api";
 import { useAuthDispatch } from "contexts/auth/AuthContext";
+import ShowPasswordInput from "components/Input/ShowPasswordInput";
 
 import schema from "./schema";
 
@@ -37,19 +38,21 @@ const SignUp: React.FC = () => {
       setLoading(true);
 
       try {
+        formRef.current?.setErrors({});
+
         await schema.validate(data, {
           abortEarly: false,
         });
 
         await api.post("/users", data);
 
+        await signIn(data);
+
         addToast({
           title: t("toasts.signup.success.title"),
           description: t("toasts.signup.success.description"),
           type: "success",
         });
-
-        signIn(data);
       } catch (error) {
         if (error instanceof ValidationError) {
           const errors = getValidationErrors(error);
@@ -59,7 +62,7 @@ const SignUp: React.FC = () => {
         }
 
         addToast({
-          title: error?.message,
+          title: error.response.data.message,
           type: "error",
         });
       } finally {
@@ -93,7 +96,7 @@ const SignUp: React.FC = () => {
           icon={FiMail}
         />
 
-        <Input
+        <ShowPasswordInput
           name="password"
           type="password"
           placeholder={t("auth_form.password")}

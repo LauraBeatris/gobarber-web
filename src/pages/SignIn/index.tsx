@@ -14,6 +14,8 @@ import getValidationErrors from "utils/getValidationErrors";
 import barberBackground from "assets/images/barber-background.png";
 import { FORGOT_PASSWORD_PATH, SIGN_UP_PAGE_PATH } from "constants/routesPaths";
 import { appearFromLeft } from "styles/animations";
+import ShowPasswordInput from "components/Input/ShowPasswordInput";
+import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 
 import schema from "./schema";
 
@@ -23,6 +25,8 @@ const SignIn: React.FC = () => {
   const [t] = useTranslation();
 
   const { signIn } = useAuthDispatch();
+
+  const { addToast } = useToastsDispatch();
 
   const { loading } = useAuthState();
 
@@ -42,9 +46,17 @@ const SignIn: React.FC = () => {
 
           formRef.current?.setErrors(errors);
         }
+
+        addToast({
+          title: error.response.data.message,
+          type: "error",
+        });
       }
     },
-    [signIn],
+    [
+      signIn,
+      addToast,
+    ],
   );
 
   return (
@@ -65,7 +77,8 @@ const SignIn: React.FC = () => {
           placeholder={t("auth_form.email")}
           icon={FiMail}
         />
-        <Input
+
+        <ShowPasswordInput
           name="password"
           type="password"
           placeholder={t("auth_form.password")}

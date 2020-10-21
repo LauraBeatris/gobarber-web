@@ -21,6 +21,7 @@ import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { USER_STORAGE_KEY } from "constants/localStorage";
 import { User } from "shared/types/apiSchema";
 import getUserImagePlaceholder from "utils/getUserImagePlaceholder";
+import ShowPasswordInput from "components/Input/ShowPasswordInput";
 
 import { AvatarInput, Container, Content } from "./styles";
 
@@ -129,7 +130,7 @@ const Profile: React.FC = () => {
             autoCapitalize="none"
           />
 
-          <Input
+          <ShowPasswordInput
             name="old_password"
             type="password"
             icon={FiLock}
@@ -137,7 +138,7 @@ const Profile: React.FC = () => {
             autoComplete="current-password"
           />
 
-          <Input
+          <ShowPasswordInput
             name="password"
             type="password"
             icon={FiLock}
@@ -145,7 +146,7 @@ const Profile: React.FC = () => {
             autoComplete="new-password"
           />
 
-          <Input
+          <ShowPasswordInput
             name="password_confirmation"
             type="password"
             icon={FiLock}

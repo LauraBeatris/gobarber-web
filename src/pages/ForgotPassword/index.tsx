@@ -59,7 +59,7 @@ const ForgotPassword: React.FC = () => {
         }
 
         addToast({
-          title: error?.message,
+          title: error.response.data.message,
           type: "error",
         });
       } finally {
