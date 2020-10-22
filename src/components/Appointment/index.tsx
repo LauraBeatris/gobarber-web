@@ -2,6 +2,9 @@ import React from "react";
 
 import getUserImagePlaceholder from "utils/getUserImagePlaceholder";
 import Image from "components/Image";
+import { useModal } from "contexts/modal/ModalContext";
+import { AppointmentDetailsModalProps } from "components/Modals/AppointmentDetailsModal/types";
+import AppointmentDetailsModal from "components/Modals/AppointmentDetailsModal";
 
 import { AppointmentProps } from "./types";
 import { AppointmentContainer } from "./styles";
@@ -12,25 +15,40 @@ const Appointment: React.FC<AppointmentProps> = ({
   date,
   avatar_url,
   showLateralBorder,
-}) => (
-  /**
-   * TODO -> When clicking on a appointment, it should open an modal
-   * with details (Appointment Type, etc)
-   */
-  <AppointmentContainer showLateralBorder={!!showLateralBorder}>
-    <Image
-      src={avatar_url}
-      fallbackSrc={getUserImagePlaceholder("Laura")}
-    />
+}) => {
+  const [showModal] = useModal<AppointmentDetailsModalProps>();
 
-    <strong>{name}</strong>
+  const handleClick = (): void => {
+    showModal({
+      component: AppointmentDetailsModal,
+      componentProps: {
+        name,
+        date,
+        avatar_url,
+      },
+    });
+  };
 
-    {
-      date && (
-        <AppointmentDate date={date} />
-      )
-    }
-  </AppointmentContainer>
-);
+  return (
+    <AppointmentContainer
+      type="button"
+      onClick={handleClick}
+      showLateralBorder={!!showLateralBorder}
+    >
+      <Image
+        src={avatar_url}
+        fallbackSrc={getUserImagePlaceholder("Laura")}
+      />
+
+      <strong>{name}</strong>
+
+      {
+        date && (
+          <AppointmentDate date={date} />
+        )
+      }
+    </AppointmentContainer>
+  );
+};
 
 export default Appointment;

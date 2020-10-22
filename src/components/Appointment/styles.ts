@@ -3,7 +3,8 @@ import media from "styled-media-query";
 
 import { AppointmentContainerProps } from "./types";
 
-export const AppointmentContainer = styled.div<AppointmentContainerProps>`
+export const AppointmentContainer = styled.button<AppointmentContainerProps>`
+  border: 0;
   display: flex;
   padding: 16px 24px;
   position: relative;

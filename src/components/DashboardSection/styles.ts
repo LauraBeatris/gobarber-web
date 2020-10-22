@@ -42,7 +42,7 @@ export const DashboardSectionItem = styled.div`
     font-size: 16px;
   }
 
-  > div:last-child {
+  > button:last-child {
     flex: 1;
     margin-left: 25px;
 
