@@ -11,20 +11,21 @@ export interface ModalState<T = Record<string, unknown>> {
   title: string;
   isOpen: boolean;
   component?: React.FC<ModalComponentProps<T>>;
-  componentProps?: ModalComponentProps["componentProps"];
+  componentProps?: T | unknown;
 }
 
 export interface ShowModalOptions<T = Record<string, unknown>> {
   title: string;
   component: React.FC<ModalComponentProps<T>>;
-  componentProps?: ModalComponentProps["componentProps"];
+  componentProps?: T;
 }
 
 export interface ModalPayloadState {
   isOpen: boolean;
 }
 
-export type ModalContextPayload<T = Record<string, unknown>> = [
-  showModal: (options: ShowModalOptions<T> | unknown) => void,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type ModalContextPayload<T = any> = [
+  showModal: (options: ShowModalOptions<T>) => void,
   hideModal: OnClose,
 ]

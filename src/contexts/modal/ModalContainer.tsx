@@ -22,12 +22,10 @@ function ModalContainer<T>({
 }: ModalContainerProps<T>): JSX.Element {
   const [modalState, setModalState] = useState<ModalState<T>>(defaultState);
 
-  const showModal = useCallback((options: ShowModalOptions<T> | unknown) => {
-    const modalOptions = options as ShowModalOptions<T>;
-
+  const showModal = useCallback((options: ShowModalOptions<T>) => {
     const newState = {
       ...defaultState,
-      ...modalOptions,
+      ...options,
       isOpen: true,
     };
 

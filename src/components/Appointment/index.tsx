@@ -3,7 +3,7 @@ import React from "react";
 import getUserImagePlaceholder from "utils/getUserImagePlaceholder";
 import Image from "components/Image";
 import { useModal } from "contexts/modal/ModalContext";
-import { AppointmentDetailsModalProps } from "components/Modals/AppointmentDetailsModal/types";
+import { AppointmentDetailsProps } from "components/Modals/AppointmentDetailsModal/types";
 import AppointmentDetailsModal from "components/Modals/AppointmentDetailsModal";
 
 import { AppointmentProps } from "./types";
@@ -16,10 +16,11 @@ const Appointment: React.FC<AppointmentProps> = ({
   avatar_url,
   showLateralBorder,
 }) => {
-  const [showModal] = useModal<AppointmentDetailsModalProps>();
+  const [showModal] = useModal<AppointmentDetailsProps>();
 
   const handleClick = (): void => {
     showModal({
+      title: name,
       component: AppointmentDetailsModal,
       componentProps: {
         name,

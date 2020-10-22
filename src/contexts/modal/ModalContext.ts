@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useContext } from "react";
 
 import { ModalContextPayload } from "./types";
 
-const ModalContext = createContext({} as ModalContextPayload<Record<string, unknown>>);
+const ModalContext = createContext({} as ModalContextPayload<any>);
 
 export const ModalProvider = ModalContext.Provider;
 
-export function useModal<T = Record<string, unknown>> (): ModalContextPayload<T> {
+export function useModal<T = any> (): ModalContextPayload<T> {
   const context = useContext(ModalContext);
 
   if (!context) {
