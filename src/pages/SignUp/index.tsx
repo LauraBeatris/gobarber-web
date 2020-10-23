@@ -46,7 +46,10 @@ const SignUp: React.FC = () => {
 
         await api.post("/users", data);
 
-        await signIn(data);
+        await signIn({
+          ...data,
+          isProvider: true,
+        });
 
         addToast({
           title: t("toasts.signup.success.title"),
