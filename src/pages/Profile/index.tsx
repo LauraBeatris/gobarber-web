@@ -20,15 +20,14 @@ import { ValidationError } from "yup";
 
 import Input from "components/Input";
 import Button from "components/Button";
-import Image from "components/Image";
 import api from "settings/api";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { USER_STORAGE_KEY } from "constants/localStorage";
 import { User } from "shared/types/apiSchema";
-import getUserImagePlaceholder from "utils/getUserImagePlaceholder";
 import ShowPasswordInput from "components/Input/ShowPasswordInput";
 import getValidationErrors from "utils/getValidationErrors";
 import { DASHBOARD_PAGE_PATH } from "constants/routesPaths";
+import Avatar from "components/Avatar";
 
 import { AvatarInput, Container, Content } from "./styles";
 import schema from "./schema";
@@ -150,13 +149,7 @@ const Profile: React.FC = () => {
           initialData={user}
         >
           <AvatarInput>
-            <Image
-              src={user.avatar_url}
-              alt={user.name}
-              title={user.name}
-              aria-label={user.name}
-              fallbackSrc={getUserImagePlaceholder(user?.name)}
-            />
+            <Avatar name={user.name} avatarUrl={user.avatar_url} />
 
             <label htmlFor="avatar">
               <FiCamera />
