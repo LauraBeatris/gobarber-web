@@ -6,7 +6,6 @@ export interface User {
 
 export interface Appointment {
   id: string;
-  name: string;
   date: string;
   customer: User;
 }

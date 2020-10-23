@@ -111,9 +111,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
                 <h4>{t("dashboard.next_appointment")}</h4>
 
                 <Appointment
-                  name={nextAppointment?.customer?.name}
                   date={nextAppointment?.date}
                   avatar_url={nextAppointment?.customer?.avatar_url}
+                  customerName={nextAppointment?.customer?.name}
                   showLateralBorder
                 />
               </NextAppointment>
