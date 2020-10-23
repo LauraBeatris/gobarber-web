@@ -79,8 +79,6 @@ Run the following command in order to start the application in a development env
 
 **Answer:** The tecnologies used in this project are [React](https://pt-br.reactjs.org/) + [Styled Components](https://styled-components.com/) to handle scoped CSS.
 
-I'm also using [SWR](https://swr.now.sh/) in order to easily cache and mutate the transactions data.
-
 # :bug: Issues
 
 Feel free to **file a new issue** with a respective title and description on the [Go Barber](https://github.com/LauraBeatris/gobarber-web/issues) repository. If you already found a solution to your problem, **I would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/LauraBeatris/gobarber-web/blob/master/CONTRIBUTING.md) to find out about the coding standards.
