@@ -5,7 +5,7 @@ export interface AppointmentContainerProps {
 }
 
 export interface AppointmentProps extends AppointmentContainerProps {
-  name: User["name"];
   date?: Appointment["date"];
   avatar_url: User["avatar_url"];
+  customerName: User["name"];
 }

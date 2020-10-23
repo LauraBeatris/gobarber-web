@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import logoImage from "assets/images/logo.svg";
 import { useAuthDispatch, useAuthState } from "contexts/auth/AuthContext";
 import { PROFILE_PAGE_PATH } from "constants/routesPaths";
-import getUserImagePlaceholder from "utils/getUserImagePlaceholder";
 import Image from "components/Image";
+import Avatar from "components/Avatar";
 
 import { HeaderContainer, HeaderContent, ProfileContainer } from "./styles";
 
@@ -25,10 +25,9 @@ const Header: React.FC = () => {
 
         <Link to={PROFILE_PAGE_PATH}>
           <ProfileContainer>
-            <Image
-              src={user?.avatar_url}
-              alt={user?.name}
-              fallbackSrc={getUserImagePlaceholder(user?.name)}
+            <Avatar
+              name={user?.name}
+              avatarUrl={user?.avatar_url}
             />
 
             <div>

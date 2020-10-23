@@ -1,31 +1,32 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
-import getUserImagePlaceholder from "utils/getUserImagePlaceholder";
-import Image from "components/Image";
 import { useModal } from "contexts/modal/ModalContext";
 import { AppointmentDetailsProps } from "components/Modals/AppointmentDetailsModal/types";
 import AppointmentDetailsModal from "components/Modals/AppointmentDetailsModal";
+import Avatar from "components/Avatar";
 
 import { AppointmentProps } from "./types";
 import { AppointmentContainer } from "./styles";
 import AppointmentDate from "./Date";
 
 const Appointment: React.FC<AppointmentProps> = ({
-  name,
   date,
   avatar_url,
+  customerName,
   showLateralBorder,
 }) => {
+  const [t] = useTranslation();
   const [showModal] = useModal<AppointmentDetailsProps>();
 
   const handleClick = (): void => {
     showModal({
-      title: name,
+      title: t("appointment_details_modal.title"),
       component: AppointmentDetailsModal,
       componentProps: {
-        name,
         date,
         avatar_url,
+        customerName,
       },
     });
   };
@@ -36,12 +37,12 @@ const Appointment: React.FC<AppointmentProps> = ({
       onClick={handleClick}
       showLateralBorder={!!showLateralBorder}
     >
-      <Image
-        src={avatar_url}
-        fallbackSrc={getUserImagePlaceholder("Laura")}
+      <Avatar
+        name={customerName}
+        avatarUrl={avatar_url}
       />
 
-      <strong>{name}</strong>
+      <strong>{customerName}</strong>
 
       {
         date && (
