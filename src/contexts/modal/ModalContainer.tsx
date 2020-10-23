@@ -44,15 +44,25 @@ function ModalContainer<T>({
     hideModal,
   ]);
 
+  const modalClassNames = useMemo(() => ({
+    modal: "customModal",
+  }), []);
+
   const Component = modalState?.component;
   const componentProps = (modalState?.componentProps || {}) as T;
 
   return (
     <ModalProvider value={payload}>
-      <Modal open={modalState.isOpen} onClose={hideModal} center>
+      <Modal
+        open={modalState.isOpen}
+        center
+        onClose={hideModal}
+        classNames={modalClassNames}
+      >
         {
           Component && (
             <Component
+              title={modalState.title}
               hideModal={hideModal}
               componentProps={componentProps}
             />

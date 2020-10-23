@@ -33,4 +33,14 @@ export default createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  .customModal {
+    padding: unset;
+    background: unset;
+
+    button {
+      top: 8px;
+      right: 8px;
+    }
+  }
 `;

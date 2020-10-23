@@ -1,6 +1,7 @@
 export type OnClose = (payload?: Record<string, unknown>) => void
 
 export interface ModalComponentProps<T = Record<string, unknown>> {
+  title: string;
   hideModal: OnClose;
   componentProps?: T;
 }
