@@ -84,6 +84,14 @@ export const NextAppointment = styled.div`
   margin-top: 64px;
   margin-bottom: 48px;
 
+  > button {
+    width: 100%;
+
+    span:last-of-type {
+      margin-left: auto;
+    }
+  }
+
   h4 {
     color: ${({ theme }) => theme.colors.gray};
     font-size: 20px;
