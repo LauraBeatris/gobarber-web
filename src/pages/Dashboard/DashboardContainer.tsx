@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 import animationData from "assets/lotties/calendar.json";
 import useAppointments from "hooks/useAppointments";
-import withBusinessHourRange from "hocs/withBusinessHourRange";
 import useLoadingDelay from "hooks/useLoadingDelay";
 import { getLottieDefaultOptions } from "settings/lottie";
 import { useProviderMonthAvailability } from "hooks/useProviderMonthAvailability";
@@ -92,4 +91,4 @@ const DashboardContainer: React.FC = () => {
   );
 };
 
-export default withBusinessHourRange(DashboardContainer);
+export default DashboardContainer;
