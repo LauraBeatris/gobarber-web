@@ -86,6 +86,16 @@
     "current_password": "Senha atual",
     "password_confirmation": "Confirmar senha"
   },
+  "appointment_details_modal": {
+    "title": "Detalhes",
+    "customer_name": "Nome do Cliente",
+    "appointment_type": "Tipo"
+  },
+  "appointment_type": {
+    "classic_shaving": "Barbear Clássico",
+    "hair_washing": "Lavagem de Cabelo",
+    "hair_care": "Tratamento Capilar"
+  },
   "yup": {
     "invalid_field_length": "Esse campo deve ter pelo menos {{ min }} caracteres.",
     "invalid_number_length": "Esse campo deve ser maior que {{ min }} caracteres.",

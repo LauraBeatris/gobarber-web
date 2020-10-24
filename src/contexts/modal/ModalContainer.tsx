@@ -1,4 +1,9 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useState,
+  useMemo,
+  useRef,
+} from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 
@@ -20,6 +25,7 @@ const defaultState = {
 function ModalContainer<T>({
   children,
 }: ModalContainerProps<T>): JSX.Element {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [modalState, setModalState] = useState<ModalState<T>>(defaultState);
 
   const showModal = useCallback((options: ShowModalOptions<T>) => {
@@ -52,26 +58,29 @@ function ModalContainer<T>({
   const componentProps = (modalState?.componentProps || {}) as T;
 
   return (
-    <ModalProvider value={payload}>
-      <Modal
-        open={modalState.isOpen}
-        center
-        onClose={hideModal}
-        classNames={modalClassNames}
-      >
-        {
-          Component && (
-            <Component
-              title={modalState.title}
-              hideModal={hideModal}
-              componentProps={componentProps}
-            />
-          )
-        }
-      </Modal>
+    <div style={{ width: "100vw", height: "100vh" }} ref={containerRef}>
+      <ModalProvider value={payload}>
+        <Modal
+          open={modalState.isOpen}
+          center
+          onClose={hideModal}
+          container={containerRef.current as Element}
+          classNames={modalClassNames}
+        >
+          {
+            Component && (
+              <Component
+                title={modalState.title}
+                hideModal={hideModal}
+                componentProps={componentProps}
+              />
+            )
+          }
+        </Modal>
 
-      {children}
-    </ModalProvider>
+        {children}
+      </ModalProvider>
+    </div>
   );
 }
 

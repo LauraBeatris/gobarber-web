@@ -83,6 +83,16 @@
     "password_confirmation": "Password confirmation",
     "current_password_invalid_length": "The current password must have at least {{ min }} characters"
   },
+  "appointment_details_modal": {
+    "title": "Appointment Details",
+    "customer_name": "Customer Name",
+    "appointment_type": "Appointment Type"
+  },
+  "appointment_type": {
+    "classic_shaving": "Classic Shaving",
+    "hair_washing": "Hair Washing",
+    "hair_care": "Hair Care"
+  },
   "yup": {
     "invalid_field_length": "This field must have at least ${min} characters",
     "invalid_number_length": "This field should be bigger than ${min}.",
