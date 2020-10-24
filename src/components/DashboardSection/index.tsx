@@ -22,6 +22,8 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({
             <AppointmentDate date={appointment.date} />
 
             <Appointment
+              type={appointment.type}
+              date={appointment.date}
               isPast={appointment.isPast}
               avatarUrl={appointment.customer.avatar_url}
               customerName={appointment.customer.name}

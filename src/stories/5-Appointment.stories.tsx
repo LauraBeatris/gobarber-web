@@ -1,5 +1,6 @@
 import React from "react";
 
+import { AppointmentType } from "shared/types/apiSchema";
 import Appointment from "components/Appointment";
 
 import { Container } from "./styles";
@@ -12,6 +13,8 @@ export default {
 export const AppointmentWithoutDate: React.FC = () => (
   <Container>
     <Appointment
+      type={AppointmentType.CLASSIC_SHAVING}
+      date="2020-10-22T12:00:00.000Z"
       avatarUrl="https://avatars0.githubusercontent.com/u/48022589?s=460&u=6e0093b40a2ad5e8384ca214ee835859d03ebe2e&v=4"
       customerName="Laura Beatris"
     />
@@ -21,6 +24,8 @@ export const AppointmentWithoutDate: React.FC = () => (
 export const AppointmentWithLateralBorder: React.FC = () => (
   <Container>
     <Appointment
+      type={AppointmentType.HAIR_CARE}
+      date="2020-10-22T12:00:00.000Z"
       avatarUrl="https://avatars0.githubusercontent.com/u/48022589?s=460&u=6e0093b40a2ad5e8384ca214ee835859d03ebe2e&v=4"
       customerName="Laura Beatris"
       showLateralBorder
@@ -31,7 +36,9 @@ export const AppointmentWithLateralBorder: React.FC = () => (
 export const AppointmentWithDate: React.FC = () => (
   <Container>
     <Appointment
+      type={AppointmentType.HAIR_WASHING}
       date="2020-10-22T12:00:00.000Z"
+      showDate
       avatarUrl="https://avatars0.githubusercontent.com/u/48022589?s=460&u=6e0093b40a2ad5e8384ca214ee835859d03ebe2e&v=4"
       customerName="Laura Beatris"
       showLateralBorder
@@ -42,6 +49,7 @@ export const AppointmentWithDate: React.FC = () => (
 export const AppointmentOnAPastDate: React.FC = () => (
   <Container>
     <Appointment
+      type={AppointmentType.CLASSIC_SHAVING}
       date="2020-10-22T12:00:00.000Z"
       isPast
       avatarUrl="https://avatars0.githubusercontent.com/u/48022589?s=460&u=6e0093b40a2ad5e8384ca214ee835859d03ebe2e&v=4"
