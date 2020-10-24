@@ -40,13 +40,18 @@ export const AppointmentContainer = styled.button<AppointmentContainerProps>`
     opacity: 0.5;
   `}
 
-  ${media.lessThan("medium")`
+  ${media.lessThan("small")`
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 
     span {
       margin-left: unset;
       margin-top: 12px;
+    }
+
+    img {
+      margin-right: unset;
+      margin-bottom: 5px;
     }
   `}
 `;
