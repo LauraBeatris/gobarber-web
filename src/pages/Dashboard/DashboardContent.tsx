@@ -112,7 +112,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
 
                 <Appointment
                   date={nextAppointment?.date}
-                  avatar_url={nextAppointment?.customer?.avatar_url}
+                  avatarUrl={nextAppointment?.customer?.avatar_url}
                   customerName={nextAppointment?.customer?.name}
                   showLateralBorder
                 />
