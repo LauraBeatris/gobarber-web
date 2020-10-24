@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import logoImage from "assets/images/logo.svg";
 import { useAuthDispatch, useAuthState } from "contexts/auth/AuthContext";
 import { PROFILE_PAGE_PATH } from "constants/routesPaths";
-import Image from "components/Image";
 import Avatar from "components/Avatar";
 
 import { HeaderContainer, HeaderContent, ProfileContainer } from "./styles";
@@ -21,7 +20,7 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <HeaderContent>
-        <Image src={logoImage} alt="GoBarber" title="GoBarber" />
+        <img src={logoImage} alt="GoBarber" title="GoBarber" />
 
         <Link to={PROFILE_PAGE_PATH}>
           <ProfileContainer>
