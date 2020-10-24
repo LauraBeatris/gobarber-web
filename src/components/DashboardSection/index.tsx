@@ -22,7 +22,8 @@ const DashboardSection: React.FC<DashboardSectionProps> = ({
             <AppointmentDate date={appointment.date} />
 
             <Appointment
-              avatar_url={appointment.customer.avatar_url}
+              isPast={appointment.isPast}
+              avatarUrl={appointment.customer.avatar_url}
               customerName={appointment.customer.name}
             />
           </DashboardSectionItem>

@@ -36,6 +36,10 @@ export const AppointmentContainer = styled.button<AppointmentContainerProps>`
     background: ${({ theme }) => theme.colors.orange};
   }`}
 
+  ${({ isPast }) => isPast && css`
+    opacity: 0.5;
+  `}
+
   ${media.lessThan("medium")`
     flex-direction: column;
     align-items: flex-start;

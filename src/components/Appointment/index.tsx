@@ -12,7 +12,8 @@ import AppointmentDate from "./Date";
 
 const Appointment: React.FC<AppointmentProps> = ({
   date,
-  avatar_url,
+  isPast,
+  avatarUrl,
   customerName,
   showLateralBorder,
 }) => {
@@ -25,7 +26,7 @@ const Appointment: React.FC<AppointmentProps> = ({
       component: AppointmentDetailsModal,
       componentProps: {
         date,
-        avatar_url,
+        avatarUrl,
         customerName,
       },
     });
@@ -34,19 +35,20 @@ const Appointment: React.FC<AppointmentProps> = ({
   return (
     <AppointmentContainer
       type="button"
+      isPast={isPast}
       onClick={handleClick}
       showLateralBorder={!!showLateralBorder}
     >
       <Avatar
         name={customerName}
-        avatarUrl={avatar_url}
+        avatarUrl={avatarUrl}
       />
 
       <strong>{customerName}</strong>
 
       {
         date && (
-          <AppointmentDate date={date} />
+          <AppointmentDate isPast={isPast} date={date} />
         )
       }
     </AppointmentContainer>

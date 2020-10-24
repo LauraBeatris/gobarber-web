@@ -5,11 +5,11 @@ import { format, parseISO } from "date-fns";
 import { AppointmentDateContainer } from "./styles";
 import { AppointmentDateProps } from "./types";
 
-const AppointmentDate: React.FC<AppointmentDateProps> = ({ date }) => {
+const AppointmentDate: React.FC<AppointmentDateProps> = ({ date, isPast }) => {
   const formattedAppointmentDate = format(parseISO(date), "hh':'mm");
 
   return (
-    <AppointmentDateContainer>
+    <AppointmentDateContainer isPast={isPast}>
       <FiClock />
 
       {formattedAppointmentDate}
