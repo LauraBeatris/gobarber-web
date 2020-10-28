@@ -123,7 +123,7 @@ const Profile: React.FC = () => {
 
         addToast({
           type: "error",
-          title: error.response.data.message,
+          title: error.response?.data.message,
         });
       } finally {
         setLoading(false);

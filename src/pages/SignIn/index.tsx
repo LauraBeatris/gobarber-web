@@ -48,7 +48,7 @@ const SignIn: React.FC = () => {
         }
 
         addToast({
-          title: error.response.data.message,
+          title: error.response?.data.message,
           type: "error",
         });
       }
