@@ -22,6 +22,11 @@ const defaultState = {
   componentProps: {},
 };
 
+const modalContainerStyles = {
+  minHeight: "100vh",
+  minWidth: "100vw",
+};
+
 function ModalContainer<T>({
   children,
 }: ModalContainerProps<T>): JSX.Element {
@@ -58,7 +63,7 @@ function ModalContainer<T>({
   const componentProps = (modalState?.componentProps || {}) as T;
 
   return (
-    <div style={{ width: "100vw", height: "100vh" }} ref={containerRef}>
+    <div style={modalContainerStyles} ref={containerRef}>
       <ModalProvider value={payload}>
         <Modal
           open={modalState.isOpen}
