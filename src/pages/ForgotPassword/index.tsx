@@ -11,22 +11,21 @@ import Input from "components/Input";
 import getValidationErrors from "utils/getValidationErrors";
 import barberBackground from "assets/images/barber-background.png";
 import { REQUEST_PASSWORD_REQUEST_SUCCESS, SIGN_IN_PAGE_PATH } from "constants/routesPaths";
-import api from "settings/api";
 import AuthLayout from "layouts/Auth";
 import { appearFromLeft } from "styles/animations";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
+import useSendRecoverPasswordRequest from "hooks/auth/useSendRecoverPasswordRequest";
 
 import schema from "./schema";
 
 const ForgotPassword: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-
-  const [t] = useTranslation();
-
   const history = useHistory();
 
+  const [t] = useTranslation();
   const [loading, setLoading] = useState(false);
 
+  const sendRecoverPasswordRequest = useSendRecoverPasswordRequest();
   const { addToast } = useToastsDispatch();
 
   const handleSubmit = useCallback(
@@ -42,7 +41,7 @@ const ForgotPassword: React.FC = () => {
 
         const email = data?.email;
 
-        await api.post("/password/recover-request", {
+        sendRecoverPasswordRequest({
           email,
         });
 
@@ -66,7 +65,11 @@ const ForgotPassword: React.FC = () => {
         setLoading(false);
       }
     },
-    [addToast, history],
+    [
+      sendRecoverPasswordRequest,
+      addToast,
+      history,
+    ],
   );
 
   return (

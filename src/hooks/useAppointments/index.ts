@@ -29,7 +29,7 @@ const getNoonDate = (appointmentDate: Date): Date => (
 );
 
 /**
- * Handles the logic to fetch and format appointments
+ * Handles the queries and mutations related to appointments
  */
 const useAppointments = (selectedDate: Date): UseAppointmentsPayload => {
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ const useAppointments = (selectedDate: Date): UseAppointmentsPayload => {
 
   const { addToast } = useToastsDispatch();
 
-  const fetchAppointments = useCallback(() => {
+  const refetch = useCallback(() => {
     setLoading(true);
 
     if (!selectedDate) {
@@ -93,8 +93,8 @@ const useAppointments = (selectedDate: Date): UseAppointmentsPayload => {
   ), [appointments]);
 
   useEffect(() => {
-    fetchAppointments();
-  }, [fetchAppointments]);
+    refetch();
+  }, [refetch]);
 
   const payload = useMemo<UseAppointmentsPayload>(() => ({
     loading,

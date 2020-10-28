@@ -16,21 +16,20 @@ import Input from "components/Input";
 import Button from "components/Button";
 import roomBackground from "assets/images/room-background.png";
 import getValidationErrors from "utils/getValidationErrors";
-import api from "settings/api";
 import { useAuthDispatch } from "contexts/auth/AuthContext";
 import ShowPasswordInput from "components/Input/ShowPasswordInput";
+import useSignUp from "hooks/auth/useSignUp";
 
 import schema from "./schema";
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const signUp = useSignUp();
 
   const { addToast } = useToastsDispatch();
-
   const { signIn } = useAuthDispatch();
 
   const [t] = useTranslation();
-
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = useCallback(
@@ -44,7 +43,7 @@ const SignUp: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post("/users", data);
+        await signUp(data);
 
         await signIn({
           ...data,
@@ -72,7 +71,12 @@ const SignUp: React.FC = () => {
         setLoading(false);
       }
     },
-    [addToast, signIn, t],
+    [
+      addToast,
+      signUp,
+      signIn,
+      t,
+    ],
   );
 
   return (

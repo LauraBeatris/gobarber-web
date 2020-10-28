@@ -6,10 +6,10 @@ import { useTimer } from "react-timer-hook";
 
 import AuthLayout from "layouts/Auth";
 import barberBackground from "assets/images/barber-background.png";
-import api from "settings/api";
 import getExpiryConfirmationTimestamp from "utils/getExpiryConfirmationTimestamp";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { appearFromLeft } from "styles/animations";
+import useSendRecoverPasswordRequest from "hooks/auth/useSendRecoverPasswordRequest";
 
 import { Content } from "./styles";
 
@@ -23,12 +23,12 @@ interface RequestPasswordResetSuccessHistoryState {
 
 const RequestPasswordResetSuccess: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const history = useHistory<RequestPasswordResetSuccessHistoryState>();
 
   const [t] = useTranslation();
 
-  const history = useHistory<RequestPasswordResetSuccessHistoryState>();
-
   const { addToast } = useToastsDispatch();
+  const sendRecoverPasswordRequest = useSendRecoverPasswordRequest();
 
   const {
     restart,
@@ -44,7 +44,7 @@ const RequestPasswordResetSuccess: React.FC = () => {
       try {
         formRef.current?.setErrors({});
 
-        await api.post("/password/recover-request", {
+        await sendRecoverPasswordRequest({
           email: history.location.state?.email,
         });
 
@@ -60,7 +60,13 @@ const RequestPasswordResetSuccess: React.FC = () => {
         });
       }
     },
-    [restart, history.location.state, addToast, t],
+    [
+      sendRecoverPasswordRequest,
+      history.location.state,
+      addToast,
+      restart,
+      t,
+    ],
   );
 
   const canResendLink = seconds <= 0;

@@ -10,12 +10,12 @@ import { StringParam, useQueryParam } from "use-query-params";
 import roomBackground from "assets/images/room-background.png";
 import Button from "components/Button";
 import getValidationErrors from "utils/getValidationErrors";
-import api from "settings/api";
 import AuthLayout from "layouts/Auth";
 import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
 import { appearFromLeft } from "styles/animations";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import ShowPasswordInput from "components/Input/ShowPasswordInput";
+import useResetPassword from "hooks/auth/useResetPassword";
 
 import schema from "./schema";
 
@@ -25,11 +25,10 @@ const ResetPassword: React.FC = () => {
   const history = useHistory();
 
   const [t] = useTranslation();
-
   const [token] = useQueryParam("token", StringParam);
-
   const [loading, setLoading] = useState(false);
 
+  const resetPassword = useResetPassword();
   const { addToast } = useToastsDispatch();
 
   const handleSubmit = useCallback(
@@ -43,7 +42,11 @@ const ResetPassword: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.patch("/password/reset", {
+        if (!token) {
+          return;
+        }
+
+        await resetPassword({
           token,
           password: data.password,
           confirm_password: data.confirm_password,
@@ -67,7 +70,12 @@ const ResetPassword: React.FC = () => {
         setLoading(false);
       }
     },
-    [addToast, history, token],
+    [
+      resetPassword,
+      addToast,
+      history,
+      token,
+    ],
   );
 
   return (
