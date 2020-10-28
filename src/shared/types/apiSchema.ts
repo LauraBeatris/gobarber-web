@@ -22,3 +22,10 @@ export interface ProviderMonthAvailability {
   day: number;
   available: boolean;
 }
+
+export interface Notification {
+  id: string;
+  read: boolean;
+  content: string;
+  created_at: string;
+}

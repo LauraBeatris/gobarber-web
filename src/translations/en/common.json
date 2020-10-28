@@ -93,6 +93,10 @@
     "hair_washing": "Hair Washing",
     "hair_care": "Hair Care"
   },
+  "notifications": {
+    "mark_all_as_read": "Mark all as read",
+    "there_are_no_notifications": "There aren't notifications"
+  },
   "yup": {
     "invalid_field_length": "This field must have at least ${min} characters",
     "invalid_number_length": "This field should be bigger than ${min}.",

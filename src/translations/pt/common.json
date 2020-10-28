@@ -96,6 +96,10 @@
     "hair_washing": "Lavagem de Cabelo",
     "hair_care": "Tratamento Capilar"
   },
+  "notifications": {
+    "mark_all_as_read": "Marcar todas como lidas",
+    "there_are_no_notifications": "Não há nenhuma notificação"
+  },
   "yup": {
     "invalid_field_length": "Esse campo deve ter pelo menos {{ min }} caracteres.",
     "invalid_number_length": "Esse campo deve ser maior que {{ min }} caracteres.",

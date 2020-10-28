@@ -17,11 +17,12 @@ export const HeaderContent = styled.div`
 
   > button {
     border: 0;
-    margin-left: auto;
+    display: flex;
     background: none;
 
     svg {
       color: ${({ theme }) => theme.colors.gray};
+      font-size: 20px;
     }
   }
 

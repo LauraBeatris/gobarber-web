@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import logoImage from "assets/images/logo.svg";
 import { useAuthDispatch, useAuthState } from "contexts/auth/AuthContext";
 import { PROFILE_PAGE_PATH } from "constants/routesPaths";
+import Notifications from "components/Notifications";
 import Avatar from "components/Avatar";
 
 import { HeaderContainer, HeaderContent, ProfileContainer } from "./styles";
@@ -39,6 +40,8 @@ const Header: React.FC = () => {
             </div>
           </ProfileContainer>
         </Link>
+
+        <Notifications />
 
         <button
           type="button"
