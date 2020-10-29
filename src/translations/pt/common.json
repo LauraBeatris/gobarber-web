@@ -22,16 +22,6 @@
   },
   "toasts": {
     "something_went_wrong": "Algo deu errado...",
-    "authentication": {
-      "error": {
-        "title": "Erro na autenticação",
-        "description": "Ocorreu um erro na autenticacão, por favor, cheque suas credenciais"
-      },
-      "success": {
-        "title": "Sucesso na autenticacão",
-        "description": "{{ username }}, bem vindo(a) a plataforma!"
-      }
-    },
     "signup": {
       "error": {
         "title": "Erro na criacão de conta",
@@ -43,8 +33,9 @@
       }
     },
     "request_reset_password_success": {
-      "error_while_sending_email": "Erro ao tentar enviar o email. Por favor, tente novamente."
-    }
+      "email_sent_successfully": "Email enviado com sucesso"
+    },
+    "reset_password_success": "Senha resetada com sucesso"
   },
   "forgot_password": {
     "title": "Esqueceu a senha?",

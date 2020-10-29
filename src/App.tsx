@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactQueryDevtools } from "react-query-devtools";
 import { BrowserRouter } from "react-router-dom";
 
 import AppProvider from "./contexts";
@@ -8,6 +9,7 @@ const App: React.FC = () => (
   <BrowserRouter>
     <AppProvider>
       <Routes />
+      <ReactQueryDevtools initialIsOpen={false} />
     </AppProvider>
   </BrowserRouter>
 );

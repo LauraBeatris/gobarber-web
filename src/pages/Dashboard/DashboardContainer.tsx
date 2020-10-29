@@ -22,10 +22,7 @@ const DashboardContainer: React.FC = () => {
   const [selectedDay, setSelectedDay] = useFilter<Date>(filters.selectedDay);
   const [currentMonth, setCurrentMonth] = useFilter<Date>(filters.currentMonth);
 
-  const {
-    providerMonthAvailabilityDates,
-    loadingProviderMonthAvailability,
-  } = useProviderMonthAvailability();
+  const { providerMonthAvailabilityDates, isFetching } = useProviderMonthAvailability();
 
   const {
     nextAppointment,
@@ -59,11 +56,7 @@ const DashboardContainer: React.FC = () => {
     setCurrentMonth,
   ]);
 
-  const loading = (
-    useLoadingDelay(loadingProviderMonthAvailability)
-    || !currentMonth
-    || !selectedDay
-  );
+  const loading = useLoadingDelay(!currentMonth || !selectedDay);
 
   if (loading) {
     return (
@@ -79,6 +72,7 @@ const DashboardContainer: React.FC = () => {
 
   return (
     <DashboardContent
+      isFetching={isFetching}
       selectedDay={selectedDay}
       currentMonth={currentMonth}
       setSelectedDay={setSelectedDay}

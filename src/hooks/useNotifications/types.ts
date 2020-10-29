@@ -7,5 +7,6 @@ export interface FormattedNotification extends Notification {
 export interface UseNotificationsPayload {
   markNotificationsAsRead: () => void;
   unreadNotifications: FormattedNotification[];
+  isLoading: boolean;
   refetch: () => void;
 }

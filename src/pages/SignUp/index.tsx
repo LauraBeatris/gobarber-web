@@ -1,83 +1,65 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
 import {
-  FiLogIn, FiLock, FiMail, FiUser,
+  FiLogIn,
+  FiLock,
+  FiMail,
+  FiUser,
 } from "react-icons/fi";
-import { ValidationError } from "yup";
+import noop from "lodash.noop";
 
 import { appearFromRight } from "styles/animations";
-import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
 import AuthLayout from "layouts/Auth";
 import Input from "components/Input";
 import Button from "components/Button";
 import roomBackground from "assets/images/room-background.png";
-import getValidationErrors from "utils/getValidationErrors";
-import { useAuthDispatch } from "contexts/auth/AuthContext";
+import { useAuthDispatch, useAuthState } from "contexts/auth/AuthContext";
 import ShowPasswordInput from "components/Input/ShowPasswordInput";
 import useSignUp from "hooks/auth/useSignUp";
+import performSchemaValidation from "utils/performSchemaValidation";
+import { SignUpData } from "hooks/auth/useSignUp/types";
 
 import schema from "./schema";
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const signUp = useSignUp();
 
-  const { addToast } = useToastsDispatch();
   const { signIn } = useAuthDispatch();
+  const { loading: isSignInLoading } = useAuthState();
 
   const [t] = useTranslation();
-  const [loading, setLoading] = useState(false);
+
+  const [signUp, isSignUpLoading] = useSignUp();
+
+  const handleSignUp = useCallback((data: SignUpData) => {
+    signUp(data)
+      .then(() => signIn({
+        ...data,
+      }))
+      .catch(noop);
+  }, [
+    signIn,
+    signUp,
+  ]);
 
   const handleSubmit = useCallback(
-    async (data): Promise<void> => {
-      setLoading(true);
-
-      try {
-        formRef.current?.setErrors({});
-
-        await schema.validate(data, {
-          abortEarly: false,
-        });
-
-        await signUp(data);
-
-        await signIn({
-          ...data,
-          isProvider: true,
-        });
-
-        addToast({
-          title: t("toasts.signup.success.title"),
-          description: t("toasts.signup.success.description"),
-          type: "success",
-        });
-      } catch (error) {
-        if (error instanceof ValidationError) {
-          const errors = getValidationErrors(error);
-          formRef.current?.setErrors(errors);
-
-          return;
-        }
-
-        addToast({
-          title: error.response?.data.message,
-          type: "error",
-        });
-      } finally {
-        setLoading(false);
-      }
+    (data) => {
+      performSchemaValidation({
+        formRef,
+        schema,
+        data,
+      })
+        .then(() => handleSignUp(data))
+        .catch(noop);
     },
-    [
-      addToast,
-      signUp,
-      signIn,
-      t,
-    ],
+    [handleSignUp],
   );
+
+  const loading = isSignUpLoading || isSignInLoading;
 
   return (
     <AuthLayout

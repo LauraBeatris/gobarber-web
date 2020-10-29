@@ -5,5 +5,5 @@ export interface ProviderMonthAvailabilityDates {
 
 export interface UseProviderMonthAvailabilityPayload {
   providerMonthAvailabilityDates: ProviderMonthAvailabilityDates;
-  loadingProviderMonthAvailability: boolean;
+  isFetching: boolean;
 }

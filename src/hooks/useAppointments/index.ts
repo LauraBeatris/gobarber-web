@@ -1,17 +1,14 @@
+import { useMemo } from "react";
 import {
-  useMemo,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
-import {
+  isEqual,
   isAfter,
   getYear,
   getDate,
   isBefore,
   parseISO,
 } from "date-fns";
-import { isEqual } from "date-fns/esm";
+import { useQuery } from "react-query";
+import { AxiosError } from "axios";
 
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { Appointment } from "shared/types/apiSchema";
@@ -28,42 +25,39 @@ const getNoonDate = (appointmentDate: Date): Date => (
   )
 );
 
+const fetchAppointments = (
+  _queryKey: string,
+  selectedDate: string,
+): Promise<Appointment[]> => {
+  const parsedSelectedDate = parseISO(selectedDate);
+
+  return (
+    api.get<Appointment[], {
+      data: Appointment[];
+    }>("/appointments/me", {
+      params: {
+        day: getDate(parsedSelectedDate),
+        year: getYear(parsedSelectedDate),
+        month: getMonth(parsedSelectedDate),
+      },
+    }).then(response => response.data)
+  );
+};
+
 /**
  * Handles the queries and mutations related to appointments
  */
 const useAppointments = (selectedDate: Date): UseAppointmentsPayload => {
-  const [loading, setLoading] = useState(false);
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
-
   const { addToast } = useToastsDispatch();
 
-  const refetch = useCallback(() => {
-    setLoading(true);
-
-    if (!selectedDate) {
-      return;
-    }
-
-    api.get<Appointment[]>("/appointments/me", {
-      params: {
-        day: getDate(selectedDate),
-        year: getYear(selectedDate),
-        month: getMonth(selectedDate),
-      },
-    })
-      .then(response => {
-        setAppointments(response?.data);
-      })
-      .catch(error => {
-        addToast({
-          type: "error",
-          title: error?.message,
-        });
-      })
-      .finally(() => {
-        setLoading(false);
+  const { data: appointments, isLoading } = useQuery<Appointment[], AxiosError>(["appointments", selectedDate], fetchAppointments, {
+    onError: (error) => {
+      addToast({
+        title: error.response?.data.message,
+        type: "error",
       });
-  }, [addToast, selectedDate]);
+    },
+  });
 
   const nextAppointment = useMemo(() => (
     (appointments ?? []).find(appointment => (
@@ -92,17 +86,13 @@ const useAppointments = (selectedDate: Date): UseAppointmentsPayload => {
     })
   ), [appointments]);
 
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
-
   const payload = useMemo<UseAppointmentsPayload>(() => ({
-    loading,
+    isLoading,
     nextAppointment,
     morningAppointments,
     eveningAppointments,
   }), [
-    loading,
+    isLoading,
     nextAppointment,
     morningAppointments,
     eveningAppointments,

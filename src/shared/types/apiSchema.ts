@@ -30,3 +30,9 @@ export interface Notification {
   content: string;
   created_at: string;
 }
+
+export interface Session {
+  user: User;
+  token: string;
+  refreshToken: string;
+}

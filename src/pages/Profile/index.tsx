@@ -1,7 +1,6 @@
 import React, {
   ChangeEvent,
   useCallback,
-  useState,
   useRef,
 } from "react";
 import { useTranslation } from "react-i18next";
@@ -16,35 +15,35 @@ import {
 } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 import useLocalStorage from "@rehooks/local-storage";
-import { ValidationError } from "yup";
+import noop from "lodash.noop";
 
 import Input from "components/Input";
 import Button from "components/Button";
-import api from "settings/api";
-import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { USER_STORAGE_KEY } from "constants/localStorage";
 import { User } from "shared/types/apiSchema";
 import ShowPasswordInput from "components/Input/ShowPasswordInput";
-import getValidationErrors from "utils/getValidationErrors";
 import { DASHBOARD_PAGE_PATH } from "constants/routesPaths";
 import Avatar from "components/Avatar";
+import useUpdateUserAvatar from "hooks/user/useUpdateUserAvatar";
+import performSchemaValidation from "utils/performSchemaValidation";
+import useUpdateUserProfile from "hooks/user/useUpdateUserProfile";
+import { UpdateUserProfileData } from "hooks/user/useUpdateUserProfile/types";
 
-import { AvatarInput, Container, Content } from "./styles";
 import schema from "./schema";
+import { AvatarInput, Container, Content } from "./styles";
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
+
+  const [t] = useTranslation();
   const [user, setUser] = useLocalStorage<User>(
     USER_STORAGE_KEY,
     {} as User,
   );
 
-  const history = useHistory();
-
-  const [t] = useTranslation();
-  const [loading, setLoading] = useState(false);
-
-  const { addToast } = useToastsDispatch();
+  const [updateUserAvatar, isUpdateUserAvatarLoading] = useUpdateUserAvatar();
+  const [updateUserProfile, isUpdateUserProfileLoading] = useUpdateUserProfile();
 
   const handleGoBack = useCallback(() => {
     history.goBack();
@@ -61,76 +60,68 @@ const Profile: React.FC = () => {
 
     formData.append("avatar", file);
 
-    api.patch<User>("/users/avatar", formData)
-      .then(response => {
-        setUser(response.data);
-      })
-      .catch(error => {
-        addToast({
-          title: error.message,
-          type: "error",
-        });
-      });
-  }, [
-    setUser,
-    addToast,
-  ]);
-
-  const handleSubmit = useCallback(
-    async (data): Promise<void> => {
-      setLoading(true);
-
-      try {
-        formRef.current?.setErrors({});
-
-        await schema.validate(data, {
-          abortEarly: false,
-        });
-
-        const {
-          name,
-          email,
-          password,
-          old_password,
-          password_confirmation,
-        } = data;
-
-        const { data: updatedUser } = await api.put<User>("/profile", {
-          name,
-          email,
-          ...(password ? {
-            password,
-            old_password,
-            password_confirmation,
-          } : {}),
-        });
-
-        setUser(updatedUser);
-
-        addToast({
-          type: "success",
-          title: "Profile successfully updated",
-        });
-
-        history.push(DASHBOARD_PAGE_PATH);
-      } catch (error) {
-        if (error instanceof ValidationError) {
-          const errors = getValidationErrors(error);
-          formRef.current?.setErrors(errors);
-
+    updateUserAvatar(formData)
+      .then((updatedUser) => {
+        if (!updatedUser) {
           return;
         }
 
-        addToast({
-          type: "error",
-          title: error.response?.data.message,
-        });
-      } finally {
-        setLoading(false);
+        setUser(updatedUser);
+      })
+      .catch(noop);
+  }, [
+    setUser,
+    updateUserAvatar,
+  ]);
+
+  const handleUpdateUserProfile = useCallback((data: UpdateUserProfileData) => {
+    const {
+      name,
+      email,
+      password,
+      old_password,
+      password_confirmation,
+    } = data;
+
+    updateUserProfile({
+      name,
+      email,
+      ...(password ? {
+        password,
+        old_password,
+        password_confirmation,
+      } : {}),
+
+    }).then(updatedUser => {
+      if (!updatedUser) {
+        return;
       }
+
+      setUser(updatedUser);
+
+      history.push(DASHBOARD_PAGE_PATH);
+    })
+      .catch(noop);
+  }, [
+    setUser,
+    history,
+    updateUserProfile,
+  ]);
+
+  const handleSubmit = useCallback(
+    (data) => {
+      performSchemaValidation({
+        formRef,
+        schema,
+        data,
+      })
+        .then(() => handleUpdateUserProfile(data))
+        .catch(noop);
     },
-    [addToast, history, setUser],
+    [handleUpdateUserProfile],
   );
+
+  const isMutationsLoading = isUpdateUserAvatarLoading || isUpdateUserProfileLoading;
 
   return (
     <Container>
@@ -186,7 +177,6 @@ const Profile: React.FC = () => {
             type="password"
             icon={FiLock}
             placeholder={t("update_profile_form.current_password")}
-            autoComplete="current-password"
           />
 
           <ShowPasswordInput
@@ -207,8 +197,8 @@ const Profile: React.FC = () => {
 
           <Button
             type="submit"
-            loading={loading}
-            disabled={loading}
+            loading={isMutationsLoading}
+            disabled={isMutationsLoading}
           >
             {t("buttons.confirm_changes")}
           </Button>

@@ -1,4 +1,5 @@
-import { AxiosResponse } from "axios";
+import { User } from "shared/types/apiSchema";
+import { MutationHookPayload } from "shared/types/mutations";
 
 export interface ResetPasswordData {
   token: string;
@@ -6,4 +7,5 @@ export interface ResetPasswordData {
   confirm_password: string;
 }
 
-export type UseResetPasswordPayload = (data: ResetPasswordData) => Promise<AxiosResponse<unknown>>;
+export type UseResetPasswordPayload = MutationHookPayload<User, ResetPasswordData>;
+
