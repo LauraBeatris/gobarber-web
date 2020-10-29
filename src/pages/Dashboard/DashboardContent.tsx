@@ -12,6 +12,8 @@ import { DAY_MONTH, WEEK_DAY } from "constants/dateFormats";
 import colors from "styles/theme/colors";
 import useShare from "hooks/useShare";
 import AppLayout from "layouts/App";
+import useLoadingDelay from "hooks/useLoadingDelay";
+import Loading from "components/Loading";
 
 import {
   Content,
@@ -30,6 +32,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
   eveningAppointments,
   morningAppointments,
   providerMonthAvailabilityDates,
+  ...rest
 }) => {
   const [t] = useTranslation();
 
@@ -77,6 +80,9 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
     selectedDay,
   ]);
 
+  const isLoadingAvailabity = useLoadingDelay(rest.isLoadingAvailability);
+  const isLoadingAppointments = useLoadingDelay(rest.isLoadingAppointments);
+
   return (
     <AppLayout>
       <Content>
@@ -91,6 +97,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
             >
               <GrCopy color={colors.background} />
             </button>
+
+            {
+              isLoadingAppointments && <Loading />
+            }
           </div>
 
           <p>
@@ -136,6 +146,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({
         <CalendarContainer>
           <Calendar
             month={currentMonth}
+            isLoading={isLoadingAvailabity}
             modifiers={calendarModifiers}
             onDayClick={handleDayClick}
             disabledDays={providerMonthAvailabilityDates?.unavailable}

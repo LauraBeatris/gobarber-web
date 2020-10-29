@@ -3,7 +3,6 @@ import { SetFilter } from "hooks/useFilter/types";
 import { UseProviderMonthAvailabilityPayload } from "hooks/useProviderMonthAvailability/types";
 
 export interface DashboardContentProps {
-  isFetching: boolean;
   selectedDay: Date;
   currentMonth: Date;
   setSelectedDay: SetFilter<Date>;
@@ -11,5 +10,7 @@ export interface DashboardContentProps {
   nextAppointment: UseAppointmentsPayload["nextAppointment"];
   eveningAppointments: UseAppointmentsPayload["eveningAppointments"];
   morningAppointments: UseAppointmentsPayload["morningAppointments"];
+  isLoadingAvailability: boolean;
+  isLoadingAppointments: boolean;
   providerMonthAvailabilityDates: UseProviderMonthAvailabilityPayload["providerMonthAvailabilityDates"];
 }

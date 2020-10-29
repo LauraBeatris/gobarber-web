@@ -5,6 +5,7 @@ const theme = {
   zIndexes: {
     header: 100,
     toasts: 110,
+    calendar: 90,
   },
   lengths: {
     header: 200,

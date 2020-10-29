@@ -25,6 +25,7 @@ const DashboardContainer: React.FC = () => {
   const { providerMonthAvailabilityDates, isFetching } = useProviderMonthAvailability();
 
   const {
+    isLoading: isLoadingAppointments,
     nextAppointment,
     eveningAppointments,
     morningAppointments,
@@ -72,7 +73,6 @@ const DashboardContainer: React.FC = () => {
 
   return (
     <DashboardContent
-      isFetching={isFetching}
       selectedDay={selectedDay}
       currentMonth={currentMonth}
       setSelectedDay={setSelectedDay}
@@ -80,6 +80,8 @@ const DashboardContainer: React.FC = () => {
       nextAppointment={nextAppointment}
       eveningAppointments={eveningAppointments}
       morningAppointments={morningAppointments}
+      isLoadingAvailability={isFetching}
+      isLoadingAppointments={isLoadingAppointments}
       providerMonthAvailabilityDates={providerMonthAvailabilityDates}
     />
   );

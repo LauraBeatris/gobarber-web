@@ -48,16 +48,22 @@ export const Schedule = styled.main`
     display: flex;
     align-items: center;
 
+    div {
+      width: 2rem !important;
+      height: 2rem !important;
+      margin: 0 0 0 15px !important;
+    }
+
     button {
-    border: 0;
-    padding: 4px;
-    height: 2rem;
-    display: flex;
-    border-radius: 4px;
-    align-items: center;
-    justify-content: center;
-    background: ${({ theme }) => theme.colors.orange};
-    margin-left: 15px;
+      border: 0;
+      padding: 4px;
+      height: 2rem;
+      display: flex;
+      border-radius: 4px;
+      align-items: center;
+      justify-content: center;
+      background: ${({ theme }) => theme.colors.orange};
+      margin-left: 15px;
 
       svg {
         color: ${({ theme }) => theme.colors.white};
@@ -106,43 +112,6 @@ export const NextAppointment = styled.div`
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-  `}
-`;
-
-export const BusinessClosedContainer = styled.div`
-  width: 50%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  h1 {
-    color: ${({ theme }) => theme.colors.white};
-    text-align: center;
-  }
-
-  button {
-    color: ${({ theme }) => theme.colors.gray};
-    border: 0;
-    display: flex;
-    background: none;
-    margin-top: 10px;
-    align-items: center;
-    transition: transform .5s;
-
-    &:hover {
-      transform: translateX(10px);
-    }
-
-    svg {
-      margin-left: 5px;
-      font-size: 20px;
-    }
-  }
-
-  ${media.lessThan("large")`
-    width: 100%;
   `}
 `;
 

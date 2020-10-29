@@ -1,10 +1,39 @@
 import styled, { css } from "styled-components";
-import { shade } from "polished";
+import { shade, rgba } from "polished";
 
 import arrowRight from "assets/icons/arrow-right.svg";
 import arrowLeft from "assets/icons/arrow-left.svg";
 
+export const DayPickerLoadingContainer = styled.div`
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  cursor: not-allowed;
+  height: 100%;
+  z-index: ${({ theme }) => theme.zIndexes.calendar};
+  display: flex;
+  position: absolute;
+  background: ${({ theme }) => rgba(theme.colors.shape, 0.6)};
+  align-items: center;
+  border-radius: 10px;
+  pointer-events: none;
+  justify-content: center;
+
+  & ~ div .DayPicker-Day {
+    pointer-events: none;
+  }
+
+  div {
+    width: 15em !important;
+    height: 15em !important;
+  }
+`;
+
 export const DayPickerContainer = styled.div`
+  position: relative;
+  margin-bottom: auto;
+
   .DayPicker {
     width: 100%;
     background: ${({ theme }) => theme.colors.blackMedium};
