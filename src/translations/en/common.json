@@ -19,7 +19,8 @@
     "resend_link": "Resend link",
     "logout": "Logout",
     "copy": "copy",
-    "confirm_changes": "Confirm Changes"
+    "confirm_changes": "Confirm Changes",
+    "load_more": "Load more"
   },
   "toasts": {
     "something_went_wrong": "Something went wrong...",
@@ -84,6 +85,7 @@
     "hair_care": "Hair Care"
   },
   "notifications": {
+    "title": "Notifications",
     "mark_all_as_read": "Mark all as read",
     "there_are_no_notifications": "There aren't notifications"
   },

@@ -4,9 +4,16 @@ export interface FormattedNotification extends Notification {
   createdAtDistance: string;
 }
 
+export interface PaginatedNotifications {
+  page: number;
+  notifications: FormattedNotification[];
+}
+
 export interface UseNotificationsPayload {
   markNotificationsAsRead: () => void;
-  unreadNotifications: FormattedNotification[];
+  notifications: FormattedNotification[];
+  handleFetchMore: () => void;
+  canFetchMore?: boolean;
   isLoading: boolean;
   refetch: () => void;
 }

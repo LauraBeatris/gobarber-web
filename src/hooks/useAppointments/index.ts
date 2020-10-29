@@ -10,7 +10,6 @@ import {
 import { useQuery } from "react-query";
 import { AxiosError } from "axios";
 
-import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { Appointment } from "shared/types/apiSchema";
 import api from "settings/api";
 import getMonth from "utils/months";
@@ -48,16 +47,7 @@ const fetchAppointments = (
  * Handles the queries and mutations related to appointments
  */
 const useAppointments = (selectedDate: Date): UseAppointmentsPayload => {
-  const { addToast } = useToastsDispatch();
-
-  const { data: appointments, isLoading } = useQuery<Appointment[], AxiosError>(["appointments", selectedDate], fetchAppointments, {
-    onError: (error) => {
-      addToast({
-        title: error.response?.data.message,
-        type: "error",
-      });
-    },
-  });
+  const { data: appointments, isLoading } = useQuery<Appointment[], AxiosError>(["appointments", selectedDate], fetchAppointments);
 
   const nextAppointment = useMemo(() => (
     (appointments ?? []).find(appointment => (

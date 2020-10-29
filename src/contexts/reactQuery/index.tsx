@@ -8,6 +8,12 @@ const ReactQueryProvider: React.FC = ({ children }) => {
   const { addToast } = useToastsDispatch();
 
   const handleMutationAndQueryError = useCallback((error: any) => {
+    const isCancelledError = error && error.constructor.name !== "CancelledError";
+
+    if (isCancelledError) {
+      return;
+    }
+
     addToast({
       title: error.response?.data.message,
       type: "error",

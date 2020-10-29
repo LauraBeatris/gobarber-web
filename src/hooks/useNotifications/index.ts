@@ -1,38 +1,50 @@
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import {
+  useInfiniteQuery,
   useQueryCache,
   useMutation,
-  useQuery,
 } from "react-query";
 import { AxiosError } from "axios";
 import { formatDistance, parseISO } from "date-fns";
+import flatten from "lodash.flatten";
 
-import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { Notification } from "shared/types/apiSchema";
 import api from "settings/api";
 
-import { FormattedNotification, UseNotificationsPayload } from "./types";
+import { PaginatedNotifications, FormattedNotification, UseNotificationsPayload } from "./types";
 
 const now = new Date();
 
-const fetchNotifications = (): Promise<FormattedNotification[]> => (
-  api.get<FormattedNotification[], {
-    data: FormattedNotification[];
-  }>("/notifications")
-    .then(response => (
-      response.data.filter(notification => !notification.read).map(notification => ({
-        ...notification,
-        createdAtDistance: formatDistance(parseISO(notification.created_at), now, {
-          addSuffix: true,
-        }),
-      }))
-    ))
-);
+const fetchNotifications = async (_key: string, page = 1): Promise<PaginatedNotifications> => {
+  const notifications = await (
+    api.get<FormattedNotification[], {
+      data: FormattedNotification[];
+    }>(`/notifications?page=${page}`)
+      .then(response => (
+        response.data
+          .map(notification => ({
+            ...notification,
+            createdAtDistance: formatDistance(parseISO(notification.created_at), now, {
+              addSuffix: true,
+            }),
+          }))
+      ))
+  );
 
-const markNotificationsAsReadMutation = (
-  unreadNotifications: FormattedNotification[],
+  return {
+    notifications,
+    page: page + 1,
+  };
+};
+
+const markNotificationsAsReadMutation = async (
+  notifications: PaginatedNotifications[],
 ): Promise<Notification[][]> => {
-  const promises = (unreadNotifications ?? []).map(unreadNotification => (
+  const flattenNotifications = flatten(notifications.map(
+    notification => notification.notifications,
+  ));
+
+  const promises = (flattenNotifications).map(unreadNotification => (
     api.patch<FormattedNotification[], {
       data: Notification[];
     }>(`/notifications/${unreadNotification.id}`)
@@ -49,39 +61,64 @@ const useNotifications = (): UseNotificationsPayload => {
   const queryCache = useQueryCache();
 
   const {
-    data: unreadNotifications,
-    isLoading: isQueryLoading,
+    data: notifications,
     refetch,
-  } = useQuery<FormattedNotification[], AxiosError>("notifications", fetchNotifications);
+    isLoading: isQueryLoading,
+    fetchMore,
+    canFetchMore,
+  } = useInfiniteQuery<PaginatedNotifications, AxiosError>("notifications", fetchNotifications, {
+    getFetchMore: (lastGroup, _allGroups) => (
+      lastGroup?.page ?? 1
+    ),
+  });
 
-  const { addToast } = useToastsDispatch();
+  const handleFetchMore = useCallback(() => {
+    fetchMore();
+  }, [fetchMore]);
 
   const [
     mutate,
     { isLoading: isMutationLoading },
-  ] = useMutation<Notification[][], AxiosError, FormattedNotification[]>(
+  ] = useMutation<Notification[][], AxiosError, PaginatedNotifications[], PaginatedNotifications[]>(
     markNotificationsAsReadMutation, {
-      onSuccess: () => {
-        queryCache.setQueryData("notifications", []);
+      onMutate: (_variables: PaginatedNotifications[]) => {
+        queryCache.cancelQueries("notifications");
+
+        const previousNotifications = queryCache.getQueryData<PaginatedNotifications[]>(
+          ["notifications"],
+        );
+
+        queryCache.setQueryData(["notifications"], []);
+
+        return previousNotifications ?? [];
       },
-      onError: (error) => {
-        addToast({
-          title: error.response?.data.message,
-          type: "error",
-        });
+      onError: (_error, _variables, previousValue) => {
+        queryCache.setQueryData(["notifications"], previousValue);
       },
+      throwOnError: false,
     },
   );
 
+  const coalescingNotifications = notifications ?? [];
+
+  const flattenNotifications = flatten(
+    (coalescingNotifications ?? [])?.map(notification => notification.notifications),
+  );
+
   const payload = useMemo<UseNotificationsPayload>(() => ({
-    markNotificationsAsRead: () => mutate(unreadNotifications),
-    unreadNotifications: unreadNotifications ?? [],
+    markNotificationsAsRead: () => mutate(notifications),
+    notifications: flattenNotifications ?? [],
+    handleFetchMore,
+    canFetchMore,
     isLoading: isQueryLoading || isMutationLoading,
     refetch,
   }), [
-    unreadNotifications,
+    flattenNotifications,
     isMutationLoading,
+    handleFetchMore,
     isQueryLoading,
+    notifications,
+    canFetchMore,
     refetch,
     mutate,
   ]);

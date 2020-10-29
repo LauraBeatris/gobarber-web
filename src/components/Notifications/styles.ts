@@ -156,6 +156,22 @@ export const NotificationsList = styled.ul`
         font-size: 14px;
         margin-left: 8px;
       }
+
+      ~ div:last-of-type {
+        width: 4em !important;
+        height: 4em !important;
+        margin: auto !important;
+      }
+    }
+
+    button {
+      background: ${theme.colors.orange};
+      border-radius: 5px;
+      margin-top: auto;
+      font-weight: 600;
+      padding: 5px 0;
+      border: none;
+      color: ${theme.colors.white};
     }
   `}
 

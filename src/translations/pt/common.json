@@ -18,7 +18,8 @@
     "resend_link": "Reenviar link",
     "logout": "Logout",
     "copy": "Copiar",
-    "confirm_changes": "Confirmar mudanças"
+    "confirm_changes": "Confirmar mudanças",
+    "load_more": "Carregar mais"
   },
   "toasts": {
     "something_went_wrong": "Algo deu errado...",
@@ -88,6 +89,7 @@
     "hair_care": "Tratamento Capilar"
   },
   "notifications": {
+    "title": "Notificações",
     "mark_all_as_read": "Marcar todas como lidas",
     "there_are_no_notifications": "Não há nenhuma notificação"
   },

@@ -8,6 +8,7 @@ import useOnClickOutside from "use-onclickoutside";
 import { useTranslation } from "react-i18next";
 
 import useNotifications from "hooks/useNotifications";
+import Loading from "components/Loading";
 
 import {
   NotificationsList,
@@ -23,7 +24,10 @@ const Notifications: React.FC = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const {
     refetch,
-    unreadNotifications,
+    isLoading,
+    canFetchMore,
+    notifications,
+    handleFetchMore,
     markNotificationsAsRead,
   } = useNotifications();
 
@@ -35,14 +39,15 @@ const Notifications: React.FC = () => {
     setShowNotifications(false);
   });
 
-  const showBadge = unreadNotifications.length > 0;
+  const isEmptyList = notifications.length === 0;
+  const showEmptyMessage = !isLoading && notifications.length === 0;
 
   return (
     <NotificationsContainer ref={notificationsContainerRef}>
       <NotificationsButton
         type="button"
         onClick={toggleShowNotifications}
-        showBadge={showBadge}
+        showBadge={!isEmptyList}
         showNotifications={showNotifications}
       >
         <IoIosNotifications />
@@ -52,21 +57,29 @@ const Notifications: React.FC = () => {
         showNotifications && (
           <NotificationsList>
             <header>
-              <p>Notifications</p>
+              <p>{t("notifications.title")}</p>
 
               <div>
-                <button type="button" onClick={markNotificationsAsRead}>
+                <button
+                  type="button"
+                  onClick={markNotificationsAsRead}
+                  disabled={isEmptyList || isLoading}
+                >
                   {t("notifications.mark_all_as_read")}
                 </button>
 
-                <button type="button" onClick={refetch}>
+                <button
+                  type="button"
+                  onClick={refetch}
+                  disabled={isLoading}
+                >
                   <IoIosRefresh />
                 </button>
               </div>
             </header>
 
             {
-              unreadNotifications.map(notification => (
+              notifications.map(notification => (
                 <NotificationListItem key={notification.id}>
                   <span>{notification.content}</span>
 
@@ -76,8 +89,22 @@ const Notifications: React.FC = () => {
             }
 
             {
-              unreadNotifications.length === 0 && (
+              showEmptyMessage && (
                 <h4>{t("notifications.there_are_no_notifications")}</h4>
+              )
+            }
+
+            {
+              !isEmptyList && canFetchMore && (
+                <button type="button" onClick={handleFetchMore}>
+                  {t("buttons.load_more")}
+                </button>
+              )
+            }
+
+            {
+              isLoading && (
+                <Loading />
               )
             }
           </NotificationsList>
