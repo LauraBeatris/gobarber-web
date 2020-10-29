@@ -30,8 +30,26 @@
 
 # :rocket: Features
 
-* Create an account as a service provider or as a costumer.
-* Schedule and manage appointments
+* #### Create an account as a service provider or as a costumer.
+* #### Schedule and manage appointments
+
+<br />
+
+#### Copying the dashboard URL to persist the selected month across multible browser tabs
+
+<img src="docs/features/copying-dashboard-url.gif">
+
+#### Handling loading when loading the provider month availability
+
+<img src="docs/features/loading-availability.gif">
+
+#### Listing notifications and marking them as read
+
+<img src="docs/features/marking-notifications-as-read.gif">
+
+#### Updating user profile
+
+<img src="docs/features/profile.gif">
 
 # :framed_picture: UI Documentation
 This project has a UI Documentation of reusable components, allowing to test them individually.
