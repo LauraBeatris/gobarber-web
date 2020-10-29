@@ -21,7 +21,7 @@ export const NotificationsButton = styled.button<NotificationsButtonProps>`
       background: ${shade(0.5, theme.colors.blackMedium)};
     }
 
-    ${showNotifications && css`
+    ${showNotifications && media.greaterThan("medium")`
         &::before {
         content: "";
         top: 110%;
