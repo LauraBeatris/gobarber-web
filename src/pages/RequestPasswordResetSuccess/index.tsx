@@ -1,15 +1,14 @@
-import React, { useCallback, useRef } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useCallback } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import { FormHandles } from "@unform/core";
 import { useTimer } from "react-timer-hook";
+import { useQueryParam } from "use-query-params";
 
 import AuthLayout from "layouts/Auth";
 import barberBackground from "assets/images/barber-background.png";
 import getExpiryConfirmationTimestamp from "utils/getExpiryConfirmationTimestamp";
-import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { appearFromLeft } from "styles/animations";
 import useSendRecoverPasswordRequest from "hooks/auth/useSendRecoverPasswordRequest";
+import noop from "utils/noop";
 
 import { Content } from "./styles";
 
@@ -17,18 +16,10 @@ const messageComponents = [
   <span className="bold" />,
 ];
 
-interface RequestPasswordResetSuccessHistoryState {
-  email: string;
-}
-
 const RequestPasswordResetSuccess: React.FC = () => {
-  const formRef = useRef<FormHandles>(null);
-  const history = useHistory<RequestPasswordResetSuccessHistoryState>();
-
   const [t] = useTranslation();
-
-  const { addToast } = useToastsDispatch();
-  const sendRecoverPasswordRequest = useSendRecoverPasswordRequest();
+  const [email] = useQueryParam<string>("email");
+  const [sendRecoverPasswordRequest] = useSendRecoverPasswordRequest();
 
   const {
     restart,
@@ -41,31 +32,15 @@ const RequestPasswordResetSuccess: React.FC = () => {
     async (): Promise<void> => {
       restart(getExpiryConfirmationTimestamp());
 
-      try {
-        formRef.current?.setErrors({});
-
-        await sendRecoverPasswordRequest({
-          email: history.location.state?.email,
-        });
-
-        addToast({
-          title: t("toasts.request_reset_password_success.email_sent_successfully"),
-          type: "success",
-        });
-      } catch (error) {
-        addToast({
-          title: t("toasts.something_went_wrong"),
-          description: t("toasts.request_reset_password_success.error_while_sending_email"),
-          type: "error",
-        });
-      }
+      sendRecoverPasswordRequest({
+        email,
+      })
+        .catch(noop);
     },
     [
       sendRecoverPasswordRequest,
-      history.location.state,
-      addToast,
       restart,
-      t,
+      email,
     ],
   );
 

@@ -4,18 +4,17 @@ import { useTranslation } from "react-i18next";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
 import { FiLogIn, FiLock, FiMail } from "react-icons/fi";
-import { ValidationError } from "yup";
 
 import { useAuthDispatch, useAuthState } from "contexts/auth/AuthContext";
 import AuthLayout from "layouts/Auth";
 import Input from "components/Input";
 import Button from "components/Button";
-import getValidationErrors from "utils/getValidationErrors";
 import barberBackground from "assets/images/barber-background.png";
 import { FORGOT_PASSWORD_PATH, SIGN_UP_PAGE_PATH } from "constants/routesPaths";
 import { appearFromLeft } from "styles/animations";
 import ShowPasswordInput from "components/Input/ShowPasswordInput";
-import { useToastsDispatch } from "contexts/toasts/ToastsContext";
+import performSchemaValidation from "utils/performSchemaValidation";
+import noop from "utils/noop";
 
 import schema from "./schema";
 
@@ -26,37 +25,19 @@ const SignIn: React.FC = () => {
 
   const { signIn } = useAuthDispatch();
 
-  const { addToast } = useToastsDispatch();
-
   const { loading } = useAuthState();
 
   const handleSubmit = useCallback(
-    async (data): Promise<void> => {
-      try {
-        formRef.current?.setErrors({});
-
-        await schema.validate(data, {
-          abortEarly: false,
-        });
-
-        await signIn(data);
-      } catch (error) {
-        if (error instanceof ValidationError) {
-          const errors = getValidationErrors(error);
-
-          formRef.current?.setErrors(errors);
-        }
-
-        addToast({
-          title: error.response?.data.message,
-          type: "error",
-        });
-      }
+    (data) => {
+      performSchemaValidation({
+        formRef,
+        schema,
+        data,
+      })
+        .then(() => signIn(data))
+        .catch(noop);
     },
-    [
-      signIn,
-      addToast,
-    ],
+    [signIn],
   );
 
   return (

@@ -12,6 +12,6 @@ export interface AuthStateContextData {
 }
 
 export interface AuthDispatchContextData {
-  signIn: (credentials: SignInCredentials) => Promise<void>;
+  signIn: (credentials: SignInCredentials) => void;
   signOut: () => void;
 }

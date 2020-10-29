@@ -1,9 +1,9 @@
-import { AxiosResponse } from "axios";
+import { MutationHookPayload } from "shared/types/mutations";
 
 export interface SendRecoverPasswordRequestData {
   email: string;
 }
 
-export type UseSendRecoverPasswordRequestPayload = (
-  data: SendRecoverPasswordRequestData
-) => Promise<AxiosResponse<unknown>>;
+export type UseSendRecoverPasswordRequestPayload = MutationHookPayload<
+  unknown, SendRecoverPasswordRequestData
+>;

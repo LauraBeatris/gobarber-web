@@ -1,4 +1,5 @@
-import { AxiosResponse } from "axios";
+import { User } from "shared/types/apiSchema";
+import { MutationHookPayload } from "shared/types/mutations";
 
 export interface SignUpData {
   name: string;
@@ -6,4 +7,4 @@ export interface SignUpData {
   password: string;
 }
 
-export type UseSignUpPayload = (data: SignUpData) => Promise<AxiosResponse<unknown>>;
+export type UseSignUpPayload = MutationHookPayload<Partial<User>, SignUpData>;

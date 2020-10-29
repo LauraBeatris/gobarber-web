@@ -1,17 +1,16 @@
-import React, { useMemo, useState, useCallback } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useMemo, useCallback } from "react";
 import { useLocalStorage } from "@rehooks/local-storage";
 
 import { USER_STORAGE_KEY, TOKEN_STORAGE_KEY, REFRESH_TOKEN_STORAGE_KEY } from "constants/localStorage";
-import { useToastsDispatch } from "contexts/toasts/ToastsContext";
-import api from "settings/api";
 import { User } from "shared/types/apiSchema";
+import useSignIn from "hooks/auth/useSignIn";
+import noop from "utils/noop";
 
 import { AuthStateProvider, AuthDispatchProvider } from "./AuthContext";
 import { SignInCredentials } from "./types";
 
 const AuthContainer: React.FC = ({ children }) => {
-  const [t] = useTranslation();
+  const [signIn, loading] = useSignIn();
 
   const [user, setUser, deleteUser] = useLocalStorage<User>(
     USER_STORAGE_KEY,
@@ -20,42 +19,41 @@ const AuthContainer: React.FC = ({ children }) => {
 
   const [token, setToken, deleteToken] = useLocalStorage(
     TOKEN_STORAGE_KEY,
-    null,
+    "",
   );
 
   const [, setRefreshToken, deleteRefreshToken] = useLocalStorage(
     REFRESH_TOKEN_STORAGE_KEY,
-    null,
+    "",
   );
 
-  const { addToast } = useToastsDispatch();
+  const handleSignIn = useCallback(
+    ({ email, password }: SignInCredentials): void => {
+      signIn({
+        email,
+        password,
+      })
+        .then((data) => {
+          if (
+            !data?.user
+          || !data?.token
+          || !data?.refreshToken
+          ) {
+            return;
+          }
 
-  const [loading, setLoading] = useState(false);
-
-  const signIn = useCallback(
-    async ({ email, password }: SignInCredentials): Promise<void> => {
-      setLoading(true);
-
-      try {
-        const { data } = await api.post("/sessions", {
-          email,
-          password,
-        });
-
-        setUser(data?.user);
-        setToken(data?.token);
-        setRefreshToken(data?.refreshToken);
-      } catch (err) {
-        addToast({
-          title: t("toasts.authentication.error.title"),
-          description: t("toasts.authentication.error.description"),
-          type: "error",
-        });
-      } finally {
-        setLoading(false);
-      }
+          setUser(data.user);
+          setToken(data.token);
+          setRefreshToken(data.refreshToken);
+        })
+        .catch(noop);
     },
-    [setUser, setToken, setRefreshToken, addToast, t],
+    [
+      signIn,
+      setUser,
+      setToken,
+      setRefreshToken,
+    ],
   );
 
   const signOut = useCallback((): void => {
@@ -83,11 +81,11 @@ const AuthContainer: React.FC = ({ children }) => {
 
   const authDispatch = useMemo(
     () => ({
-      signIn,
+      signIn: handleSignIn,
       signOut,
     }),
     [
-      signIn,
+      handleSignIn,
       signOut,
     ],
   );

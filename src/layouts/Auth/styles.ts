@@ -43,6 +43,10 @@ export const Content = styled.section`
     flex: 0;
   }
 
+  h1 {
+    text-align: center;
+  }
+
   h1, p {
     margin-bottom: 24px;
   }

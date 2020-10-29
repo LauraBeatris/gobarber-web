@@ -1,76 +1,58 @@
-import {
-  useMemo,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
-import { getYear } from "date-fns";
+import { useMemo } from "react";
+import { parseISO, getYear } from "date-fns";
+import { useQuery } from "react-query";
 
 import api from "settings/api";
 import getMonth from "utils/months";
 import { ProviderMonthAvailability } from "shared/types/apiSchema";
 import { useAuthState } from "contexts/auth/AuthContext";
-import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 import { getProviderMonthAvailableDates, getProviderMonthUnavailableDates } from "utils/providerMonthAvailability";
 import useFilter from "hooks/useFilter";
 import { filters } from "hooks/useFilter/filters";
 
 import { UseProviderMonthAvailabilityPayload } from "./types";
 
+const fetchProviderMonthAvailability = (
+  _queryKey: string,
+  currentMonth: string,
+  userId: string,
+): Promise<ProviderMonthAvailability[]> => {
+  const parseCurrentMonth = parseISO(currentMonth);
+
+  return (
+    api.get(`/providers/${userId}/month-availability`, {
+      params: {
+        year: getYear(parseCurrentMonth),
+        month: getMonth(parseCurrentMonth),
+      },
+    }).then(response => response.data)
+  );
+};
+
 /**
- * Returns the provider month availability
+ * Handles the queries related to the provider month availability
  */
 export const useProviderMonthAvailability = (): UseProviderMonthAvailabilityPayload => {
   const [currentMonth] = useFilter<Date>(filters.currentMonth);
 
-  const [
-    loadingProviderMonthAvailability,
-    setLoadingProviderMonthAvailability,
-  ] = useState(false);
-
-  const [
-    providerMonthAvailability,
-    setProviderMonthAvailability,
-  ] = useState<ProviderMonthAvailability[]>([]);
-
   const { user } = useAuthState();
 
-  const { addToast } = useToastsDispatch();
-
-  const fetchProviderMonthAvailability = useCallback(() => {
-    setLoadingProviderMonthAvailability(true);
-
-    api.get(`/providers/${user.id}/month-availability`, {
-      params: {
-        year: getYear(currentMonth),
-        month: getMonth(currentMonth),
-      },
-    })
-      .then((response) => {
-        setProviderMonthAvailability(response?.data);
-      })
-      .catch((error) => {
-        addToast({
-          type: "error",
-          title: error?.message,
-        });
-      })
-      .finally(() => {
-        setLoadingProviderMonthAvailability(false);
-      });
-  }, [
-    user.id,
-    addToast,
+  const {
+    data: providerMonthAvailability,
+    isFetching,
+  } = useQuery<ProviderMonthAvailability[]>([
+    "providerMonthAvailability",
     currentMonth,
-  ]);
+    user.id,
+  ], fetchProviderMonthAvailability);
 
   const providerMonthAvailabilityDates = useMemo(() => ({
     unavailable: getProviderMonthUnavailableDates({
-      providerMonthAvailability,
+      providerMonthAvailability: providerMonthAvailability ?? [],
       currentMonth,
     }),
     available: getProviderMonthAvailableDates({
-      providerMonthAvailability,
+      providerMonthAvailability: providerMonthAvailability ?? [],
       currentMonth,
     }),
   }), [
@@ -78,16 +60,12 @@ export const useProviderMonthAvailability = (): UseProviderMonthAvailabilityPayl
     currentMonth,
   ]);
 
-  useEffect(() => {
-    fetchProviderMonthAvailability();
-  }, [fetchProviderMonthAvailability]);
-
   const payload = useMemo<UseProviderMonthAvailabilityPayload>(() => ({
     providerMonthAvailabilityDates,
-    loadingProviderMonthAvailability,
+    isFetching,
   }), [
     providerMonthAvailabilityDates,
-    loadingProviderMonthAvailability,
+    isFetching,
   ]);
 
   return payload;

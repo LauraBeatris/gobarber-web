@@ -23,16 +23,6 @@
   },
   "toasts": {
     "something_went_wrong": "Something went wrong...",
-    "authentication": {
-      "error": {
-        "title": "Authentication Error",
-        "description": "An error occurred while authenticating, please, check your credentials"
-      },
-      "success": {
-        "title": "Successfully Authentication",
-        "description": "{{ username }}, welcome to the platform!"
-      }
-    },
     "signup": {
       "success": {
         "title": "Account Successfully Created",
@@ -40,9 +30,9 @@
       }
     },
     "request_reset_password_success": {
-      "error_while_sending_email": "Error while trying to send the email. Please, try it again.",
       "email_sent_successfully": "Email sent successfully"
-    }
+    },
+    "reset_password_success": "Password reset successfully"
   },
   "forgot_password": {
     "title": "Forgot Password?",

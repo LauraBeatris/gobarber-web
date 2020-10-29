@@ -7,6 +7,7 @@ export const Content = styled.div`
 
   h1 {
     margin-top: 30px;
+    text-align: center;
   }
 
   h4 {

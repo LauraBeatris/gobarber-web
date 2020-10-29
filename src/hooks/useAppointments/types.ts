@@ -4,5 +4,5 @@ export interface UseAppointmentsPayload {
   morningAppointments: Appointment[];
   eveningAppointments: Appointment[];
   nextAppointment?: Appointment;
-  loading: boolean;
+  isLoading: boolean;
 }
