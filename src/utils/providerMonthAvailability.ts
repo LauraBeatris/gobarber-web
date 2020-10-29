@@ -33,7 +33,7 @@ export const getProviderMonthAvailableDates = ({
 }: GetProviderMonthAvailabilityDates): Date[] => {
   const monthAvailableDates = providerMonthAvailability
     .filter((availability) => (
-      availability.available
+      !availability.isPast
     )).map(availability => (
       getAvailabilityDate(currentMonth, availability.day)
     ));
@@ -51,6 +51,7 @@ export const getProviderMonthUnavailableDates = ({
   const monthUnavailableDates = providerMonthAvailability
     .filter((availability) => (
       !availability.available
+      && availability.isPast
     )).map(availability => (
       getAvailabilityDate(currentMonth, availability.day)
     ));

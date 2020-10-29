@@ -20,6 +20,7 @@ export interface Appointment {
 
 export interface ProviderMonthAvailability {
   day: number;
+  isPast: boolean;
   available: boolean;
 }
 
