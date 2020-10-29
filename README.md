@@ -33,8 +33,6 @@
 * #### Create an account as a service provider or as a costumer.
 * #### Schedule and manage appointments
 
-<br />
-
 #### Copying the dashboard URL to persist the selected month across multible browser tabs
 
 <img src="docs/features/copying-dashboard-url.gif">
