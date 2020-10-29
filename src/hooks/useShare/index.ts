@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useCopyToClipboard } from "react-use";
 import { useTranslation } from "react-i18next";
+import noop from "lodash.noop";
 
-import noop from "utils/noop";
 import { useToastsDispatch } from "contexts/toasts/ToastsContext";
 
 import { UseShareResult } from "./types";

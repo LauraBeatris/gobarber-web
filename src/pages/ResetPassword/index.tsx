@@ -5,6 +5,7 @@ import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
 import { FiLock } from "react-icons/fi";
 import { StringParam, useQueryParam } from "use-query-params";
+import noop from "lodash.noop";
 
 import roomBackground from "assets/images/room-background.png";
 import Button from "components/Button";
@@ -15,7 +16,6 @@ import ShowPasswordInput from "components/Input/ShowPasswordInput";
 import useResetPassword from "hooks/auth/useResetPassword";
 import performSchemaValidation from "utils/performSchemaValidation";
 import { ResetPasswordData } from "hooks/auth/useResetPassword/types";
-import noop from "utils/noop";
 
 import schema from "./schema";
 

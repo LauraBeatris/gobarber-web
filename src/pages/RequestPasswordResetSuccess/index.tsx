@@ -2,13 +2,13 @@ import React, { useCallback } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useTimer } from "react-timer-hook";
 import { useQueryParam } from "use-query-params";
+import noop from "lodash.noop";
 
 import AuthLayout from "layouts/Auth";
 import barberBackground from "assets/images/barber-background.png";
 import getExpiryConfirmationTimestamp from "utils/getExpiryConfirmationTimestamp";
 import { appearFromLeft } from "styles/animations";
 import useSendRecoverPasswordRequest from "hooks/auth/useSendRecoverPasswordRequest";
-import noop from "utils/noop";
 
 import { Content } from "./styles";
 

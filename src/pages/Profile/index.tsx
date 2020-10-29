@@ -15,6 +15,7 @@ import {
 } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 import useLocalStorage from "@rehooks/local-storage";
+import noop from "lodash.noop";
 
 import Input from "components/Input";
 import Button from "components/Button";
@@ -27,7 +28,6 @@ import useUpdateUserAvatar from "hooks/user/useUpdateUserAvatar";
 import performSchemaValidation from "utils/performSchemaValidation";
 import useUpdateUserProfile from "hooks/user/useUpdateUserProfile";
 import { UpdateUserProfileData } from "hooks/user/useUpdateUserProfile/types";
-import noop from "utils/noop";
 
 import schema from "./schema";
 import { AvatarInput, Container, Content } from "./styles";

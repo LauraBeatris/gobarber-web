@@ -9,6 +9,7 @@ import {
   FiMail,
   FiUser,
 } from "react-icons/fi";
+import noop from "lodash.noop";
 
 import { appearFromRight } from "styles/animations";
 import { SIGN_IN_PAGE_PATH } from "constants/routesPaths";
@@ -21,7 +22,6 @@ import ShowPasswordInput from "components/Input/ShowPasswordInput";
 import useSignUp from "hooks/auth/useSignUp";
 import performSchemaValidation from "utils/performSchemaValidation";
 import { SignUpData } from "hooks/auth/useSignUp/types";
-import noop from "utils/noop";
 
 import schema from "./schema";
 

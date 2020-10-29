@@ -1,10 +1,10 @@
 import React, { useMemo, useCallback } from "react";
 import { useLocalStorage } from "@rehooks/local-storage";
+import noop from "lodash.noop";
 
 import { USER_STORAGE_KEY, TOKEN_STORAGE_KEY, REFRESH_TOKEN_STORAGE_KEY } from "constants/localStorage";
 import { User } from "shared/types/apiSchema";
 import useSignIn from "hooks/auth/useSignIn";
-import noop from "utils/noop";
 
 import { AuthStateProvider, AuthDispatchProvider } from "./AuthContext";
 import { SignInCredentials } from "./types";

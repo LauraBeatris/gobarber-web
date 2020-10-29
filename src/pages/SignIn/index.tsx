@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
 import { FiLogIn, FiLock, FiMail } from "react-icons/fi";
+import noop from "lodash.noop";
 
 import { useAuthDispatch, useAuthState } from "contexts/auth/AuthContext";
 import AuthLayout from "layouts/Auth";
@@ -14,7 +15,6 @@ import { FORGOT_PASSWORD_PATH, SIGN_UP_PAGE_PATH } from "constants/routesPaths";
 import { appearFromLeft } from "styles/animations";
 import ShowPasswordInput from "components/Input/ShowPasswordInput";
 import performSchemaValidation from "utils/performSchemaValidation";
-import noop from "utils/noop";
 
 import schema from "./schema";
 

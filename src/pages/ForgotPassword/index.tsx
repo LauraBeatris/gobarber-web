@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
 import { FiLogIn, FiMail } from "react-icons/fi";
+import noop from "lodash.noop";
 
 import Button from "components/Button";
 import Input from "components/Input";
@@ -14,7 +15,6 @@ import { appearFromLeft } from "styles/animations";
 import useSendRecoverPasswordRequest from "hooks/auth/useSendRecoverPasswordRequest";
 import performSchemaValidation from "utils/performSchemaValidation";
 import { SendRecoverPasswordRequestData } from "hooks/auth/useSendRecoverPasswordRequest/types";
-import noop from "utils/noop";
 
 import schema from "./schema";
 
