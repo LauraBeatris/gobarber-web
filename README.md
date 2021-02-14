@@ -60,19 +60,27 @@ This project has a UI Documentation of reusable components, allowing to test the
 
 **You need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, then in order to clone the project via HTTPS, run this command:**
 
-```git clone https://github.com/LauraBeatris/gobarber-web.git```
+```bash
+git clone https://github.com/LauraBeatris/gobarber-web.git
+```
 
 SSH URLs provide access to a Git repository via SSH, a secure protocol. If you have a SSH key registered in your Github account, clone the project using this command:
 
-```git clone git@github.com:LauraBeatris/gobarber-web.git```
+```bash
+git clone git@github.com:LauraBeatris/gobarber-web.git
+```
 
 **Install dependencies**
 
-```yarn install```
+```bash
+yarn install
+```
 
-Create your enviroment variables based on the examples of ```.env.example```
+Create your enviroment variables based on the examples of `.env.example`
 
-```cp .env.example .env```
+```bash
+cp .env.example .env
+```
 
 After copying the examples, make sure to fill the variables with new values.
 
@@ -86,7 +94,9 @@ Make sure to go to the [Hotseat API](https://github.com/LauraBeatris/hotseat) re
 
 Run the following command in order to start the application in a development environment:
 
-```yarn start```
+```bash
+yarn start
+```
 
 
 # :postbox: Faq
