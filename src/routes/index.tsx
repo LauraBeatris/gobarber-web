@@ -1,6 +1,8 @@
 import React from "react";
 import { Switch } from "react-router-dom";
 
+import NotFound from "pages/NotFound";
+
 import Route from "./CustomRoute";
 import appRoutes from "./appRoutes";
 
@@ -17,6 +19,11 @@ const Router: React.FC = () => (
         />
       ))
     }
+
+    <Route
+      path="*"
+      component={NotFound}
+    />
   </Switch>
 );
 
